@@ -1,2 +1,2 @@
 # AMCP-ProfBureau
-Service for AMCP Professional Bureau
+Service for AMCP Trade Union Bureau
