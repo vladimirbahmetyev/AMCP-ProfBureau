@@ -1,22 +1,48 @@
-.App {
+
+
+.background {
+    width: 100%;
+    /* height: auto; */
+    background-image: url(PM-cropped-blured.png);
+    background-attachment: fixed;
+    background-size: 100% auto;
+    top: 0;
+    left: 0;
+    align-items: center;
+    overflow: hidden;
+}
+
+.header {
+    display: flex;
+    background-color: white;
+    position: fixed;
+    z-index: 2;
+    height: 100px;
+    width: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0.7;
+    box-shadow: 0px 0px 8px 0px black;
+    /* justify-content: center; */
+    flex-direction: column;
+    justify-content: center;
+}
+
+.contentBlock {
+  margin-top: 11%;
+  margin-left: 10%;
+  margin-bottom: 3%;
+  width: 80%;
+  height: 800px;
+  /* background-color: white;
+  opacity: 0.7; */
   text-align: center;
+  box-shadow: 0px 0px 8px 0px black;
+  /* border-radius: 1%; */
+  /* border: 1px solid white; */
 }
 
-.App-logo {
-  height: 40vmin;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #09d3ac;
+.title {
+  font-size: 50px;
+  margin-left: 5%;
 }
