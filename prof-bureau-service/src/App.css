@@ -23,26 +23,68 @@
     left: 0;
     opacity: 0.7;
     box-shadow: 0px 0px 8px 0px black;
-    /* justify-content: center; */
     flex-direction: column;
     justify-content: center;
 }
 
-.contentBlock {
-  margin-top: 11%;
+.mainBlock {
+  display: flex;
+  margin-top: 120px;
   margin-left: 10%;
   margin-bottom: 3%;
   width: 80%;
   height: 800px;
-  /* background-color: white;
-  opacity: 0.7; */
   text-align: center;
-  box-shadow: 0px 0px 8px 0px black;
-  /* border-radius: 1%; */
-  /* border: 1px solid white; */
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 .title {
   font-size: 50px;
   margin-left: 5%;
+}
+
+.nav-block{
+  width: 22%;
+  height: 800px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  margin: 0;
+  padding: 0;
+}
+
+.comissionList {
+  margin-top: 0;
+  list-style: none;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+}
+
+.listElement {
+  height: 50px;
+  background-color: white;
+  opacity: 0.7;
+  box-shadow: 0px 0px 8px 0px black;
+  border-radius: 25px;
+  margin: 0 0 15px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  transform: scale(1);
+  transition-duration: 300ms;
+}
+.listElement:hover{
+    transform: scale(1.05);
+    transition-duration: 300ms;
+    z-index: 2;
+}
+
+.content {
+  width: 75%;
+  height: 800px;
+
+  box-shadow: 0px 0px 8px 0px black;
 }
