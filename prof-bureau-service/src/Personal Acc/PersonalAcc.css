@@ -1,0 +1,126 @@
+header{
+    display: flex;
+    justify-content: space-between;
+    box-shadow: 0px 0px 8px 0px black;
+    z-index: 2;
+    position: fixed;
+    align-items: center;
+    height: 9vh;
+}
+.pers-account-title{
+    font-style: italic;
+    margin-left: 10%;
+}
+
+.personal-info{
+    margin-right: 10%;
+    display: flex;
+    align-items: center;
+}
+
+.personal-info-about{
+    margin-right: 20px;
+}
+.course{
+    text-align: right;
+}
+.acc-action{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.personal-info-picture{
+    width: 80px;
+    height: 80px;
+    background: url("sprite.png") 570px -140px;
+    transform: scale(0.5);
+}
+
+.acc-exit{
+    transform: translateY(-15px);
+}
+
+
+.comissions-and-actions{
+    background-color: #f6cebd;
+    display: flex;
+    justify-content: space-around;
+    padding: 1vh 0;
+}
+
+.comissions-coloumn, .actions-coloumn{
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-radius: 20px;
+    box-shadow: 0px 0px 8px 0px black;
+    width: 35%;
+}
+.com-title, .actions-title{
+    text-align: center;
+    font-style: italic;
+    margin-top: 10px;
+}
+
+.comissions-grid{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    transition-duration: 300ms;
+}
+.com-item{
+    margin: 10px;
+    height: 5vw;
+    width: 5vw;
+    background: url("sprite.png") -15px 0px;
+    background-repeat: no-repeat;
+    background-size: 800% 200%;
+    transition-duration: 300ms;
+}
+.com-item:hover{
+    background-color: #fae7de;
+    transition-duration: 300ms;
+    border-radius: 10px;
+}
+
+.pm-design{
+    background-position: 2.5% 5%;
+}
+.hr{
+    background-position: 16% 5%;
+}
+.pm-profi{
+    background-position: 30% 5%;
+}
+.pm-photo{
+    background-position: 45% 3%;
+}
+.pm-video{
+    background-position: 61% 3%;
+}
+.funcom {
+    background-position: 73.5% 5%;
+}
+.sportcom{
+    background-position: 84.5% 2%;
+}
+.mounting{
+    background-position: 97% 5%;
+}
+.cultmass{
+    background-position: 0% 109%;
+}
+.smi{
+    background-position: 12% 105%;
+}
+.com-not-active{
+    opacity: 0.5;
+}
+/* color section background #f6cebd */
+/* color item background fae7de */
+/* 150 500 650 sum = 1300*/
+/* relation: 11.5% 38.5% 50% */
