@@ -4,12 +4,16 @@ header{
     box-shadow: 0px 0px 8px 0px black;
     z-index: 2;
     position: fixed;
+    background-color: white;
+    width: 100%;
     align-items: center;
     height: 9vh;
+    overflow: hidden;
 }
 .pers-account-title{
     font-style: italic;
     margin-left: 10%;
+    font-size: 5vh;
 }
 
 .personal-info{
@@ -47,7 +51,8 @@ header{
     background-color: #f6cebd;
     display: flex;
     justify-content: space-around;
-    padding: 1vh 0;
+    padding: 2vh 0;
+    padding-top: 9vh;
 }
 
 .comissions-coloumn, .actions-coloumn{
@@ -74,14 +79,14 @@ header{
 }
 .com-item{
     margin: 10px;
-    height: 5vw;
-    width: 5vw;
+    height: 7rem;
+    width: 7rem;
     background: url("sprite.png") -15px 0px;
     background-repeat: no-repeat;
     background-size: 800% 200%;
     transition-duration: 300ms;
 }
-.com-item:hover{
+.com-item:hover:not(.com-not-active){
     background-color: #fae7de;
     transition-duration: 300ms;
     border-radius: 10px;
