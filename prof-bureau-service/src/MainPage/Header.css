@@ -1,0 +1,60 @@
+.header {
+    display: flex;
+    background-color: white;
+    position: fixed;
+    z-index: 2;
+    height: 10vh;
+    width: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0.7;
+    box-shadow: 0px 0px 8px 0px black;
+    justify-content: space-between;
+    overflow: hidden;
+    align-items: center;
+}
+
+.title {
+    font-size: 2.5vh;
+    margin-left: 10%;
+    font-style: italic;
+    color: #2c3343;
+  }
+  
+  .title:hover {
+    color: lightcoral;
+    cursor: pointer;
+  }
+  
+  .personal-info{
+    margin-right: 10%;
+    display: flex;
+    align-items: center;
+  }
+  
+  .personal-info-about{
+    margin-right: 20px;
+    font-size: 2vh;
+  }
+  .course{
+    text-align: right;
+  }
+  .acc-action{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+  }
+  
+  .personal-info-picture{
+    width: 10vh;
+    height: 10vh;
+    background: url("sprite.png") 566px -145px;
+    transform: scale(0.6);
+    /* border: 1px solid black; */
+  }
+  
+  .acc-exit{
+    transform: translateY(-15px);
+    font-size: 2vh;
+  }

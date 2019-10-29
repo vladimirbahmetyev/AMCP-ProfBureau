@@ -1,0 +1,98 @@
+.contactBlock {
+    padding: 0 1%;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 32%;
+    height: auto;
+}
+  
+.chairman {
+    padding: 0.5% 0;
+    display: flex;
+    position: relative;
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    z-index: 1;
+}
+  
+.chairman-photo {
+    display: flex;
+    margin: 5%;
+    width: 85%;
+    height: auto;
+    padding-top: 50%;
+    border-radius: 5px;
+    background-color: #2c3343;
+}
+  
+.chairman-link {
+    margin-bottom: 15%;
+}
+  
+.chairman-link:hover {
+    color: lightcoral;
+    cursor: pointer;
+}
+  
+.follow-button {
+    display: flex;
+    width: 70%;
+    height: 22%;
+    position: absolute;
+    top: 89%;
+    background-color: #2c3343;
+    color: white;
+    font-style: italic;
+    font-size: medium;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100px;
+    border: none;
+    box-shadow: 0px 0px 8px 0px black;
+    transition-duration: 300ms;
+    outline: none;
+}
+  
+.follow-button:hover {
+    background-color: lightcoral;
+    cursor: pointer;
+    transform: scale(1.03);
+    transition-duration: 300ms;
+    z-index: 2;
+}
+  
+.follow-button:active {
+    background-color: #2c3343;
+}
+  
+.socialNetworks {
+    padding: 1% 0;
+    width: 100%;
+    margin-top: 16%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.chairman, .socialNetworks {
+  background-color: white;
+  opacity: 0.7;
+  box-shadow: 0px 0px 8px 0px black;
+  transition-duration: 300ms;
+}
+
+.chairman:hover, .socialNetworks:hover {
+  transform: scale(1.02);
+  transition-duration: 300ms;
+  z-index: 2;
+}
+
+.block-title {
+    color: #2c3343;
+    font-style: italic;
+    margin-top: 2%;
+    text-align: center;
+}
