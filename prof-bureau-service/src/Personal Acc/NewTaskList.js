@@ -1,5 +1,7 @@
 import  React from "react"
 import "./NewTaskList.css"
+import "./CurrentTask"
+import CurrentTask from "./CurrentTask"
 
 export default class NewTaskList extends React.Component{
     constructor(props) {
@@ -15,13 +17,11 @@ export default class NewTaskList extends React.Component{
         <div className="new-tasks-container">
             <h1 className="new-task-title"> Мой швапс</h1>
             <ul className="new-tasks-list">
-                <li className="new-task-item">Название задания</li>
-                <li className="new-task-item">Название задания</li>
-                <li className="new-task-item">Название задания</li>
-                <li className="new-task-item">Название задания</li>
-                <li className="new-task-item">Название задания</li>
-                <li className="new-task-item">Название задания</li>
-                <li className="new-task-item">Название задания</li>
+                <li><CurrentTask/></li>
+                <li><CurrentTask/></li>
+                <li><CurrentTask/></li>
+                <li><CurrentTask/></li>
+                <li><CurrentTask/></li>
             </ul>
         </div>
     )

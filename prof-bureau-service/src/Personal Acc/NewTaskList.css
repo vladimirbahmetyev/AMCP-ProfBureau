@@ -28,19 +28,7 @@
     padding: 0;
     width: 100%;
 }
-.new-task-item{
-    width: 100%;
-    margin-bottom: 1.15vh;
-    border-radius: 6.15vh;
-    background-color: #fae7de;
-    font-size: 25px;
-    height: 6.15vh;
-    text-align: center;
-    margin-top: 10px;
-    transition-duration: 300ms;
-}
 
-.new-task-item:hover{
-    transition-duration: 300ms;
-    opacity: 0.5;
+.new-tasks-list li{
+    margin-top:20px;
 }
