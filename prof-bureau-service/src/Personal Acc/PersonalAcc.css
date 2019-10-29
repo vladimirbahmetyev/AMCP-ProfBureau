@@ -36,14 +36,17 @@ header{
 }
 
 .personal-info-picture{
-    width: 80px;
-    height: 80px;
-    background: url("sprite.png") 570px -140px;
-    transform: scale(0.5);
+    width: 4rem;
+    height: 4rem;
+    background: url("sprite.png");
+    background-size: 900% 225%;
+    background-position: 44% 87%; 
+    background-repeat: no-repeat;
 }
 
 .acc-exit{
-    transform: translateY(-15px);
+    transform: translateY(-5px);
+    /* font-weight: 600; */
 }
 
 
@@ -124,6 +127,41 @@ header{
 }
 .com-not-active{
     opacity: 0.5;
+}
+
+.task-status{
+    display: flex;
+    justify-content: space-around;
+}
+.new-tasks-container, .ended-tasks-container{
+    width: 35%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+.new-task-title, .ended-task-title{
+    color: white;
+    background-color: blue;
+    border-radius: 20px;
+    text-align: center;
+    transform: translateY(-3.75vh);
+    width: 80%;
+}
+.new-tasks-list, .ended-tasks-list{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+.new-task-item, .ended-task-item{
+    width: 100%;
+    border-radius: 5vh;
+    background-color: #fae7de;
+    font-size: 25px;
+    height: 5vh;
+    text-align: center;
+    margin-top: 10px;
 }
 /* color section background #f6cebd */
 /* color item background fae7de */
