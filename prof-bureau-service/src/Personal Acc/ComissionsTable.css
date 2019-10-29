@@ -1,0 +1,71 @@
+.comissions-coloumn{
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-radius: 20px;
+    box-shadow: 0px 0px 8px 0px black;
+    width: 40%;
+}
+
+.com-title{
+    text-align: center;
+    font-style: italic;
+    margin-top: 10px;
+}
+
+.comissions-grid{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    transition-duration: 300ms;
+}
+.com-item{
+    margin: 10px;
+    height: 7rem;
+    width: 7rem;
+    background: url("sprite.png") -15px 0px;
+    background-repeat: no-repeat;
+    background-size: 800% 200%;
+    transition-duration: 300ms;
+}
+.com-item:hover:not(.com-not-active){
+    background-color: #fae7de;
+    transition-duration: 300ms;
+    border-radius: 10px;
+}
+
+.pm-design{
+    background-position: 2.5% 5%;
+}
+.hr{
+    background-position: 16% 5%;
+}
+.pm-profi{
+    background-position: 30% 5%;
+}
+.pm-photo{
+    background-position: 45% 3%;
+}
+.pm-video{
+    background-position: 61% 3%;
+}
+.funcom {
+    background-position: 73.5% 5%;
+}
+.sportcom{
+    background-position: 84.5% 2%;
+}
+.mounting{
+    background-position: 97% 5%;
+}
+.cultmass{
+    background-position: 0% 109%;
+}
+.smi{
+    background-position: 12% 105%;
+}
+.com-not-active{
+    opacity: 0.5;
+}
