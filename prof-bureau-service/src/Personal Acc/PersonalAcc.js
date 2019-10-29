@@ -52,12 +52,18 @@ const PersonalAccount = ({name, surname, course})=>(
                 <li className="new-task-item">Название задания</li>
                 <li className="new-task-item">Название задания</li>
                 <li className="new-task-item">Название задания</li>
+                <li className="new-task-item">Название задания</li>
+                <li className="new-task-item">Название задания</li>
+                <li className="new-task-item">Название задания</li>
             </ul>
         </div>
         <div className="ended-tasks-container">
             <h1 className="ended-task-title">Выпитый швапс</h1>
             <ul className="ended-tasks-list">
-                <li className="ended-task-item finish-task"></li>
+                <li className="ended-task-item finish-task">Название задания</li>
+                <li className="ended-task-item">Название задания</li>
+                <li className="ended-task-item">Название задания</li>
+                <li className="ended-task-item">Название задания</li>
                 <li className="ended-task-item">Название задания</li>
                 <li className="ended-task-item">Название задания</li>
                 <li className="ended-task-item">Название задания</li>
