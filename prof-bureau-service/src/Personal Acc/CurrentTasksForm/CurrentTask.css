@@ -12,7 +12,7 @@
     align-items: center;
 }
 .current-task-left{
-    background:url("../spriteV2.png");
+    background:url("/src/spriteV2.png");
     background-color: #fae7de;
     width: 6.15vh;
     border-top-left-radius: 6.15vh;
@@ -24,11 +24,14 @@
     transition-duration: 300ms;
 }
 
-.current-task-item:hover .current-task-left{    
+.current-task-left.current-task-description-show{
+    transform: rotate(90deg) translateY(20px) translateX(20px);
+}
+
+.current-task-item:hover .current-task-left.current-task-description-hide{    
     margin-right: 0.5vw;
     transition-duration: 300ms;
 }
-/* transform: rotate(90deg) translateY(20px) translateX(20px); */
 
 
 .current-task-right{
@@ -67,7 +70,7 @@
 }
 .current-task-send{
     margin-right: 10px;
-    background:url("../spriteV2.png");
+    background:url("/src/spriteV2.png");
     background-size: 800% 300%;
     background-repeat: no-repeat;
     background-position: 15% 95%;
@@ -75,7 +78,7 @@
     width: 6vh;
 }
 .current-task-delete{
-    background:url("../spriteV2.png");
+    background:url("/src/spriteV2.png");
     background-size: 800% 300%;
     background-repeat: no-repeat;
     background-position: 45% 95%;
@@ -83,18 +86,20 @@
     width: 6vh;
 }
 
-.current-task-description-hide{
-    height: 0px;
-    width: 0%;
-    overflow: hidden;
-    /* display: none; */
-}
-
 .current-task-right{
     transition-duration: 300ms;
 }
 
-.current-task-description-show{
+
+.current-task-item > .current-task-description-hide{
+    height: 0px;
+    width: 0px;
+    overflow: hidden;
+    transition-duration: 300ms;
+}
+
+
+.current-task-item > .current-task-description-show{
     transition-duration: 300ms;
     margin-top: 20px;
     border-radius: 25px;

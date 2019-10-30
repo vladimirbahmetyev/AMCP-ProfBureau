@@ -1,10 +1,10 @@
 import  React from "react"
 import './PersonalAcc.css'
 import HeaderPB from "./HeaderPB"
-import ComissionsTable from "./ComissionsTable"
-import CurrentTaskList from "./CurrentTaskList"
-import EndedTaskList from "./EndedTaskList"
-import ActionsTable from "./ActionsTable"
+import ComissionsTable from "./ComissionsAndActionsTable/ComissionsTable"
+import ActionsTable from "./ComissionsAndActionsTable/ComissionsTable"
+import CurrentTaskList from "./CurrentTasksForm/CurrentTaskList"
+import EndedTaskList from "./EndedTasksForm/EndedTaskList"
 
 export default class PersonalAccount extends React.Component{
     constructor(props) {

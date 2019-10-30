@@ -17,7 +17,7 @@
 .ended-task-state{
     height: 6vh;
     width: 6vh;
-    background:url("../spriteV2.png");
+    background:url("/src/spriteV2.png");
     background-size: 800% 300%;
     background-repeat: no-repeat;
     background-position: 2% 4%;
