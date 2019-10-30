@@ -1,7 +1,15 @@
-.current-task-item{
+.current-task-item-prev{
     display: flex; 
     justify-content: flex-end;
     height: 6.15vh;  
+    width: 100%;
+}
+
+.current-task-item{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
 }
 .current-task-left{
     background:url("../spriteV2.png");
@@ -16,10 +24,11 @@
     transition-duration: 300ms;
 }
 
-.current-task-left:hover{    
+.current-task-item:hover .current-task-left{    
     margin-right: 0.5vw;
     transition-duration: 300ms;
 }
+/* transform: rotate(90deg) translateY(20px) translateX(20px); */
 
 
 .current-task-right{
@@ -27,6 +36,7 @@
     display: flex;
     background-color: #fae7de;
     border-top-right-radius: 6.15vh;
+    width: 100%;
     border-bottom-right-radius: 6.15vh;
     width: 35vw;
 }
@@ -73,3 +83,23 @@
     width: 6vh;
 }
 
+.current-task-description-hide{
+    height: 0px;
+    width: 0%;
+    overflow: hidden;
+    /* display: none; */
+}
+
+.current-task-right{
+    transition-duration: 300ms;
+}
+
+.current-task-description-show{
+    transition-duration: 300ms;
+    margin-top: 20px;
+    border-radius: 25px;
+    height: 10vh;
+    width: 100%;
+    padding: 20px;
+    background-color:#fae7de ;
+}
