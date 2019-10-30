@@ -12,7 +12,7 @@
     align-items: center;
 }
 .current-task-left{
-    background:url("/src/spriteV2.png");
+    background:url("../../spriteV2.png");
     background-color: #fae7de;
     width: 6.15vh;
     border-top-left-radius: 6.15vh;

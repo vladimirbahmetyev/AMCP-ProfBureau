@@ -25,7 +25,7 @@
     margin: 10px;
     height: 7rem;
     width: 7rem;
-    background: url("/src/Personal Acc/sprite.png") -15px 0px;
+    background: url("../sprite.png") -15px 0px;
     background-repeat: no-repeat;
     background-size: 800% 200%;
     transition-duration: 300ms;

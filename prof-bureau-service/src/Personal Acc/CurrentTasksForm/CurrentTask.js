@@ -30,9 +30,9 @@ export default class CurrentTask extends React.Component{
 
     render(){
     return(
-        <div className="current-task-item">
+        <div className="current-task-item" onClick={this.onDescpButtonClick}>
         <div className="current-task-item-prev">
-            <div className={this.watchClassStatus} onClick={this.onDescpButtonClick}></div>
+            <div className={this.watchClassStatus}></div>
             <div className="current-task-right">
                 <div className="current-task-name">
                     Название задания

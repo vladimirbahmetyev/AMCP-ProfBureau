@@ -2,7 +2,7 @@ import  React from "react"
 import './PersonalAcc.css'
 import HeaderPB from "./HeaderPB"
 import ComissionsTable from "./ComissionsAndActionsTable/ComissionsTable"
-import ActionsTable from "./ComissionsAndActionsTable/ComissionsTable"
+import ActionsTable from "./ComissionsAndActionsTable/ActionsTable"
 import CurrentTaskList from "./CurrentTasksForm/CurrentTaskList"
 import EndedTaskList from "./EndedTasksForm/EndedTaskList"
 
