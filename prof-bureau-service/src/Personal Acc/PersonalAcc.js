@@ -2,7 +2,7 @@ import  React from "react"
 import './PersonalAcc.css'
 import HeaderPB from "./HeaderPB"
 import ComissionsTable from "./ComissionsTable"
-import NewTaskList from "./NewTaskList"
+import CurrentTaskList from "./CurrentTaskList"
 import EndedTaskList from "./EndedTaskList"
 import ActionsTable from "./ActionsTable"
 
@@ -24,7 +24,7 @@ export default class PersonalAccount extends React.Component{
         <ActionsTable/>
     </section>
     <section className="task-status-section">
-        <NewTaskList/>
+        <CurrentTaskList/>
         <EndedTaskList/>
     </section>
     </div>)

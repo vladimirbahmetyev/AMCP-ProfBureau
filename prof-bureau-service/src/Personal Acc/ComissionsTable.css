@@ -34,6 +34,7 @@
     background-color: #fae7de;
     transition-duration: 300ms;
     border-radius: 10px;
+    transform: scale(1.1);
 }
 
 .pm-design{

@@ -1,0 +1,37 @@
+.ended-task-item{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+    border-radius: 6.15vh;
+    background-color: #fae7de;
+    font-size: 2vw;
+    height: 6.15vh;
+    transition-duration: 300ms;
+}
+
+.ended-task-item .ended-task-state:hover{
+    transform: scale(1.2);
+    transition-duration: 300ms;
+}
+.ended-task-state{
+    height: 6vh;
+    width: 6vh;
+    background:url("../spriteV2.png");
+    background-size: 800% 300%;
+    background-repeat: no-repeat;
+    background-position: 2% 4%;
+    transition-duration: 200ms;
+}
+
+.ended-task-accepted .ended-task-state{
+    background-position: 15% 95%;
+}
+
+.ended-task-decline .ended-task-state{
+    background-position: 43% 95%;
+}
+
+.ended-task-checking .ended-task-state{
+    background-position: 30% 95%;
+}

@@ -1,9 +1,9 @@
 import  React from "react"
-import "./NewTaskList.css"
+import "./CurrentTaskList.css"
 import "./CurrentTask"
 import CurrentTask from "./CurrentTask"
 
-export default class NewTaskList extends React.Component{
+export default class CurrentTaskList extends React.Component{
     constructor(props) {
         super(props)
     }

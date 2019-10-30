@@ -4,14 +4,14 @@
     height: 6.15vh;  
 }
 .current-task-left{
-    background:url("sprite.png");
+    background:url("../spriteV2.png");
     background-color: #fae7de;
     width: 6.15vh;
     border-top-left-radius: 6.15vh;
     border-bottom-left-radius: 6.15vh;
-    background-size: 800% 200%;
+    background-size: 800% 300%;
     background-repeat: no-repeat;
-    background-position: 59% 100%;
+    background-position: 56% 95%;
     margin-right: 0;
     transition-duration: 300ms;
 }
@@ -57,18 +57,18 @@
 }
 .current-task-send{
     margin-right: 10px;
-    background:url("sprite.png");
-    background-size: 800% 200%;
+    background:url("../spriteV2.png");
+    background-size: 800% 300%;
     background-repeat: no-repeat;
-    background-position: 75% 100%;
+    background-position: 15% 95%;
     height: 6vh;
     width: 6vh;
 }
 .current-task-delete{
-    background:url("sprite.png");
-    background-size: 800% 200%;
+    background:url("../spriteV2.png");
+    background-size: 800% 300%;
     background-repeat: no-repeat;
-    background-position: 99% 95%;
+    background-position: 45% 95%;
     height: 6vh;
     width: 6vh;
 }

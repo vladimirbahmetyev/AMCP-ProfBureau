@@ -1,4 +1,4 @@
-.new-tasks-container, .ended-tasks-container{
+.new-tasks-container{
     width: 40%;
     display: flex;
     justify-content: flex-end;
