@@ -1,23 +1,15 @@
 import React from 'react'
-import './InformationBlock.css'
+import './styles/InformationBlock.css'
+import Information from './Information'
 
 export default class InformationBlock extends React.Component {
 
     render() {
+        const { comission } = this.props
         return(
             <div className='information-block'>
-                <h2 className='block-title'>Название комиссии</h2>
-                Профсоюз факультета ПМ-ПУ — это большой и дружный коллектив, 
-                объединённый общей идеей — сделать годы обучения незабываемыми.
-                <br/><br/>
-                Он состоит из 8 комиссий, сферы деятельности которых охватывают 
-                все сферы студенческой жизни. Мы помогаем воплощать даже самые 
-                сумасшедшие идеи, раскрываем таланты и дарим бесценный опыт. 
-                Общественная деятельность на нашем факультете одна из самых ярких, 
-                благодаря нашим ребятам. И вы в любой момент можете стать частью этой команды!
-                <br/><br/>
-                Все вопросы, обращения и пожелания к Профбюро Вы можете присылать 
-                по адресу: profburo@spbu.ru или председателю.
+                <h2 className='block-title'> {comission} </h2>
+                <Information comission={comission} />
             </div>
         )
     }

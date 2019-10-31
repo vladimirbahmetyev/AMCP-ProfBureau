@@ -1,20 +1,24 @@
 import React from 'react'
-import './NavigationBlock.css'
+import './styles/NavigationBlock.css'
+import NavButton from './NavButton'
 
 export default class NavigationBlock extends React.Component {
+    constructor(props) {
+        super(props)
+    }
 
     render() {
         return(
             <div className='nav-block'>
                 <ul className="comissionList">
-                <li className='listElement'>Культмасс</li>
-                <li className='listElement'>HR</li>
-                <li className='listElement'>FunCom</li>
-                <li className='listElement'>PM-Design</li>
-                <li className='listElement'>СпортКом</li>
-                <li className='listElement'>PM-Partner</li>
-                <li className='listElement'>Оформители</li>
-                <li className='listElement'>PM-Photo</li>
+                    <NavButton comission='Культмасс' changeComission={this.props.changeComission}/>
+                    <NavButton comission='HR' changeComission={this.props.changeComission}/>
+                    <NavButton comission='FunCom' changeComission={this.props.changeComission}/>
+                    <NavButton comission='PM-Design' changeComission={this.props.changeComission}/>
+                    <NavButton comission='СпортКом' changeComission={this.props.changeComission}/>
+                    <NavButton comission='PM-Partner' changeComission={this.props.changeComission}/>
+                    <NavButton comission='Оформители' changeComission={this.props.changeComission}/>
+                    <NavButton comission='PM-Photo' changeComission={this.props.changeComission}/>
                 </ul>
             </div>
         )

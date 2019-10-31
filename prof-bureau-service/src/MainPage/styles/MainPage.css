@@ -1,6 +1,19 @@
+@font-face {
+  font-family: 'PFBeauSansPro-light';
+  font-style: normal;
+  src: url('../Beau_Sans_Pro/PFBeauSansPro-Light.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'PFBeauSansPro-light';
+  font-style: italic;
+  src: url('../Beau_Sans_Pro/PFBeauSansPro-LightItal.ttf') format('truetype');
+}
+
 .background {
+    font-family: 'PFBeauSansPro-light';
     width: 100%;
-    background-image: url(PM-cropped-blured.png);
+    background-image: url(../images/PM-cropped-blured.png);
     background-attachment: fixed;
     background-size: 100% auto;
     top: 0;

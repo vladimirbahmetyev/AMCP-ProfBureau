@@ -18,13 +18,23 @@
 }
   
 .listElement {
+    font-family: inherit;
     height: 50px;
     margin: 0 0 15px 0;
     display: flex;
+    width: 100%;
     align-items: center;
-    justify-content: space-around;
+    flex-direction: row;
+    justify-content: space-between;
     border-radius: 25px;
     font-size: large;
+}
+
+.text {
+    margin-right: 10%;
+    width: 65%;
+    justify-content: center;
+    align-content: center;
 }
   
 .listElement:hover {

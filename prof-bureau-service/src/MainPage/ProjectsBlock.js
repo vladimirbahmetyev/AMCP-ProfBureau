@@ -1,5 +1,5 @@
 import React from 'react'
-import './ProjectsBlock.css'
+import './styles/ProjectsBlock.css'
 
 export default class ProjectsBlock extends React.Component {
 
