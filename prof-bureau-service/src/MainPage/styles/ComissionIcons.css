@@ -11,42 +11,42 @@
     background-color: lightcoral;
 }
 
-.cultmass {
+.cultmass-icon {
     mask-image: url('../sprite.svg#CultMass');
     mask-size: 90% 90%; 
 }
 
-.HR {
+.HR-icon {
     mask-image: url('../sprite.svg#HR');
     mask-size: 100% 100%;
 }
 
-.FunCom {
+.FunCom-icon {
     mask-image: url('../sprite.svg#FunCom');
     mask-size: 90% 90%; 
 }
 
-.PM-Design {
+.PM-Design-icon {
     mask-image: url('../sprite.svg#PM-Design');
     mask-size: 80% 80%;
 }
 
-.sportcom {
+.sportcom-icon {
     mask-image: url('../sprite.svg#sportcom');
     mask-size: 80% 80%;
 }
 
-.PM-Partner {
+.PM-Partner-icon {
     mask-image: url('../sprite.svg#PM-Partner');
     mask-size: 90% 90%;
 }
 
-.oformiteli {
+.oformiteli-icon {
     mask-image: url('../sprite.svg#oformiteli');
     mask-size: 85% 85%;
 }
 
-.PM-Photo {
+.PM-Photo-icon {
     mask-image: url('../sprite.svg#PM-Photo');
     mask-size: 80% 80%;
 }

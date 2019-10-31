@@ -7,6 +7,10 @@ export default class Header extends React.Component {
             }
 
     render() {
+        const { isAuthorized } = this.props
+        const accExit = isAuthorized ? 'Выход' : 'Вход'
+        const { login } = this.props
+        const course = isAuthorized ? this.props.course + ' курс' : ''
         return(
             <header className='header'>
                 <div style={{marginLeft: '10%'}}>
@@ -19,15 +23,15 @@ export default class Header extends React.Component {
                 <div className="personal-info">
                     <div className="personal-info-about">
                         <div className="personal-info-about-name">
-                            [Имя] [Фамилия]
+                            {login}
                         </div>
                         <div className="course">
-                            [Курс]
+                            {course}
                         </div>  
                     </div>
                     <div className="acc-action">
                         <div className='personal-info-picture'></div>
-                        <div className="acc-exit">Выход</div>
+                        <div className="acc-exit">{accExit}</div>
                     </div>
                 </div>
             </header>
