@@ -19,12 +19,11 @@ export default class ComissionsTable extends React.Component{
             <div className="hr com-item"></div>
             <div className="pm-profi com-item com-not-active"></div>
             <div className=" pm-photo com-item com-not-active"></div>
-            <div className="pm-video com-item com-not-active"></div>
             <div className="funcom com-item com-not-active"></div>
             <div className="sportcom com-item com-not-active"></div>
             <div className="mounting com-item com-not-active"></div>
             <div className="cultmass com-item"></div>
-            <div className="smi com-item com-not-active"></div>
+            {/* <div className="smi com-item com-not-active"></div> */}
         </div>
         </div>
     )
