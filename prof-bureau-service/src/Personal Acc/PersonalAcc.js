@@ -3,8 +3,11 @@ import './PersonalAcc.css'
 import HeaderPB from "./HeaderPB"
 import ComissionsTable from "./ComissionsAndActionsTable/ComissionsTable"
 import ActionsTable from "./ComissionsAndActionsTable/ActionsTable"
-import CurrentTaskList from "./CurrentTasksForm/CurrentTaskList"
-import EndedTaskList from "./EndedTasksForm/EndedTaskList"
+
+import ItemList from "./ItemList/ItemList"
+
+import EndedTask from "./EndedTask/EndedTask"
+import CurrentTask from "./CurrentTask/CurrentTask"
 
 export default class PersonalAccount extends React.Component{
     constructor(props) {
@@ -24,8 +27,8 @@ export default class PersonalAccount extends React.Component{
         <ActionsTable/>
     </section>
     <section className="task-status-section">
-        <CurrentTaskList/>
-        <EndedTaskList/>
+        <ItemList type={<CurrentTask/>} titleName = "Мой швапс"/>
+        <ItemList type={<EndedTask/>} titleName = "Выпитый швапс"/>
     </section>
     </div>)
     }

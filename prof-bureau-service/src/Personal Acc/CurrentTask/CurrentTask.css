@@ -110,7 +110,7 @@
 
 .current-task-item > .current-task-description-show{
     transition-duration: 300ms;
-    margin-top: 20px;
+    margin-top: 15px;
     border-radius: 25px;
     height: 10vh;
     width: 100%;
