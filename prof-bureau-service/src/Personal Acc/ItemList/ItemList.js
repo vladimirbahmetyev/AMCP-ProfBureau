@@ -2,10 +2,6 @@ import  React from "react"
 import "./ItemList.css"
 
 export default class ItemList extends React.Component{
-    constructor(props) {
-        super(props)
-    }
-
     state = {
         exampleState: true,
         secondExampleState: 0

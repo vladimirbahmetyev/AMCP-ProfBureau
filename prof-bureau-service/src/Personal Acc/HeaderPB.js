@@ -2,9 +2,6 @@ import React from 'react';
 import './HeaderPB.css'
 
 export default class HeaderPB extends React.Component{
-    constructor(props) {
-        super(props)
-    }
 
     state = {
         exampleState: true,

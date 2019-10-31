@@ -2,9 +2,6 @@ import  React from "react"
 import './ActionsTable.css'
 
 export default class ActionsTable extends React.Component{
-    constructor(props) {
-        super(props)
-    }
 
     state = {
         exampleState: true,

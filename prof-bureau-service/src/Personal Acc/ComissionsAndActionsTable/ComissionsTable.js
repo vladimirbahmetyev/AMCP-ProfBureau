@@ -2,9 +2,6 @@ import  React from "react"
 import "./ComissionsTable.css"
 
 export default class ComissionsTable extends React.Component{
-    constructor(props) {
-        super(props)
-    }
 
     state = {
         exampleState: true,

@@ -23,8 +23,8 @@
 }
 .com-item{
     margin: 10px;
-    height: 8rem;
-    width: 8rem;
+    height: 5vw;
+    width: 5vw;
     transition-duration: 300ms;
     background-color: #2c3343;
     background-repeat: no-repeat;

@@ -2,9 +2,6 @@ import React from 'react';
 import "./CurrentTask.css"
 
 export default class CurrentTask extends React.Component{
-    constructor(props) {
-        super(props)
-    }
 
     state = {
         descriptionState:"current-task-description-hide"

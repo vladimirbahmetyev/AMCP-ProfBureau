@@ -10,9 +10,6 @@ import EndedTask from "./EndedTask/EndedTask"
 import CurrentTask from "./CurrentTask/CurrentTask"
 
 export default class PersonalAccount extends React.Component{
-    constructor(props) {
-        super(props)
-    }
 
     state = {
         exampleState: true,

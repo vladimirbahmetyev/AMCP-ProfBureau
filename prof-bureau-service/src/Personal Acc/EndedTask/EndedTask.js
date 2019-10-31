@@ -2,10 +2,7 @@ import React from 'react';
 import "./EndedTask.css"
 
 export default class EndedTask extends React.Component{
-    constructor(props) {
-        super(props)
-    }
-
+    
     state = {
         exampleState: true,
         secondExampleState: 0
