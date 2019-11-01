@@ -5,7 +5,6 @@ import ComissionsTable from "./ComissionsTable/ComissionsTable"
 import ActionsTable from "./ActionsTable/ActionsTable"
 import CurrentComissionEvents from "./CurrentComissionEvents/CurrentComissionsEvents";
 import AboutComPred from "./AboutComPred/AboutComPred";
-import CssTransition from "react-transition-group/CSSTransitionGroup";
 
 import ItemList from "./ItemList/ItemList"
 
@@ -51,12 +50,10 @@ export default class PersonalAccount extends React.Component{
         <ComissionsTable onClickCom={this.comTableListener}/>
         {this.state.aboutCom}
     </section>
-    <CssTransition appear={true} in={true} timeout={300} classNames="fade">
-    <section className="task-status-section">
-        {this.state.leftTaskPart}        
-        {this.state.rightTaskPart}        
-    </section>
-    </CssTransition>
+        <section className="task-status-section">
+            {this.state.leftTaskPart}        
+            {this.state.rightTaskPart}        
+        </section>
     </div>)
     }
 }
