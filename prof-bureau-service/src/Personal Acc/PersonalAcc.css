@@ -16,34 +16,22 @@
 /* color coloumn item title #2c3343 */
 /* relation: 11.5% 38.5% 50% */
 
-.fade-appear{
-    opacity: 0;
-    z-index: 1;
-}
-
-.fade-appear.fade-appear-active{
+.fade-enter {
+    /* opacity: 0; */
+    transform: translateX(-500px);
+  }
+  .fade-enter-active {
     opacity: 1;
-    transition: opacity 300ms linear;
-}
-
-.fade-enter{
-    opacity: 0;
-    z-index: 1;
-}
-
-.fade-enter.fade-enter-active{
+    transform: translateX(0);
+    transition: opacity 400ms, transform 400ms;
+  }
+  .fade-exit {
     opacity: 1;
-    transition: opacity 300ms linear 100ms;
-}
-
-.fade-exit{
-    opacity: 1;
-}
-
-.fade-exit.fade-exit-activer{
+    position: absolute;
+  }
+  .fade-exit-active {
     opacity: 0;
-    transition: opacity 300ms linear;
-}
-.fade-exit-done{
-    opacity: 0;
-}
+    transform: translateX(500px);
+    transition: opacity 400ms, transform 400ms;
+  }
+  
