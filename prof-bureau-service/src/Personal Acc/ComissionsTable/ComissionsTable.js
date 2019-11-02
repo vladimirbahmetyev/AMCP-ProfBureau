@@ -12,12 +12,22 @@ export default class ComissionsTable extends React.Component{
         <div className="comissions-coloumn">
         <h2 className="com-title">Мои комиссии</h2>
         <div className="comissions-grid">
-            <div className="pm-design com-item" onClick={()=>this.props.onClickCom("pmDesign")}>
+            <div className="pm-design com-item" onClick={()=>this.props.onClickCom(
+                {
+                    comName:"Pm-Design",
+                    predName:"Ольга крылова"
+                }
+            )}>
                 <div className="com-picture"></div>
                 <div>PM-Design</div>
             </div>
 
-            <div className="hr com-item" onClick={()=>this.props.onClickCom("pmHr")}>
+            <div className="hr com-item" onClick={()=>this.props.onClickCom(
+                {
+                    comName:"HR",
+                    predName:"Мария Васильева"
+                }
+            )}>
                 <div className="com-picture"></div>
                 <div>HR</div>
             </div>

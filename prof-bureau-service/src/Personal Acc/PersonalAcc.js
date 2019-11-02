@@ -18,9 +18,6 @@ export default class PersonalAccount extends React.Component{
     state = {
         isAPred: false,
         selectComission:"none",
-        aboutCom: <ActionsTable/>,
-        leftTaskPart: <ItemList type={<CurrentTask/>} titleName = "Актуальный швапс"/>,
-        rightTaskPart:<ItemList type={<EndedTask/>} titleName = "Выпитый швапс"/>,
         isComShow: false
     }
 
@@ -29,20 +26,15 @@ export default class PersonalAccount extends React.Component{
             this.setState({
                 isAPred: false,
                 selectComission:"none",
-                aboutCom: <ActionsTable/>,
-                leftTaskPart: <ItemList type={<CurrentTask/>} titleName = "Мой швапс"/>,
-                rightTaskPart:<ItemList type={<EndedTask/>} titleName = "Выпитый швапс"/>,
-                isComShow: false
+                isComShow: false,
             })
         }
         else{
             this.setState({
                 isAPred:false,
-                selectComission: pushedCom,
-                aboutCom: <AboutComPred/>,
-                leftTaskPart: <ItemList type={<CurrentComissionTask/>} titleName="Актуальный швапс"/>,
-                rightTaskPart:<CurrentComissionEvents titleName="Швапс комиссии"/>,
-                isComShow: true
+                selectComission: pushedCom.comName,
+                isComShow: true,
+                predName:pushedCom.predName
             })
         }
     }
@@ -52,28 +44,51 @@ export default class PersonalAccount extends React.Component{
     <HeaderPB />
     <section className="comissions-and-actions">
         <ComissionsTable onClickCom={this.comTableListener}/>
-        {this.state.aboutCom}
+        
+        <CssTransition 
+        classNames="fade-title"
+        timeout={600}
+        unmountOnExit
+        mountOnEnter
+        in={!this.state.isComShow}
+        >
+            <ActionsTable/>
+        </CssTransition>
+
+        <CssTransition 
+        classNames="fade-title"
+        timeout={800}
+        unmountOnExit
+        mountOnEnter
+        in={this.state.isComShow}
+        >
+        <AboutComPred comState={this.state}/>
+        </CssTransition>
+
     </section>
         <CssTransition 
-        timeout={800}
-          in={this.state.isComShow} 
-          classNames="fade"
-          unmountOnExit
-          >
-        <section className="task-status-section">
-            {this.state.leftTaskPart}        
-            {this.state.rightTaskPart}        
-        </section>
+        classNames="fade"
+        timeout={600}
+        mountOnEnter
+        unmountOnExit
+        in={!this.state.isComShow}
+        >
+            <section className="task-status-section">
+              <ItemList type={<CurrentTask/>} titleName = "Мой швапс"/>
+              <ItemList type={<EndedTask/>} titleName = "Выпитый швапс"/> 
+            </section>
         </CssTransition>
+
         <CssTransition 
-        timeout={800}
-          in={!this.state.isComShow} 
-          classNames="fade"
-          unmountOnExit
-          >
+        classNames="fade"
+        timeout={600}
+        unmountOnExit
+        mountOnEnter
+        in={this.state.isComShow}
+        >
         <section className="task-status-section">
-            {this.state.leftTaskPart}        
-            {this.state.rightTaskPart}        
+            <ItemList type={<CurrentComissionTask/>} titleName="Актуальный швапс"/>
+            <CurrentComissionEvents titleName="Швапс комиссии"/>
         </section>
         </CssTransition>
     </div>)
