@@ -18,7 +18,8 @@ export default class PersonalAccount extends React.Component{
     state = {
         isAPred: false,
         selectComission:"none",
-        isComShow: false
+        isComShow: false,
+        isComChange:false
     }
 
     comTableListener = (pushedCom)=>{
@@ -27,6 +28,7 @@ export default class PersonalAccount extends React.Component{
                 isAPred: false,
                 selectComission:"none",
                 isComShow: false,
+                isComChange:false
             })
         }
         else{
@@ -34,7 +36,9 @@ export default class PersonalAccount extends React.Component{
                 isAPred:false,
                 selectComission: pushedCom.comName,
                 isComShow: true,
-                predName:pushedCom.predName
+                predName:pushedCom.predName,
+                isComChange:!this.state.isComChange
+                
             })
         }
     }
@@ -44,6 +48,26 @@ export default class PersonalAccount extends React.Component{
     <HeaderPB />
     <section className="comissions-and-actions">
         <ComissionsTable onClickCom={this.comTableListener}/>
+        
+        <CssTransition 
+        classNames="fade-title"
+        timeout={600}
+        unmountOnExit
+        mountOnEnter
+        in={!this.state.isComShow}
+        >
+            <ActionsTable/>
+        </CssTransition>
+
+        <CssTransition 
+        classNames="fade-title"
+        timeout={800}
+        unmountOnExit
+        mountOnEnter
+        in={this.state.isComShow}
+        >
+        <AboutComPred comState={this.state}/>
+        </CssTransition>
         
         <CssTransition 
         classNames="fade-title"
