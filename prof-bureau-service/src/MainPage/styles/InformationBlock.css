@@ -1,0 +1,17 @@
+.information-block {
+    width: 55%;
+    height: min-content;
+    border-radius: 10px;
+    text-align: justify;
+    padding: 0 2% 2% 2%;
+    background-color: white;
+    opacity: 0.7;
+    box-shadow: 0px 0px 8px 0px black;
+    transition-duration: 300ms;
+}
+
+.information-block:hover {
+    transform: scale(1.01);
+    transition-duration: 300ms;
+    z-index: 2;
+}
