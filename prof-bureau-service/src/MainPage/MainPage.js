@@ -13,7 +13,10 @@ export default class MainPage extends React.Component {
     }
 
     state = {
-        comission: 'Профбюро'
+        comission: 'Профбюро',
+        isAuthorized: false,
+        login: '',
+        course: 0
     }
 
     changeComission = name => {
@@ -21,14 +24,21 @@ export default class MainPage extends React.Component {
             comission: name,
         })
     }
+
+    // changeMainState = (inputLogin) => {
+    //     this.setState({
+    //         isAuthorized: true,
+    //         login: inputLogin
+    //     })
+    // }
     
     render() {
         return(
             <div className="background">
                 <Header changeComission={this.changeComission} 
-                        isAuthorized={this.props.isAuthorized}
-                        login={this.props.login}
-                        course={this.props.course}/>
+                        isAuthorized={this.state.isAuthorized}
+                        login={this.state.login}
+                        course={this.state.course}/>
                 <div className='mainBlock'>
                     <NavigationBlock changeComission={this.changeComission} />
                     <div className='content'>
