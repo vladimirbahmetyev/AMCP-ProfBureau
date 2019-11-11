@@ -1,0 +1,16 @@
+
+.actions-coloumn{
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-radius: 30px;
+    box-shadow: 0px 0px 8px 0px black;
+    width: 40%;
+}
+.actions-title{
+    text-align: center;
+    font-style: italic;
+    margin-top: 10px;
+}
