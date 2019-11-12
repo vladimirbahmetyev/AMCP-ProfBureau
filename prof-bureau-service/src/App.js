@@ -7,7 +7,6 @@ class App extends React.Component {
             <MainPage />
         );
     }
-
 }
 
 export default App;
