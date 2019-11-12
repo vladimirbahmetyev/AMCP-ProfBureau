@@ -44,8 +44,8 @@ export default class PersonalAccount extends React.Component{
     }
     render(){
     return(
-    <div>
-    <HeaderPB />
+    <div style={{fontFamily: 'PFBeauSansPro-light'}}>
+    <HeaderPB changePage={this.props.changePage}/>
     <section className="comissions-and-actions">
         <ComissionsTable onClickCom={this.comTableListener}/>
         

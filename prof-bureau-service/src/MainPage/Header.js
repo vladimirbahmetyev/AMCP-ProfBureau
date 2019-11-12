@@ -29,7 +29,7 @@ export default class Header extends React.Component {
                             {course}
                         </div>  
                     </div>
-                    <div className="acc-action">
+                    <div className="acc-action" onClick={() => this.props.changePage('account')}>
                         <div className='personal-info-picture'></div>
                         <div className="acc-exit">{accExit}</div>
                     </div>

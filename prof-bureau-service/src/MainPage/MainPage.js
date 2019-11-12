@@ -5,7 +5,8 @@ import NavigationBlock from './NavigationBlock'
 import InformationBlock from './InformationBlock';
 import ContactBlock from './ContactBlock';
 import ProjectsBlock from './ProjectsBlock';
-import { runInThisContext } from 'vm';
+// import { runInThisContext } from 'vm';
+import PersonalAccount from '../Personal Acc/PersonalAcc'
 
 export default class MainPage extends React.Component {
     constructor(props) {
@@ -16,12 +17,19 @@ export default class MainPage extends React.Component {
         comission: 'Профбюро',
         isAuthorized: false,
         login: '',
-        course: 0
+        course: 0,
+        page: 'main'
     }
 
     changeComission = name => {
         this.setState({
             comission: name,
+        })
+    }
+
+    changePage = page => {
+        this.setState({
+            page: page
         })
     }
 
@@ -33,21 +41,26 @@ export default class MainPage extends React.Component {
     // }
     
     render() {
-        return(
-            <div className="background">
-                <Header changeComission={this.changeComission} 
-                        isAuthorized={this.state.isAuthorized}
-                        login={this.state.login}
-                        course={this.state.course}/>
-                <div className='mainBlock'>
-                    <NavigationBlock changeComission={this.changeComission} />
-                    <div className='content'>
-                        <InformationBlock comission={this.state.comission}/>
-                        <ContactBlock comission={this.state.comission}/>
-                        <ProjectsBlock />
+        if (this.state.page === 'main') {
+            return(
+                <div className="background">
+                    <Header changeComission={this.changeComission} 
+                            isAuthorized={this.state.isAuthorized}
+                            login={this.state.login}
+                            course={this.state.course}
+                            changePage={this.changePage}/>
+                    <div className='mainBlock'>
+                        <NavigationBlock changeComission={this.changeComission} />
+                        <div className='content'>
+                            <InformationBlock comission={this.state.comission}/>
+                            <ContactBlock comission={this.state.comission}/>
+                            <ProjectsBlock />
+                        </div>
                     </div>
                 </div>
-            </div>
-        )
+            )
+        } else if (this.state.page === 'account') {
+            return <PersonalAccount changePage={this.changePage}/>
+        }
     }
 }
