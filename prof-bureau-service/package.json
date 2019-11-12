@@ -4,8 +4,11 @@
   "private": true,
   "dependencies": {
     "react": "^16.10.2",
+    "react-app": "^1.1.2",
     "react-dom": "^16.10.2",
-    "react-scripts": "3.2.0"
+    "react-scripts": "3.2.0",
+    "react-svg-sprite": "^1.0.8",
+    "react-transition-group": "^4.3.0"
   },
   "scripts": {
     "start": "react-scripts start",
