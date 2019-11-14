@@ -1,0 +1,82 @@
+.auth-background {
+    display: flex;
+    height: 100vh;
+    width: 100%;
+    background-color: black;
+    opacity: 0.7;
+    justify-content: center;
+    align-items: center;
+    transition-duration: 300ms;
+}
+
+.auth-background:hover {
+    transform: scale(1.02);
+    transition-duration: 300ms;
+}
+
+.auth-window {
+    display: flex;
+    height: 30vh;
+    width: 30%;
+    background-color: white;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    border-radius: 3vh 3vh;
+    box-shadow: 0px 0px 8px 0px black;
+}
+
+.auth-button {
+    display: flex;
+    height: 9vh;
+    width: 70%;
+    background-color: #2c3343;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    border-radius: 1vh 1vh;
+    transition-duration: 300ms;
+    margin-bottom: 3vh;
+}
+
+.auth-button:hover {
+    background-color: lightcoral;
+    cursor: pointer;
+    transform: scale(1.03);
+    transition-duration: 300ms;
+}
+
+.auth-icon {
+    height: 80%;
+    width: 20%;
+    mask-image: url('../../sprite.svg#vk');
+    mask-size: 100% 100%;
+    background-color: white;
+}
+
+.auth-text {
+    font-size: 5vh;
+    color: #2c3343;
+}
+
+.vk-text {
+    color: white;
+}
+
+.close-circle {
+    display: flex;
+    height: 4vh;
+    width: 4vh;
+    border-radius: 4vh 4vh;
+    background-color: white;
+    justify-content: center;
+    align-items: center;
+    margin-left: 2vh;
+    transform: translateY(-13vh);
+}
+
+.close-circle:hover {
+    color: white;
+    background-color: lightcoral;
+    cursor: pointer;
+}

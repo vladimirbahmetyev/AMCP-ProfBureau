@@ -5,8 +5,8 @@ import NavigationBlock from './NavigationBlock'
 import InformationBlock from './InformationBlock';
 import ContactBlock from './ContactBlock';
 import ProjectsBlock from './ProjectsBlock';
-// import { runInThisContext } from 'vm';
 import PersonalAccount from '../Personal Acc/PersonalAcc'
+import Authorization from './Authorization/Authorization'
 
 export default class MainPage extends React.Component {
     constructor(props) {
@@ -27,40 +27,53 @@ export default class MainPage extends React.Component {
         })
     }
 
-    changePage = page => {
+    changePage = () => {
+        const actualPage = this.state.page === 'main' ? 'main' : 'account'
+        const anotherPage = actualPage === 'main' ? 'account' : 'main'
         this.setState({
-            page: page
+            page: anotherPage
         })
     }
 
-    // changeMainState = (inputLogin) => {
-    //     this.setState({
-    //         isAuthorized: true,
-    //         login: inputLogin
-    //     })
-    // }
+    setScreen = (page = this.state.page) => {
+        if (page === 'main') {
+            return(
+                <div className='mainBlock'>
+                    <NavigationBlock changeComission={this.changeComission} />
+                    <div className='content'>
+                        <InformationBlock comission={this.state.comission}/>
+                        <ContactBlock comission={this.state.comission}/>
+                        <ProjectsBlock />
+                    </div>
+                </div>
+            )
+        } else if (page === 'account') {
+            return(
+                <PersonalAccount />
+            )
+        } else if (page === 'auth') {
+            return <Authorization openAuth={this.openAuth}/>
+        }
+    }
+
+    openAuth = (flag) => {
+        this.setState({
+            page: flag ? 'auth' : 'main'
+        })
+    }
     
     render() {
-        if (this.state.page === 'main') {
             return(
                 <div className="background">
                     <Header changeComission={this.changeComission} 
                             isAuthorized={this.state.isAuthorized}
                             login={this.state.login}
                             course={this.state.course}
-                            changePage={this.changePage}/>
-                    <div className='mainBlock'>
-                        <NavigationBlock changeComission={this.changeComission} />
-                        <div className='content'>
-                            <InformationBlock comission={this.state.comission}/>
-                            <ContactBlock comission={this.state.comission}/>
-                            <ProjectsBlock />
-                        </div>
-                    </div>
+                            changePage={this.changePage}
+                            openAuth={this.openAuth}/>
+                    {this.setScreen()}
                 </div>
+                
             )
-        } else if (this.state.page === 'account') {
-            return <PersonalAccount changePage={this.changePage}/>
-        }
     }
 }
