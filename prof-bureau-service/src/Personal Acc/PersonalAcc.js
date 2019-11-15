@@ -19,7 +19,9 @@ export default class PersonalAccount extends React.Component{
     state = {
         isAPred: false,
         selectComission:"none",
-        isComShow: false,
+        topRightBlock: <ActionsTable/>,
+        bottomLeftBlock: <ItemList type={<CurrentTask/>} titleName = "Мой швапс"/>,
+        bottomRightBlock: <ItemList type={<EndedTask/>} titleName = "Выпитый швапс"/>,
         isComChange : false
     }
     
@@ -28,7 +30,6 @@ export default class PersonalAccount extends React.Component{
             isAPred:false,
             selectComission: this.state.selectComission,
             predName:this.state.predName,
-            isComShow: true,
             isComChange : false
         })                           
     }
@@ -38,8 +39,10 @@ export default class PersonalAccount extends React.Component{
             this.setState({
                 isAPred: false,
                 selectComission:"none",
-                isComShow: false,
-                isComChange : false
+                isComChange : true,
+                topRightBlock: <ActionsTable/>,
+                bottomLeftBlock: <ItemList type={<CurrentTask/>} titleName = "Мой швапс"/>,
+                bottomRightBlock: <ItemList type={<EndedTask/>} titleName = "Выпитый швапс"/>,
             })
         }
         else{
@@ -47,7 +50,9 @@ export default class PersonalAccount extends React.Component{
                 isAPred:false,
                 selectComission: pushedCom.comName,
                 predName:pushedCom.predName,
-                isComShow: true,
+                topRightBlock: <AboutComPred predName={pushedCom.predName}selectComission={pushedCom.comName} comState={this.state}/>,
+                bottomLeftBlock: <ItemList type={<CurrentComissionTask/>} titleName="Актуальный швапс"/>,
+                bottomRightBlock: <CurrentComissionEvents titleName="Швапс комиссии"/>,
                 isComChange : true 
             })            
         }
@@ -59,59 +64,25 @@ export default class PersonalAccount extends React.Component{
     <section className="comissions-and-actions">
         <ComissionsTable onClickCom={this.comTableListener}/>
         
-        <CssTransition 
-        classNames="fade-title"
-        timeout={600}
-        unmountOnExit
-        mountOnEnter
-        in={!this.state.isComShow}
-        >
-        <ActionsTable/>
-        </CssTransition>
-
         <FadeBlock 
         switcher={this.revertFadeSwitcher} 
         isBlockChange={this.state.isComChange} 
-        fadeBlock={<AboutComPred comState={this.state}/>}
-        />
-        
-        
-
+        fadeBlock={this.state.topRightBlock}
+        />      
     </section>
-        <CssTransition 
-        classNames="fade"
-        timeout={600}
-        mountOnEnter
-        unmountOnExit
-        in={!this.state.isComShow}
-        >
-            <section className="task-status-section">
-              <ItemList type={<CurrentTask/>} titleName = "Мой швапс"/>
-              <ItemList type={<EndedTask/>} titleName = "Выпитый швапс"/> 
-            </section>
-        </CssTransition>
-
-        <CssTransition 
-        classNames="fade"
-        timeout={600}
-        unmountOnExit
-        mountOnEnter
-        in={this.state.isComShow}
-        >
-            <section className="task-status-section">
-                    <FadeBlock 
-                switcher={this.revertFadeSwitcher} 
-                isBlockChange={this.state.isComChange} 
-                fadeBlock={<ItemList type={<CurrentComissionTask/>} titleName="Актуальный швапс"/>}
-                />
-                
-                <FadeBlock 
-                switcher={this.revertFadeSwitcher} 
-                isBlockChange={this.state.isComChange} 
-                fadeBlock={<CurrentComissionEvents titleName="Швапс комиссии"/>}
-                />
-            </section>
-        </CssTransition>
+    
+    <section className="task-status-section">
+    <FadeBlock 
+        switcher={this.revertFadeSwitcher} 
+        isBlockChange={this.state.isComChange} 
+        fadeBlock={this.state.bottomLeftBlock}
+        />
+        <FadeBlock 
+        switcher={this.revertFadeSwitcher} 
+        isBlockChange={this.state.isComChange} 
+        fadeBlock={this.state.bottomRightBlock}
+        />      
+    </section>
     </div>)
     }
 }
