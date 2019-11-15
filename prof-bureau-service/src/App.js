@@ -1,11 +1,13 @@
-import React from 'react';
-import './App.css';
-import PersAcc from './Personal Acc/PersonalAcc';
+import React from 'react';  
+import MainPage from './MainPage/MainPage';
+import SecondPafe from './Personal Acc/PersonalAcc'
 
-function App() {
-  return (
-    <PersAcc/>
-  );
+class App extends React.Component {
+    render() {
+        return (
+            <SecondPafe />
+        );
+    }
 }
 
 export default App;
