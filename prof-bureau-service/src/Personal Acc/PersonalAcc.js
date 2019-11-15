@@ -9,6 +9,7 @@ import CssTransition from "react-transition-group/CSSTransition"
 
 import ItemList from "./ItemList/ItemList"
 
+import FadeBlock from "./BlockFadeAnimation/FadeBlock";
 import CurrentComissionTask from "./CurrentComissionTask/CurrentComissionTask"
 import EndedTask from "./EndedTask/EndedTask"
 import CurrentTask from "./CurrentTask/CurrentTask"
@@ -19,7 +20,17 @@ export default class PersonalAccount extends React.Component{
         isAPred: false,
         selectComission:"none",
         isComShow: false,
-        isComChange:false
+        isComChange : false
+    }
+    
+    revertFadeSwitcher = ()=>{
+        this.setState({
+            isAPred:false,
+            selectComission: this.state.selectComission,
+            predName:this.state.predName,
+            isComShow: true,
+            isComChange : false
+        })                           
     }
 
     comTableListener = (pushedCom)=>{
@@ -28,24 +39,23 @@ export default class PersonalAccount extends React.Component{
                 isAPred: false,
                 selectComission:"none",
                 isComShow: false,
-                isComChange:false
+                isComChange : false
             })
         }
         else{
             this.setState({
                 isAPred:false,
                 selectComission: pushedCom.comName,
-                isComShow: true,
                 predName:pushedCom.predName,
-                isComChange:!this.state.isComChange
-                
-            })
+                isComShow: true,
+                isComChange : true 
+            })            
         }
     }
     render(){
     return(
     <div>
-    <HeaderPB />
+    <HeaderPB/>
     <section className="comissions-and-actions">
         <ComissionsTable onClickCom={this.comTableListener}/>
         
@@ -56,38 +66,16 @@ export default class PersonalAccount extends React.Component{
         mountOnEnter
         in={!this.state.isComShow}
         >
-            <ActionsTable/>
+        <ActionsTable/>
         </CssTransition>
 
-        <CssTransition 
-        classNames="fade-title"
-        timeout={800}
-        unmountOnExit
-        mountOnEnter
-        in={this.state.isComShow}
-        >
-        <AboutComPred comState={this.state}/>
-        </CssTransition>
+        <FadeBlock 
+        switcher={this.revertFadeSwitcher} 
+        isBlockChange={this.state.isComChange} 
+        fadeBlock={<AboutComPred comState={this.state}/>}
+        />
         
-        <CssTransition 
-        classNames="fade-title"
-        timeout={600}
-        unmountOnExit
-        mountOnEnter
-        in={!this.state.isComShow}
-        >
-            <ActionsTable/>
-        </CssTransition>
-
-        <CssTransition 
-        classNames="fade-title"
-        timeout={800}
-        unmountOnExit
-        mountOnEnter
-        in={this.state.isComShow}
-        >
-        <AboutComPred comState={this.state}/>
-        </CssTransition>
+        
 
     </section>
         <CssTransition 
@@ -110,10 +98,19 @@ export default class PersonalAccount extends React.Component{
         mountOnEnter
         in={this.state.isComShow}
         >
-        <section className="task-status-section">
-            <ItemList type={<CurrentComissionTask/>} titleName="Актуальный швапс"/>
-            <CurrentComissionEvents titleName="Швапс комиссии"/>
-        </section>
+            <section className="task-status-section">
+                    <FadeBlock 
+                switcher={this.revertFadeSwitcher} 
+                isBlockChange={this.state.isComChange} 
+                fadeBlock={<ItemList type={<CurrentComissionTask/>} titleName="Актуальный швапс"/>}
+                />
+                
+                <FadeBlock 
+                switcher={this.revertFadeSwitcher} 
+                isBlockChange={this.state.isComChange} 
+                fadeBlock={<CurrentComissionEvents titleName="Швапс комиссии"/>}
+                />
+            </section>
         </CssTransition>
     </div>)
     }
