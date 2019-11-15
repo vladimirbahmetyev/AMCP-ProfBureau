@@ -5,11 +5,10 @@ import ComissionsTable from "./ComissionsTable/ComissionsTable"
 import ActionsTable from "./ActionsTable/ActionsTable"
 import CurrentComissionEvents from "./CurrentComissionEvents/CurrentComissionsEvents";
 import AboutComPred from "./AboutComPred/AboutComPred";
-import CssTransition from "react-transition-group/CSSTransition"
 
 import ItemList from "./ItemList/ItemList"
 
-import FadeBlock from "./BlockFadeAnimation/FadeBlock";
+import FadeAnimationComponent from "./FadeAnimationComponent/FadeAnimationComponent";
 import CurrentComissionTask from "./CurrentComissionTask/CurrentComissionTask"
 import EndedTask from "./EndedTask/EndedTask"
 import CurrentTask from "./CurrentTask/CurrentTask"
@@ -22,24 +21,26 @@ export default class PersonalAccount extends React.Component{
         topRightBlock: <ActionsTable/>,
         bottomLeftBlock: <ItemList type={<CurrentTask/>} titleName = "Мой швапс"/>,
         bottomRightBlock: <ItemList type={<EndedTask/>} titleName = "Выпитый швапс"/>,
-        isComChange : false
+        isRedrawNeeded : false
     }
     
-    revertFadeSwitcher = ()=>{
+    redrawCallBack = ()=>{
         this.setState({
-            isAPred:false,
+            isAPred: this.state.isAPred,
             selectComission: this.state.selectComission,
-            predName:this.state.predName,
-            isComChange : false
+            isRedrawNeeded: false
         })                           
     }
 
     comTableListener = (pushedCom)=>{
-        if (pushedCom ==="none") {
+        if(pushedCom.comName === this.state.selectComission)
+            return
+
+        if (pushedCom.comName ==="none") {
             this.setState({
                 isAPred: false,
                 selectComission:"none",
-                isComChange : true,
+                isRedrawNeeded: true,
                 topRightBlock: <ActionsTable/>,
                 bottomLeftBlock: <ItemList type={<CurrentTask/>} titleName = "Мой швапс"/>,
                 bottomRightBlock: <ItemList type={<EndedTask/>} titleName = "Выпитый швапс"/>,
@@ -49,11 +50,10 @@ export default class PersonalAccount extends React.Component{
             this.setState({
                 isAPred:false,
                 selectComission: pushedCom.comName,
-                predName:pushedCom.predName,
-                topRightBlock: <AboutComPred predName={pushedCom.predName}selectComission={pushedCom.comName} comState={this.state}/>,
-                bottomLeftBlock: <ItemList type={<CurrentComissionTask/>} titleName="Актуальный швапс"/>,
+                topRightBlock: <AboutComPred predName={pushedCom.predName} selectComission={pushedCom.comName} comState={this.state}/>,
+                bottomLeftBlock: <ItemList type={<CurrentComissionTask/>} titleName={`Актуальный швапc ${pushedCom.comName}`}/>,
                 bottomRightBlock: <CurrentComissionEvents titleName="Швапс комиссии"/>,
-                isComChange : true 
+                isRedrawNeeded: true 
             })            
         }
     }
@@ -64,22 +64,22 @@ export default class PersonalAccount extends React.Component{
     <section className="comissions-and-actions">
         <ComissionsTable onClickCom={this.comTableListener}/>
         
-        <FadeBlock 
-        switcher={this.revertFadeSwitcher} 
-        isBlockChange={this.state.isComChange} 
+        <FadeAnimationComponent 
+        redrawCallback={this.redrawCallBack} 
+        isRedrawNeeded={this.state.isRedrawNeeded} 
         fadeBlock={this.state.topRightBlock}
         />      
     </section>
     
     <section className="task-status-section">
-    <FadeBlock 
-        switcher={this.revertFadeSwitcher} 
-        isBlockChange={this.state.isComChange} 
+    <FadeAnimationComponent 
+        redrawCallback={this.redrawCallBack} 
+        isRedrawNeeded={this.state.isRedrawNeeded} 
         fadeBlock={this.state.bottomLeftBlock}
         />
-        <FadeBlock 
-        switcher={this.revertFadeSwitcher} 
-        isBlockChange={this.state.isComChange} 
+        <FadeAnimationComponent 
+        redrawCallback={this.redrawCallBack} 
+        isRedrawNeeded={this.state.isRedrawNeeded} 
         fadeBlock={this.state.bottomRightBlock}
         />      
     </section>
