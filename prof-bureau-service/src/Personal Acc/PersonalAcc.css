@@ -1,3 +1,15 @@
+@font-face {
+  font-family: 'PFBeauSansPro-light';
+  font-style: normal;
+  src: url('../MainPage/Beau_Sans_Pro/PFBeauSansPro-Light.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'PFBeauSansPro-light';
+  font-style: italic;
+  src: url('../MainPage/Beau_Sans_Pro/PFBeauSansPro-LightItal.ttf') format('truetype');
+}
+
 .comissions-and-actions{
     background-color: #f6cebd;
     display: flex;

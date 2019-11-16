@@ -13,6 +13,8 @@ import CurrentComissionTask from "./CurrentComissionTask/CurrentComissionTask"
 import EndedTask from "./EndedTask/EndedTask"
 import CurrentTask from "./CurrentTask/CurrentTask"
 
+// import Header from '../MainPage/Header'
+
 export default class PersonalAccount extends React.Component{
 
     state = {
@@ -60,8 +62,8 @@ export default class PersonalAccount extends React.Component{
     }
     render(){
     return(
-    <div>
-    <HeaderPB/>
+    <div style={{fontFamily: 'PFBeauSansPro-light'}}>
+    {/* <HeaderPB changePage={this.props.changePage}/> */}
     <section className="comissions-and-actions">
         <ComissionsTable onClickCom={this.comTableListener}/>
         
