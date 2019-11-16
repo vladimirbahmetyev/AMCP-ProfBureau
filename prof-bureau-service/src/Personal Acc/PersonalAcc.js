@@ -13,7 +13,7 @@ import EndedTask from "./EndedTask/EndedTask"
 import CurrentTask from "./CurrentTask/CurrentTask"
 
 import NewTaskForm from "./NewTaskForm/NewTaskForm"
-import { relative } from "path";
+import CssTransition from "react-transition-group/CSSTransition"
 
 export default class PersonalAccount extends React.Component{
 
@@ -23,13 +23,20 @@ export default class PersonalAccount extends React.Component{
         topRightBlock: <ActionsTable/>,
         bottomLeftBlock: <ItemList type={<CurrentTask/>} titleName = "Мой швапс"/>,
         bottomRightBlock: <ItemList type={<EndedTask/>} titleName = "Выпитый швапс"/>,
-        isRedrawNeeded : false
+        isRedrawNeeded : false,
+        isNewTaskFormOpen: false
     }
     
     redrawCallback = ()=>{
         this.setState({
             isRedrawNeeded: false
         })                           
+    }
+    onClickAddNewTask = ()=>{
+        this.setState({isNewTaskFormOpen:true})
+    }
+    onClickCloseNewTask = ()=>{
+        this.setState({isNewTaskFormOpen:false})
     }
 
     comTableListener = (pushedCom)=>{
@@ -52,7 +59,7 @@ export default class PersonalAccount extends React.Component{
                 selectComission: pushedCom.comName,
                 topRightBlock: <AboutComPred predName={pushedCom.predName} selectComission={pushedCom.comName} comState={this.state}/>,
                 // Fix open item staying when comission had been changed 
-                bottomLeftBlock: <ItemList type={<CurrentComissionTask/>} titleName={`Актуальный швапc ${pushedCom.comName}`}/>,
+                bottomLeftBlock: <ItemList type={<CurrentComissionTask onClickAdd={this.onClickAddNewTask}/>} titleName={`Актуальный швапc ${pushedCom.comName}`}/>,
                 bottomRightBlock: <CurrentComissionEvents titleName="Швапс комиссии"/>,
                 isRedrawNeeded: true 
             })            
@@ -61,6 +68,16 @@ export default class PersonalAccount extends React.Component{
     render(){
     return(
     <div style={{fontFamily: 'PFBeauSansPro-light'}}>
+    
+    <CssTransition
+                classNames="fade"
+                timeout={600}
+                unmountOnExit
+                mountOnEnter
+                in={this.state.isNewTaskFormOpen}>
+                    <NewTaskForm closeClick={this.onClickCloseNewTask}/>
+    </CssTransition>
+
     <section className="comissions-and-actions">
         <ComissionsTable onClickCom={this.comTableListener}/>
         
@@ -83,7 +100,6 @@ export default class PersonalAccount extends React.Component{
         fadeBlock={this.state.bottomRightBlock}
         />      
     </section>
-    <NewTaskForm/>
     </div>)
     }
 }
