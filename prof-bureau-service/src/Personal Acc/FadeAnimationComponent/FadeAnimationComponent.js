@@ -4,7 +4,7 @@ import './FadeAnimationComponent.css'
 import CssTransition from "react-transition-group/CSSTransition"
 
 export default class FadeAnimationComponent extends React.Component{
-    render(){
+    render(){ 
         if(this.props.isRedrawNeeded)
             this.props.redrawCallback()
         return(

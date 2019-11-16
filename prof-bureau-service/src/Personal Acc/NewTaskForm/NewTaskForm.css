@@ -1,0 +1,9 @@
+.new-task-form{
+    width: 40vw;
+    height: 50vh;
+    background-color: white;
+    border-radius: 20px;
+    border: 1px solid black;
+    z-index: 2;
+    text-align: center;
+}

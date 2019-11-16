@@ -12,6 +12,9 @@ import CurrentComissionTask from "./CurrentComissionTask/CurrentComissionTask"
 import EndedTask from "./EndedTask/EndedTask"
 import CurrentTask from "./CurrentTask/CurrentTask"
 
+import NewTaskForm from "./NewTaskForm/NewTaskForm"
+import { relative } from "path";
+
 export default class PersonalAccount extends React.Component{
 
     state = {
@@ -25,8 +28,6 @@ export default class PersonalAccount extends React.Component{
     
     redrawCallback = ()=>{
         this.setState({
-            isAPred: this.state.isAPred,
-            selectComission: this.state.selectComission,
             isRedrawNeeded: false
         })                           
     }
@@ -82,6 +83,7 @@ export default class PersonalAccount extends React.Component{
         fadeBlock={this.state.bottomRightBlock}
         />      
     </section>
+    <NewTaskForm/>
     </div>)
     }
 }
