@@ -2,10 +2,6 @@ import  React from "react"
 import "./ItemList.css"
 
 export default class ItemList extends React.Component{
-    state = {
-        exampleState: true,
-        secondExampleState: 0
-    }
     render(){
     return(
         <div className="new-tasks-container">

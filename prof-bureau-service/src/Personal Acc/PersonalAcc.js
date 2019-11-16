@@ -24,7 +24,7 @@ export default class PersonalAccount extends React.Component{
         isRedrawNeeded : false
     }
     
-    redrawCallBack = ()=>{
+    redrawCallback = ()=>{
         this.setState({
             isAPred: this.state.isAPred,
             selectComission: this.state.selectComission,
@@ -51,6 +51,7 @@ export default class PersonalAccount extends React.Component{
                 isAPred:false,
                 selectComission: pushedCom.comName,
                 topRightBlock: <AboutComPred predName={pushedCom.predName} selectComission={pushedCom.comName} comState={this.state}/>,
+                // Fix open item staying when comission had been changed 
                 bottomLeftBlock: <ItemList type={<CurrentComissionTask/>} titleName={`Актуальный швапc ${pushedCom.comName}`}/>,
                 bottomRightBlock: <CurrentComissionEvents titleName="Швапс комиссии"/>,
                 isRedrawNeeded: true 
@@ -65,7 +66,7 @@ export default class PersonalAccount extends React.Component{
         <ComissionsTable onClickCom={this.comTableListener}/>
         
         <FadeAnimationComponent 
-        redrawCallback={this.redrawCallBack} 
+        redrawCallback={this.redrawCallback} 
         isRedrawNeeded={this.state.isRedrawNeeded} 
         fadeBlock={this.state.topRightBlock}
         />      
@@ -73,12 +74,12 @@ export default class PersonalAccount extends React.Component{
     
     <section className="task-status-section">
     <FadeAnimationComponent 
-        redrawCallback={this.redrawCallBack} 
+        redrawCallback={this.redrawCallback} 
         isRedrawNeeded={this.state.isRedrawNeeded} 
         fadeBlock={this.state.bottomLeftBlock}
         />
         <FadeAnimationComponent 
-        redrawCallback={this.redrawCallBack} 
+        redrawCallback={this.redrawCallback} 
         isRedrawNeeded={this.state.isRedrawNeeded} 
         fadeBlock={this.state.bottomRightBlock}
         />      
