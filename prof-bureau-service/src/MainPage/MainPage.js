@@ -9,9 +9,6 @@ import PersonalAccount from '../Personal Acc/PersonalAcc'
 import Authorization from './Authorization/Authorization'
 
 export default class MainPage extends React.Component {
-    constructor(props) {
-        super(props)
-    }
 
     state = {
         comission: 'Профбюро',

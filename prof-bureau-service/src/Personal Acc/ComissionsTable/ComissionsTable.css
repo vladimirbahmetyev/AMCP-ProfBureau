@@ -22,6 +22,7 @@
     transition-duration: 300ms;
 }
 .com-item{
+    font-size: 1vw;
     margin: 10px;
     height: 5vw;
     width: 5vw;

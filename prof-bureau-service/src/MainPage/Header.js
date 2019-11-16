@@ -2,9 +2,6 @@ import React from 'react'
 import './styles/Header.css'
 
 export default class Header extends React.Component {
-    constructor(props) {
-        super(props)
-    }
 
     render() {
         const { isAuthorized } = this.props

@@ -3,9 +3,6 @@ import './Auth.css'
 import AuthWindow from './AuthWindow'
 
 export default class Authorization extends React.Component {
-    constructor(props) {
-        super(props)
-    }
 
     state = {
         window: 'auth'

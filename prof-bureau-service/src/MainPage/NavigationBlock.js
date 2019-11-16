@@ -3,9 +3,6 @@ import './styles/NavigationBlock.css'
 import NavButton from './NavButton'
 
 export default class NavigationBlock extends React.Component {
-    constructor(props) {
-        super(props)
-    }
 
     render() {
         return(

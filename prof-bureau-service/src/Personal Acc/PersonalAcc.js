@@ -1,6 +1,5 @@
 import  React from "react"
 import './PersonalAcc.css'
-import HeaderPB from "./HeaderPB"
 import ComissionsTable from "./ComissionsTable/ComissionsTable"
 import ActionsTable from "./ActionsTable/ActionsTable"
 import CurrentComissionEvents from "./CurrentComissionEvents/CurrentComissionsEvents";
@@ -12,8 +11,6 @@ import FadeAnimationComponent from "./FadeAnimationComponent/FadeAnimationCompon
 import CurrentComissionTask from "./CurrentComissionTask/CurrentComissionTask"
 import EndedTask from "./EndedTask/EndedTask"
 import CurrentTask from "./CurrentTask/CurrentTask"
-
-// import Header from '../MainPage/Header'
 
 export default class PersonalAccount extends React.Component{
 
@@ -63,7 +60,6 @@ export default class PersonalAccount extends React.Component{
     render(){
     return(
     <div style={{fontFamily: 'PFBeauSansPro-light'}}>
-    {/* <HeaderPB changePage={this.props.changePage}/> */}
     <section className="comissions-and-actions">
         <ComissionsTable onClickCom={this.comTableListener}/>
         
@@ -80,7 +76,7 @@ export default class PersonalAccount extends React.Component{
         isRedrawNeeded={this.state.isRedrawNeeded} 
         fadeBlock={this.state.bottomLeftBlock}
         />
-        <FadeAnimationComponent 
+    <FadeAnimationComponent 
         redrawCallback={this.redrawCallback} 
         isRedrawNeeded={this.state.isRedrawNeeded} 
         fadeBlock={this.state.bottomRightBlock}
