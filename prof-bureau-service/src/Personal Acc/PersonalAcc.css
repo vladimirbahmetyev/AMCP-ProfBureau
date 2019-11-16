@@ -22,6 +22,7 @@
     display: flex;
     justify-content: space-around;
     align-items: flex-start;
+    background-color: white;
 }
 /* color section background #f6cebd */
 /* color item background #fae7de */
