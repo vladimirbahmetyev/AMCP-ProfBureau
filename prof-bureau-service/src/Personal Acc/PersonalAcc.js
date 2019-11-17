@@ -1,19 +1,21 @@
 import  React from "react"
 import './PersonalAcc.css'
-import ComissionsTable from "./ComissionsTable/ComissionsTable"
-import ActionsTable from "./ActionsTable/ActionsTable"
-import CurrentComissionEvents from "./CurrentComissionEvents/CurrentComissionsEvents";
-import AboutComPred from "./AboutComPred/AboutComPred";
 
 import ItemList from "./ItemList/ItemList"
 
 import FadeAnimationComponent from "./FadeAnimationComponent/FadeAnimationComponent";
+
+import ComissionsTable from "./ComissionsTable/ComissionsTable"
+import ActionsTable from "./ActionsTable/ActionsTable"
+import CurrentComissionEvents from "./CurrentComissionEvents/CurrentComissionsEvents";
+import AboutComPred from "./AboutComPred/AboutComPred";
 import CurrentComissionTask from "./CurrentComissionTask/CurrentComissionTask"
 import EndedTask from "./EndedTask/EndedTask"
 import CurrentTask from "./CurrentTask/CurrentTask"
 import PredControlPanel from "./PredControlPanel/PredControlPanel"
 
 import NewTaskForm from "./NewTaskForm/NewTaskForm"
+
 import CssTransition from "react-transition-group/CSSTransition"
 
 export default class PersonalAccount extends React.Component{
@@ -33,12 +35,15 @@ export default class PersonalAccount extends React.Component{
             isRedrawNeeded: false
         })                           
     }
+
     onClickAddNewTask = ()=>{
         this.setState({isNewTaskFormOpen:true})
+    
     }
     onClickCloseNewTask = ()=>{
         this.setState({isNewTaskFormOpen:false})
     }
+    //Предлагаю устанавливать инфу о преде как сравнение ссылка на вк пользователя=== ссылка на вк преда (из бд)
     //Придумать откуда брать инфу, являетс человек предом или нет и засунуть сюда
     topRightBlock = (pushedCom)=>{
         if(true)

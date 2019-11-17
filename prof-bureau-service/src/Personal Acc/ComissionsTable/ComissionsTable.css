@@ -41,6 +41,11 @@
     height: 90%;
     width: 90%;
 }
+
+.com-picture-pushed{
+    background-color: #fae7de;
+}
+
 .com-item:hover:not(.com-not-active){
     background-color: #fae7de;
     transition-duration: 300ms;
