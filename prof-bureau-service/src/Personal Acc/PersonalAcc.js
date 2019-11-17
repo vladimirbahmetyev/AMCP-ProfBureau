@@ -39,6 +39,13 @@ export default class PersonalAccount extends React.Component{
     onClickCloseNewTask = ()=>{
         this.setState({isNewTaskFormOpen:false})
     }
+    //Придумать откуда брать инфу, являетс человек предом или нет и засунуть сюда
+    topRightBlock = (pushedCom)=>{
+        if(true)
+            return <PredControlPanel onAddNewTask={this.onClickAddNewTask} />
+        else
+            return <AboutComPred predName={pushedCom.predName} selectComission={pushedCom.comName} comState={this.state}/>
+    }
 
     comTableListener = (pushedCom)=>{
         if(pushedCom.comName === this.state.selectComission)
@@ -58,8 +65,7 @@ export default class PersonalAccount extends React.Component{
             this.setState({
                 isAPred:false,
                 selectComission: pushedCom.comName,
-                // topRightBlock: <AboutComPred predName={pushedCom.predName} selectComission={pushedCom.comName} comState={this.state}/>,
-                topRightBlock: <PredControlPanel onAddNewTask={this.onClickAddNewTask} />,
+                topRightBlock: this.topRightBlock(pushedCom),
                 // Fix open item staying when comission had been changed 
                 bottomLeftBlock: <ItemList type={<CurrentComissionTask/>} titleName={`Актуальный швапc ${pushedCom.comName}`}/>,
                 bottomRightBlock: <CurrentComissionEvents titleName="Швапс комиссии"/>,
