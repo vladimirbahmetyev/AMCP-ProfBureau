@@ -69,8 +69,7 @@ export default class MainPage extends React.Component {
                             changePage={this.changePage}
                             openAuth={this.openAuth}/>
                     {this.setScreen()}
-                </div>
-                
+                </div>   
             )
     }
 }

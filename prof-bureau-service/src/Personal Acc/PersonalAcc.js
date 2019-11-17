@@ -11,6 +11,7 @@ import FadeAnimationComponent from "./FadeAnimationComponent/FadeAnimationCompon
 import CurrentComissionTask from "./CurrentComissionTask/CurrentComissionTask"
 import EndedTask from "./EndedTask/EndedTask"
 import CurrentTask from "./CurrentTask/CurrentTask"
+import PredControlPanel from "./PredControlPanel/PredControlPanel"
 
 import NewTaskForm from "./NewTaskForm/NewTaskForm"
 import CssTransition from "react-transition-group/CSSTransition"
@@ -57,9 +58,10 @@ export default class PersonalAccount extends React.Component{
             this.setState({
                 isAPred:false,
                 selectComission: pushedCom.comName,
-                topRightBlock: <AboutComPred predName={pushedCom.predName} selectComission={pushedCom.comName} comState={this.state}/>,
+                // topRightBlock: <AboutComPred predName={pushedCom.predName} selectComission={pushedCom.comName} comState={this.state}/>,
+                topRightBlock: <PredControlPanel onAddNewTask={this.onClickAddNewTask} />,
                 // Fix open item staying when comission had been changed 
-                bottomLeftBlock: <ItemList type={<CurrentComissionTask onClickAdd={this.onClickAddNewTask}/>} titleName={`Актуальный швапc ${pushedCom.comName}`}/>,
+                bottomLeftBlock: <ItemList type={<CurrentComissionTask/>} titleName={`Актуальный швапc ${pushedCom.comName}`}/>,
                 bottomRightBlock: <CurrentComissionEvents titleName="Швапс комиссии"/>,
                 isRedrawNeeded: true 
             })            

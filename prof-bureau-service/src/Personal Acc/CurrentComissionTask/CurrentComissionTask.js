@@ -31,7 +31,7 @@ export default class CurrentComissionTask extends React.Component{
     return(
         <div className="current-task-item">
             <div className="current-task-item-prev">
-                <div className={this.watchClassNames} onClick={this.onDescpButtonClick}>
+                <div className={this.watchClassNames}>
                     <div className="current-task-eye"></div>
                 </div>
                 <div className="current-task-right">
