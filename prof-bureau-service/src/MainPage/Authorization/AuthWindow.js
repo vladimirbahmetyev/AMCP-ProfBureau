@@ -13,7 +13,6 @@ export default class AuthWindow extends React.Component {
                     </div>
                 </div>
                 <div className='close-circle' onClick={() => this.props.openAuth(false)}>
-                    X
                 </div>
             </div>
         )

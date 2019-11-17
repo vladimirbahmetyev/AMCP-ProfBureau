@@ -69,8 +69,10 @@
     width: 4vh;
     border-radius: 4vh 4vh;
     background-color: white;
-    justify-content: center;
-    align-items: center;
+    mask-image: url('../../sprite.svg#cross');
+    mask-size: 60% 60%;
+    mask-repeat: no-repeat;
+    mask-position: center;
     margin-left: 2vh;
     transform: translateY(-13vh);
 }
