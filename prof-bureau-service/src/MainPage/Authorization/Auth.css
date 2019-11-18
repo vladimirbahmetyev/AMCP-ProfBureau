@@ -6,12 +6,6 @@
     opacity: 0.7;
     justify-content: center;
     align-items: center;
-    transition-duration: 300ms;
-}
-
-.auth-background:hover {
-    transform: scale(1.02);
-    transition-duration: 300ms;
 }
 
 .auth-window {
@@ -24,13 +18,19 @@
     align-items: center;
     border-radius: 3vh 3vh;
     box-shadow: 0px 0px 8px 0px black;
+    transition-duration: 300ms;
+}
+
+.auth-window:hover {
+    transform: scale(1.02);
+    transition-duration: 300ms;
 }
 
 .auth-button {
     display: flex;
-    height: 9vh;
+    height: 10vh;
     width: 70%;
-    background-color: #2c3343;
+    /* background-color: #2c3343; */
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
@@ -40,8 +40,6 @@
 }
 
 .auth-button:hover {
-    background-color: lightcoral;
-    cursor: pointer;
     transform: scale(1.03);
     transition-duration: 300ms;
 }
@@ -51,7 +49,7 @@
     width: 20%;
     mask-image: url('../../sprite.svg#vk');
     mask-size: 100% 100%;
-    background-color: white;
+    background-color:#2c3343;
 }
 
 .auth-text {
@@ -60,7 +58,19 @@
 }
 
 .vk-text {
+    display: flex;
     color: white;
+    background-color: #2c3343;
+    height: 80%;
+    width: 70%;
+    border-radius: 1vh 1vh;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.vk-text:hover {
+    background-color: lightcoral;
 }
 
 .close-circle {

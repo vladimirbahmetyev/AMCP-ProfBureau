@@ -61,6 +61,12 @@ export default class MainPage extends React.Component {
             page: flag ? 'auth' : 'main'
         })
     }
+
+    // openReg = flag => {
+    //     this.setState({
+    //         page: flag ? 'reg' : 'main'
+    //     })
+    // }
     
     render() {
             return(
