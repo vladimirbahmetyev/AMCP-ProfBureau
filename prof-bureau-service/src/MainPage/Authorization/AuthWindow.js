@@ -3,21 +3,25 @@ import './Auth.css'
 
 export default class AuthWindow extends React.Component {
 
-    // vkAuth = () => {
-    //     VK.init({apiId: __APP_ID___})
-    //     VK.Widgets.Auth("vk_auth", {width: "300px", authUrl: '/vklogin.php?'})
-    // }
-
     render() {
         return (
             <div className='auth-background'>
                 <div className='auth-window'>
                     <p className='auth-text'>Авторизация</p>
-                    <div className='auth-button'>
-                        <div className='auth-icon'></div>
-                        <div className='vk-text' onClick={() => this.props.openReg()}>
-                        {/* <div className='vk-text' onClick={() => this.vkAuth()}> */}
-                            <p>Войти с помощью VK</p>
+                    <div className='auth-field'>
+                        <p>Логин (st + 6 цифр)</p>
+                        <input id='firstName' type='text'></input>
+                    </div>
+                    <div className='auth-field'>
+                        <p>Пароль</p>
+                        <input id='lastName'></input>
+                    </div>
+                    <div className='auth-bottom-buttons'>
+                        <div className='auth-button auth-login'>
+                            <p>Войти</p>
+                        </div>
+                        <div className='auth-button auth-reg' onClick={() => this.props.openReg(true)}>
+                            <p>Регистрация</p>
                         </div>
                     </div>
                 </div>

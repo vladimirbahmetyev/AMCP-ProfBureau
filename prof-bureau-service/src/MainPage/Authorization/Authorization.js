@@ -9,9 +9,9 @@ export default class Authorization extends React.Component {
         window: 'auth'
     }
 
-    openReg = () => {
+    openReg = flag => {
         this.setState({
-            window: 'reg'
+            window: flag ? 'reg' : 'auth'
         })
     }
 
@@ -19,7 +19,7 @@ export default class Authorization extends React.Component {
         if (this.state.window === 'auth') {
             return <AuthWindow openAuth={this.props.openAuth} openReg={this.openReg}/>
         } else if (this.state.window === 'reg') {
-            return <RegWindow />
+            return <RegWindow openReg={this.openReg}/>
         }
     }
 }

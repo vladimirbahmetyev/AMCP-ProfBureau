@@ -58,3 +58,20 @@
     box-shadow: 0px 0px 8px 0px black;
     transition-duration: 300ms;
 }
+
+.com-icon {
+    height: 80%;
+    width: 20%;
+    margin-left: 5%;
+    background-color: #2c3343;
+    mask-repeat: no-repeat;
+    mask-position: center;
+}
+
+.listElement:hover > .com-icon {
+    background-color: lightcoral;
+}
+
+.listElement:hover > .text {
+    color: lightcoral;
+}

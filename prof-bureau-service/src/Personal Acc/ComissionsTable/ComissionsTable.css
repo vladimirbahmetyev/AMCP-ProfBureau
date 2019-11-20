@@ -55,27 +55,48 @@
 
 .pm-design .com-picture{
     mask-image: url("../sprite.svg#PM-Design");
+    mask-size: 75% 75%;
+    mask-repeat: no-repeat;
+    mask-position: center;
 }
 .hr .com-picture{
     mask-image: url("../sprite.svg#HR");
 }
 .pm-profi .com-picture{
     mask-image: url("../sprite.svg#PM-Partner");
+    mask-size: 90% 90%;
+    mask-repeat: no-repeat;
+    mask-position: center;
 }
 .pm-photo .com-picture{
     mask-image: url("../sprite.svg#PM-Photo");
+    mask-size: 80% 80%;
+    mask-repeat: no-repeat;
+    mask-position: center;
 }
 .funcom .com-picture{
     mask-image: url("../sprite.svg#FunCom");
+    mask-size: 80% 80%;
+    mask-repeat: no-repeat;
+    mask-position: center;
 }
 .sportcom .com-picture{
     mask-image: url("../sprite.svg#sportcom");
+    mask-size: 75% 75%;
+    mask-repeat: no-repeat;
+    mask-position: center;
 }
 .mounting .com-picture{
     mask-image: url("../sprite.svg#oformiteli");
+    mask-size: 80% 80%;
+    mask-repeat: no-repeat;
+    mask-position: center;
 }
 .cultmass .com-picture{
     mask-image: url("../sprite.svg#CultMass");
+    mask-size: 80% 80%;
+    mask-repeat: no-repeat;
+    mask-position: center;
 }
 .com-not-active .com-picture{
     opacity: 0.5;

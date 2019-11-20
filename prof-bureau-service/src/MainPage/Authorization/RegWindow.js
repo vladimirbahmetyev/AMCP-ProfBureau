@@ -43,6 +43,8 @@ export default class RegWindow extends React.Component{
                         <p>Зарегистрироваться</p>
                     </div>
                 </div>
+                <div className='reg-close-circle' onClick={() => this.props.openReg(false)}>
+                </div>
             </div>
         )
     }
