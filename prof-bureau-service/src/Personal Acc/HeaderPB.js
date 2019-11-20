@@ -11,7 +11,12 @@ export default class HeaderPB extends React.Component{
     render() {
         return(
             <header>
-        <h1 className="pers-account-title"> Пб|Профбюро ПМ-ПУ</h1>
+        {/* <h1 className="pers-account-title"> Пб|Профбюро ПМ-ПУ</h1> */}
+                <div style={{marginLeft: '10%'}}>
+                    <button className='title-button'>
+                            <h1>Профбюро ПМ-ПУ</h1>
+                    </button>
+                </div>
         
         <div className="personal-info">
             <div className="personal-info-about">
@@ -22,7 +27,7 @@ export default class HeaderPB extends React.Component{
                     [Курс]
                 </div>  
             </div>
-            <div className="acc-action">
+            <div className="acc-action" onClick={() => this.props.changePage('main')}>
                 <div className="personal-info-picture">                    
                 </div>
                 <div className="acc-exit">Выход</div>

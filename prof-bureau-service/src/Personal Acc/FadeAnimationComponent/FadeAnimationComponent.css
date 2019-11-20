@@ -1,0 +1,41 @@
+.fade-enter {
+  opacity: 0;
+  z-index: 1;
+  width: 40%;
+  transform: scale(0.9);
+}
+.fade-enter-active {
+  opacity: 1;
+  transform: scale(1);
+  z-index: 1;
+  transition-duration: 500ms;
+  width: 40%;
+}
+  
+.fade-enter.new-tasks-container, .fade-enter.events-block-container {
+  opacity: 0;
+  z-index: 1;
+  width: 40%;
+  transform: scale(0.9) translateY(-4.6vh);
+}
+.fade-enter-active.new-tasks-container, .fade-enter-active.events-block-container{
+  opacity: 1;
+  transform: scale(1) translateY(-4.6vh);
+  z-index: 1;
+  transition-duration: 500ms;
+  width: 40%;
+}
+
+.fade-exit {
+  opacity: 1;
+  z-index: 1;
+  width: 40%;
+  transform: scale(1);
+  transition-duration: 300ms;
+}
+.fade-exit-active {
+  opacity: 0;
+  transform: scale(0.9);
+  z-index: 1;
+  width: 40%;
+}

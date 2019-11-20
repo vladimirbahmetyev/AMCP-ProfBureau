@@ -2,9 +2,6 @@ import React from 'react'
 import './styles/Header.css'
 
 export default class Header extends React.Component {
-            constructor(props) {
-                super(props)
-            }
 
     render() {
         const { isAuthorized } = this.props
@@ -30,8 +27,11 @@ export default class Header extends React.Component {
                         </div>  
                     </div>
                     <div className="acc-action">
-                        <div className='personal-info-picture'></div>
-                        <div className="acc-exit">{accExit}</div>
+                        <div className='personal-info-picture'
+                            onClick={() => this.props.openAuth(true)}></div>
+                        <div className="acc-exit" onClick={() => this.props.changePage()}>
+                            {accExit}
+                        </div>
                     </div>
                 </div>
             </header>

@@ -22,6 +22,7 @@
     transition-duration: 300ms;
 }
 .com-item{
+    font-size: 1vw;
     margin: 10px;
     height: 5vw;
     width: 5vw;
@@ -40,6 +41,11 @@
     height: 90%;
     width: 90%;
 }
+
+.com-picture-pushed{
+    background-color: #fae7de;
+}
+
 .com-item:hover:not(.com-not-active){
     background-color: #fae7de;
     transition-duration: 300ms;

@@ -50,7 +50,7 @@
     justify-content: space-around;
     align-items: center;
     overflow: hidden;
-    color: #2c3343
+    color: #2c3343;
 }
 
 .acc-action:hover {
@@ -74,7 +74,6 @@
 }
   
 .acc-exit{
-    /* transform: translateY(-15px); */
     font-size: 2vh;
     font-weight: bolder;
 }

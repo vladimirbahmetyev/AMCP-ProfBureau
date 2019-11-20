@@ -3,9 +3,6 @@ import './styles/NavigationBlock.css'
 import './styles/ComissionIcons.css'
 
 export default class NavButton extends React.Component {
-    constructor(props) {
-        super(props)
-    }
 
     render() {
         const {comission} = this.props

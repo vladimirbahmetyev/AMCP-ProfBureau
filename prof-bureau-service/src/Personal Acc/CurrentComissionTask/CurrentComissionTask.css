@@ -1,7 +1,7 @@
 .current-task-item-prev{
     display: flex; 
     justify-content: flex-end;
-    height: 6.15vh;  
+    height: 7vh;  
     width: 100%;
 }
 
@@ -13,7 +13,7 @@
 }
 .current-task-left{
     background-color: #fae7de;
-    width: 6.15vh;
+    width: 7vh;
     border-top-left-radius: 6.15vh;
     border-bottom-left-radius: 6.15vh;
     margin-right: 0;
