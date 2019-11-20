@@ -1,122 +1,118 @@
 import  React from "react"
 import './PersonalAcc.css'
-import HeaderPB from "./HeaderPB"
+
+import ItemList from "./ItemList/ItemList"
+
+import FadeAnimationComponent from "./FadeAnimationComponent/FadeAnimationComponent";
+
 import ComissionsTable from "./ComissionsTable/ComissionsTable"
 import ActionsTable from "./ActionsTable/ActionsTable"
 import CurrentComissionEvents from "./CurrentComissionEvents/CurrentComissionsEvents";
 import AboutComPred from "./AboutComPred/AboutComPred";
-import CssTransition from "react-transition-group/CSSTransition"
-
-import ItemList from "./ItemList/ItemList"
-
 import CurrentComissionTask from "./CurrentComissionTask/CurrentComissionTask"
 import EndedTask from "./EndedTask/EndedTask"
 import CurrentTask from "./CurrentTask/CurrentTask"
+import PredControlPanel from "./PredControlPanel/PredControlPanel"
 
-// import Header from '../MainPage/Header'
+import NewTaskForm from "./NewTaskForm/NewTaskForm"
+
+import CssTransition from "react-transition-group/CSSTransition"
 
 export default class PersonalAccount extends React.Component{
 
     state = {
         isAPred: false,
         selectComission:"none",
-        isComShow: false,
-        isComChange:false
+        topRightBlock: <ActionsTable/>,
+        bottomLeftBlock: <ItemList type={<CurrentTask/>} titleName = "Мой швапс"/>,
+        bottomRightBlock: <ItemList type={<EndedTask/>} titleName = "Выпитый швапс"/>,
+        isRedrawNeeded : false,
+        isNewTaskFormOpen: false
+    }
+    
+    redrawCallback = ()=>{
+        this.setState({
+            isRedrawNeeded: false
+        })                           
+    }
+
+    onClickAddNewTask = ()=>{
+        this.setState({isNewTaskFormOpen:true})
+    
+    }
+    onClickCloseNewTask = ()=>{
+        this.setState({isNewTaskFormOpen:false})
+    }
+    //Предлагаю устанавливать инфу о преде как сравнение ссылка на вк пользователя=== ссылка на вк преда (из бд)
+    //Придумать откуда брать инфу, являетс человек предом или нет и засунуть сюда
+    topRightBlock = (pushedCom)=>{
+        if(true)
+            return <PredControlPanel onAddNewTask={this.onClickAddNewTask} />
+        else
+            return <AboutComPred predName={pushedCom.predName} selectComission={pushedCom.comName} comState={this.state}/>
     }
 
     comTableListener = (pushedCom)=>{
-        if (pushedCom ==="none") {
+        if(pushedCom.comName === this.state.selectComission)
+            return
+
+        if (pushedCom.comName ==="none") {
             this.setState({
                 isAPred: false,
                 selectComission:"none",
-                isComShow: false,
-                isComChange:false
+                isRedrawNeeded: true,
+                topRightBlock: <ActionsTable/>,
+                bottomLeftBlock: <ItemList type={<CurrentTask/>} titleName = "Мой швапс"/>,
+                bottomRightBlock: <ItemList type={<EndedTask/>} titleName = "Выпитый швапс"/>,
             })
         }
         else{
             this.setState({
                 isAPred:false,
                 selectComission: pushedCom.comName,
-                isComShow: true,
-                predName:pushedCom.predName,
-                isComChange:!this.state.isComChange
-                
-            })
+                topRightBlock: this.topRightBlock(pushedCom),
+                // Fix open item staying when comission had been changed 
+                bottomLeftBlock: <ItemList type={<CurrentComissionTask/>} titleName={`Актуальный швапc ${pushedCom.comName}`}/>,
+                bottomRightBlock: <CurrentComissionEvents titleName="Швапс комиссии"/>,
+                isRedrawNeeded: true 
+            })            
         }
     }
     render(){
     return(
     <div style={{fontFamily: 'PFBeauSansPro-light'}}>
-    {/* <HeaderPB changePage={this.props.changePage}/> */}
+    
+    <CssTransition
+                classNames="fade"
+                timeout={600}
+                unmountOnExit
+                mountOnEnter
+                in={this.state.isNewTaskFormOpen}>
+                    <NewTaskForm closeClick={this.onClickCloseNewTask}/>
+    </CssTransition>
+
     <section className="comissions-and-actions">
         <ComissionsTable onClickCom={this.comTableListener}/>
         
-        <CssTransition 
-        classNames="fade-title"
-        timeout={600}
-        unmountOnExit
-        mountOnEnter
-        in={!this.state.isComShow}
-        >
-            <ActionsTable/>
-        </CssTransition>
-
-        <CssTransition 
-        classNames="fade-title"
-        timeout={800}
-        unmountOnExit
-        mountOnEnter
-        in={this.state.isComShow}
-        >
-        <AboutComPred comState={this.state}/>
-        </CssTransition>
-        
-        <CssTransition 
-        classNames="fade-title"
-        timeout={600}
-        unmountOnExit
-        mountOnEnter
-        in={!this.state.isComShow}
-        >
-            <ActionsTable/>
-        </CssTransition>
-
-        <CssTransition 
-        classNames="fade-title"
-        timeout={800}
-        unmountOnExit
-        mountOnEnter
-        in={this.state.isComShow}
-        >
-        <AboutComPred comState={this.state}/>
-        </CssTransition>
-
+        <FadeAnimationComponent 
+        redrawCallback={this.redrawCallback} 
+        isRedrawNeeded={this.state.isRedrawNeeded} 
+        fadeBlock={this.state.topRightBlock}
+        />      
     </section>
-        <CssTransition 
-        classNames="fade"
-        timeout={600}
-        mountOnEnter
-        unmountOnExit
-        in={!this.state.isComShow}
-        >
-            <section className="task-status-section">
-              <ItemList type={<CurrentTask/>} titleName = "Мой швапс"/>
-              <ItemList type={<EndedTask/>} titleName = "Выпитый швапс"/> 
-            </section>
-        </CssTransition>
-
-        <CssTransition 
-        classNames="fade"
-        timeout={600}
-        unmountOnExit
-        mountOnEnter
-        in={this.state.isComShow}
-        >
-        <section className="task-status-section">
-            <ItemList type={<CurrentComissionTask/>} titleName="Актуальный швапс"/>
-            <CurrentComissionEvents titleName="Швапс комиссии"/>
-        </section>
-        </CssTransition>
+    
+    <section className="task-status-section">
+    <FadeAnimationComponent 
+        redrawCallback={this.redrawCallback} 
+        isRedrawNeeded={this.state.isRedrawNeeded} 
+        fadeBlock={this.state.bottomLeftBlock}
+        />
+    <FadeAnimationComponent 
+        redrawCallback={this.redrawCallback} 
+        isRedrawNeeded={this.state.isRedrawNeeded} 
+        fadeBlock={this.state.bottomRightBlock}
+        />      
+    </section>
     </div>)
     }
 }

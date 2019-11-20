@@ -4,9 +4,6 @@ import AuthWindow from './AuthWindow'
 import RegWindow from './RegWindow'
 
 export default class Authorization extends React.Component {
-    constructor(props) {
-        super(props)
-    }
 
     state = {
         window: 'auth'

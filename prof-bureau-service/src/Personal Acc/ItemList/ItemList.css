@@ -5,6 +5,7 @@
     flex-direction: column;
     align-items: center;
     transform: translateY(-4.6vh);
+    /* transition-duration: 300ms; */
 }
 
 .new-task-title{

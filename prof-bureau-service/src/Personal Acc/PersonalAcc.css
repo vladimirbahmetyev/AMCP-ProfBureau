@@ -22,13 +22,14 @@
     display: flex;
     justify-content: space-around;
     align-items: flex-start;
+    background-color: white;
 }
 /* color section background #f6cebd */
 /* color item background #fae7de */
 /* color coloumn item title #2c3343 */
 /* relation: 11.5% 38.5% 50% */
 
-.fade-enter {
+/* .fade-enter {
     opacity: 0;
     z-index: 1;
     position: fixed;
@@ -84,4 +85,4 @@
     transform: scale(0.9);
     position: absolute;
     transition-duration:500ms;
-  }
+  } */
