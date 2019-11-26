@@ -5,7 +5,7 @@ from pony.orm import *
 db = Database()
 
 
-db.bind(provider='sqlite', filename=':memory:')
+db.bind(provider='sqlite', filename='database.sqlite', create_db=True)
 
 
 class User(db.Entity):
@@ -63,3 +63,14 @@ class News(db.Entity):
 
 
 db.generate_mapping(create_tables=True)
+
+
+# with db_session:
+    # pass1 = Login_data(user=u1, password='loh')
+    # u1 = User(user_st=61177, first_name='Olga', last_name='Krylova', course='3', password=Login_data(password='loh'))
+    # c1 = Comission(name='PM-Design', pred=u1)
+    # n1 = News(comission=c1, title='Hot news!')
+    # User.select().show()
+    # Comission.select().show()
+    # News.select().show()
+    # Login_data.select().show()
