@@ -14,12 +14,12 @@ export default class ComissionsTable extends React.Component{
         <div className="comissions-grid">
             <div className="pm-design com-item" onClick={()=>this.props.onClickCom(
                 {
-                    comName:"Pm-Design",
+                    comName:"PM-Design",
                     predName:"Ольга крылова"
                 }
             )}>
                 <div className="com-picture"></div>
-                <div>PM-Design</div>
+                <div className='com-title'>PM-Design</div>
             </div>
 
             <div className="hr com-item" onClick={()=>this.props.onClickCom(
@@ -29,41 +29,51 @@ export default class ComissionsTable extends React.Component{
                 }
             )}>
                 <div className="com-picture"></div>
-                <div>HR</div>
+                <div className='com-title'>HR</div>
             </div>
 
             <div className="pm-profi com-item com-not-active" onClick={this.props.onClickCom}>
                 <div className="com-picture"></div>
-                <div>PM-profi</div>
+                <div className='com-title'>PM-profi</div>
             </div>
 
             <div className=" pm-photo com-item com-not-active" onClick={this.props.onClickCom}>
                 <div className="com-picture"></div>
-                <div>PM-photo</div>
+                <div className='com-title'>PM-photo</div>
             </div>
 
             <div className="funcom com-item com-not-active" onClick={this.props.onClickCom}>
                 <div className="com-picture"></div>
-                <div>FunCom</div>
+                <div className='com-title'>FunCom</div>
             </div>
 
             <div className="sportcom com-item com-not-active" onClick={this.props.onClickCom}>
                 <div className="com-picture"></div>
-                <div>СпортКом</div>
+                <div className='com-title'>СпортКом</div>
             </div>
 
             <div className="mounting com-item com-not-active" onClick={this.props.onClickCom}>
                 <div className="com-picture"></div>
-                <div>Оформители</div>
+                <div className='com-title'>Оформители</div>
             </div>
 
             <div className="cultmass com-item" onClick={()=>this.props.onClickCom(
                 {
-                    comName:"none"
+                    comName: "Культмасс",
+                    predName: 'Кудряшова Дарья'
                 }
             )}>
                 <div className="com-picture"></div>
-                <div>КультМасс</div>
+                <div className='com-title'>КультМасс</div>
+            </div>
+
+            <div className='account com-item' onClick={()=>this.props.onClickCom(
+                {
+                    comName:"none"
+                }
+            )}>
+                <div className='com-picture'></div>
+                <div className='com-title acc'>В кабинет</div>
             </div>
         </div>
         </div>

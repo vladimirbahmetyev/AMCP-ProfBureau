@@ -21,7 +21,7 @@
     font-size: 3vh;
     justify-content: center;
     align-items: center;
-    box-shadow: 0px 0px 4px 0px black;
+    /* box-shadow: 0px 0px 4px 0px black; */
 }
 
 .new-tasks-list{
