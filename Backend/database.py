@@ -1,6 +1,8 @@
 from datetime import date
 from pony.orm import *
 
+import re
+
 
 db = Database()
 
@@ -14,14 +16,9 @@ class User(db.Entity):
     first_name = Required(str)
     last_name = Required(str, 20)
     course = Required(int, size=8, unsigned=True)
-    password = Required('Login_data')
-    pred_comission = Optional('Comission')
+    pred_comission = Optional('Comission', cascade_delete=True)
     comissions = Set('Comissions_member')
     task = Set('Task_executor')
-
-
-class Login_data(db.Entity):
-    user = Optional(User)
     password = Required(str, 16)
 
 
@@ -31,7 +28,7 @@ class Comission(db.Entity):
     pred = Required(User)
     news = Set('News')
     tasks = Set('Task')
-    members = Optional('Comissions_member')
+    comissions_members = Set('Comissions_member')
 
 
 class Comissions_member(db.Entity):
@@ -65,12 +62,57 @@ class News(db.Entity):
 db.generate_mapping(create_tables=True)
 
 
-# with db_session:
-    # pass1 = Login_data(user=u1, password='loh')
-    # u1 = User(user_st=61177, first_name='Olga', last_name='Krylova', course='3', password=Login_data(password='loh'))
-    # c1 = Comission(name='PM-Design', pred=u1)
-    # n1 = News(comission=c1, title='Hot news!')
-    # User.select().show()
-    # Comission.select().show()
-    # News.select().show()
-    # Login_data.select().show()
+def registration(st, first_name, last_name, course, password):
+    st_num = re.search(r'[0-9]{6}', st)
+    if len(password) >= 8 and int(st_num.group(0)):
+        st_num = int(st_num.group(0))
+        with db_session:
+            u1 = User(user_st=st_num, first_name=first_name, last_name=last_name, course=course, password=password)
+            # Comission(name='PM-Design', pred=u1)
+            User.select().show()
+            Comission.select().show()
+    else:
+        print('nope')
+
+
+def auth(st_num, password):
+    with db_session:
+        if User.get(user_st=st_num, password=password) is not None:
+            print('found')
+        else:
+            print('nf')
+
+
+def add_task(st_num, comission, title, description, deadline):
+    with db_session:
+        com = Comission.get(name=comission)
+        if User.get(user_st=st_num, pred_comission=com):
+            Task(comission=com, title=title, description=description, deadline=deadline)
+            Task.select().show()
+
+
+def put_task(st_num, task_title):
+    with db_session:
+        user = User.get(user_st=st_num)
+        task = Task.get(title=task_title)
+        if user and task:
+            Task_executor(task=task, who_do=user, is_sent=False, is_done=False)
+            Task_executor.select().show()
+
+
+def follow_comission(st_num, com_name):
+    with db_session:
+        user = User.get(user_st=st_num)
+        comission = Comission.get(name=com_name)
+        if user and comission:
+            Comissions_member(comission=comission, user=user)
+            Comissions_member.select().show()
+
+
+# registration('st061177', 'Ольга', 'Крылова', '3', 'myPassword')
+# auth(61177, 'myPassword')
+# add_task(61177, 'PM-Design', 'some body', 'once told me', date(2019, 7, 1))
+# put_task(61177, 'some body')
+# registration('st012345', 'Вася', 'Пупкин', 2, 'hisPassword')
+# follow_comission(61177, 'PM-Design')
+# follow_comission(12345, 'PM-Design')
