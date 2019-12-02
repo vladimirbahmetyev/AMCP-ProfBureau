@@ -22,7 +22,6 @@ class User(db.Entity):
 
 
 class Comission(db.Entity):
-    # com_id = PrimaryKey(int, auto=True)
     name = PrimaryKey(str)
     pred = Required(User)
     news = Set('News')
@@ -140,6 +139,7 @@ def add_news(comission, title, description):
     News(comission=comission, title=title, description=description)
 
 
+@db_session
 def delete_news(comission, title):
     News.get(comission=comission, title=title).delete()
 
@@ -173,7 +173,7 @@ def show_tables():
 # task_is_done('some body', 54461)
 # delete_task(Comission['PM-Design'], 'some body')
 # add_news(Comission['PM-Design'], 'wow!', 'shock-content!')
-delete_news(Comission['PM-Design'], 'wow!')
+# delete_news(Comission['PM-Design'], 'wow!')
 
 
 show_tables()
