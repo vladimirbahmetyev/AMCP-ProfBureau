@@ -3,7 +3,6 @@ from database import *
 
 @db_session
 def registration(st_num, first_name, last_name, course, password):
-    # st_num = re.search(r'[0-9]{6}', st)
     if len(password) >= 8:
         User(user_st=st_num, first_name=first_name, last_name=last_name, course=course, password=password)
     else:
@@ -68,6 +67,16 @@ def get_comission_tasks(com_name):
 
 
 @db_session
+def get_users_tasks(user_st):
+    Task_executor.select(lambda t: t.who_do.user_st == user_st and not t.is_sent).show()
+
+
+@db_session
+def get_users_sent_tasks(user_st):
+    Task_executor.select(lambda t: t.who_do.user_st == user_st and t.is_sent).show()
+
+
+@db_session
 def follow_comission(st_num, com_name):
     user = User.get(user_st=st_num)
     comission = Comission.get(name=com_name)
@@ -107,3 +116,4 @@ def show_tables():
 
 
 show_tables()
+# get_users_tasks(11111)

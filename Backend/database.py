@@ -21,7 +21,8 @@ class User(db.Entity):
 
 
 class Comission(db.Entity):
-    name = PrimaryKey(str)
+    com_id = PrimaryKey(int, auto=True)
+    name = Required(str)
     pred = Required(User)
     news = Set('News')
     tasks = Set('Task')
@@ -29,7 +30,7 @@ class Comission(db.Entity):
 
 
 class Comissions_member(db.Entity):
-    # com_id = PrimaryKey(int, auto=True)
+    id = PrimaryKey(int, auto=True)
     comission = Required(Comission)
     user = Required(User)
 
@@ -44,10 +45,11 @@ class Task(db.Entity):
 
 
 class Task_executor(db.Entity):
+    id = PrimaryKey(int, auto=True)
     task = Required(Task)
     who_do = Required(User)
-    is_sent = Required(bool, default='false')
-    is_done = Required(bool, default='false')
+    is_sent = Required(bool, default=False)
+    is_done = Required(bool, default=False)
 
 
 class News(db.Entity):
