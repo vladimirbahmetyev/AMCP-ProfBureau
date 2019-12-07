@@ -1,0 +1,6 @@
+{
+  "function": "get_comission_sent_tasks",
+  "body": {
+    "com_name": "PM-Photo"
+  }
+}
