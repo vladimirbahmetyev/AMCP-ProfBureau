@@ -1,6 +1,10 @@
 {
-  "function": "get_comission_sent_tasks",
+  "function": "reg_user",
   "body": {
-    "com_name": "PM-Photo"
+    "user_st": 11140,
+    "first_name": "Мария",
+    "last_name": "Васильева",
+    "course": 1,
+    "password": "password"
   }
 }

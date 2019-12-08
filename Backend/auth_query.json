@@ -1,7 +1,0 @@
-{
-  "function": "auth_user",
-  "body": {
-    "login": 11111,
-    "password": "ywthfxcp"
-  }
-}

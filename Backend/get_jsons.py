@@ -11,6 +11,18 @@ def get_table(table_name, name_str):
 
 
 @db_session
+def reg_user(data):
+    if not User.get(user_st=data["user_st"]):
+        User(user_st=data["user_st"], last_name=data["last_name"], first_name=data["first_name"],
+             course=data["course"], password=data["password"])
+        with open("response_file.json", "w") as write_file:
+            json.dump({"success": True}, write_file)
+    else:
+        with open("response_file.json", "w") as write_file:
+            json.dump({"error": "User already exists"}, write_file)
+
+
+@db_session
 def find_user(data):
     try:
         found_user = User.get(user_st=data["login"], password=data["password"])
@@ -55,14 +67,20 @@ def get_users_tasks(data):
         executor_tasks = Task_executor.select(lambda t: t.who_do.user_st == user_st)
         executor_strings = select(string for string in executor_tasks)[:]
         tasks_array = []
+        tasks_sent_array = []
         for string in executor_strings:
             task = string.task
-            tasks_array.append(({"title": task.title,
+            if string.is_sent:
+                tasks_sent_array.append({"title": task.title,
                                  "description": task.description,
-                                 "deadline": str(task.deadline),
-                                 "is_sent": string.is_sent}))
+                                 "deadline": str(task.deadline)})
+            else:
+                tasks_array.append({"title": task.title,
+                                     "description": task.description,
+                                     "deadline": str(task.deadline)})
         res = {"found": True,
-               "tasks": tasks_array}
+               "tasks": tasks_array,
+               "tasks_sent": tasks_sent_array}
         with open("response_file.json", "w", encoding="utf-8") as write_file:
             json.dump(res, write_file, ensure_ascii=False)
     except AttributeError:
@@ -93,7 +111,8 @@ def get_comission_sent_tasks(data):
             json.dump({"found": False}, write_file)
 
 
-header_functions = {"auth_user": find_user,
+header_functions = {"reg_user": reg_user,
+                    "auth_user": find_user,
                     "get_comission_tasks": get_comission_tasks,
                     "get_users_tasks": get_users_tasks,
                     "get_comission_sent_tasks": get_comission_sent_tasks}

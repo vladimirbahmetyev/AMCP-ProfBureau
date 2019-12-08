@@ -1,0 +1,39 @@
+{
+  "function": "reg_user",
+  "body": {
+    "user_st": 11140,
+    "first_name": "Мария",
+    "last_name": "Васильева",
+    "course": 1,
+    "password": "password"
+  }
+}
+
+{
+  "function": "auth_user",
+  "body": {
+    "login": 11111,
+    "password": "ywthfxcp"
+  }
+}
+
+{
+  "function": "get_users_tasks",
+  "body": {
+    "user_st": 11113
+  }
+}
+
+{
+  "function": "get_comission_tasks",
+  "body": {
+    "name": "FunCom"
+  }
+}
+
+{
+  "function": "get_comission_sent_tasks",
+  "body": {
+    "com_name": "СпортКом"
+  }
+}
