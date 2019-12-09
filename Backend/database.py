@@ -57,6 +57,7 @@ class News(db.Entity):
     comission = Required(Comission)
     title = Required(str)
     description = Optional(str)
+    is_actual = Required(bool, default=True)
 
 
 db.generate_mapping(create_tables=True)

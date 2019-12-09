@@ -6,20 +6,13 @@ import datetime
 
 @db_session
 def gen_users(st_start, num, last_names, first_names):
-    user_sts = [i for i in range(11111, 11111 + num)]
+    user_sts = [i for i in range(st_start, st_start + num)]
     courses = [random.randint(1, 6) for _ in range(num)]
     passwords = gen_passwords(8, num)
     for i in range(len(user_sts)):
         User(user_st=user_sts[i], last_name=last_names[i], first_name=first_names[i],
              course=courses[i], password=passwords[i])
     User.select().show()
-
-
-# def gen_sts(start, num):
-#     sts = []
-#     for i in range(start, start + num):
-#         sts.append(i)
-#     return sts
 
 
 def gen_passwords(length, num):
@@ -40,7 +33,6 @@ def create_comission(ch_name, ch_surname, com_name):
 
 @db_session
 def gen_following(st_start, num):
-    # comissions = ["PM-Design", "PM-Partner", "FunCom", "PM-Photo", "КультМасс", "СпортКом"]
     for i in range(st_start, st_start + num):
         for j in range(3):
             user = User[i]
@@ -52,7 +44,6 @@ def gen_following(st_start, num):
 
 @db_session
 def gen_tasks(num):
-    # comissions = ["PM-Design", "PM-Partner", "FunCom", "PM-Photo", "КультМасс", "СпортКом"]
     for i in range(num):
         title = "Название " + str(i + 1) + " задания"
         description = "Полное описание " + str(i + 1) + " задания"
@@ -64,7 +55,6 @@ def gen_tasks(num):
 
 @db_session
 def gen_news(num):
-    # comissions = ["PM-Design", "PM-Partner", "FunCom", "PM-Photo", "КультМасс", "СпортКом"]
     for i in range(num):
         title = "Название " + str(i + 1) + " новости"
         description = "Полное описание " + str(i + 1) + " новости"
@@ -93,31 +83,32 @@ def gen_sent_tasks(num):
     Task_executor.select().show()
 
 
-# last_names = ['Крылова', 'Докиенко', 'Рыбаков', "Игнатьев", "Кульминский", "Масалев",
-#               "Мельников", "Олешкевич", "Павлова", "Петров", "Романычев", "Спирякова",
-#               "Терещенко", "Шарафутдинов", "Пахомов", "Барташук", "Малышева",
-#               "Пахомова", "Кудряшова", "Енин"]
-# first_names = ["Ольга", "Денис", "Сергей", "Денис", "Данил", "Владимир",
-#                "Дмитрий", "Евгений", "Екатерина", "Михаил", "Леонид", "Юлия",
-#                "Дмитрий", "Тимур", "Максим", "Анастасия", "Алина",
-#                "Арина", "Дарья", "Никита"]
+last_names = ['Крылова', 'Докиенко', 'Рыбаков', "Игнатьев", "Кульминский", "Масалев",
+              "Мельников", "Олешкевич", "Павлова", "Петров", "Романычев", "Спирякова",
+              "Терещенко", "Шарафутдинов", "Пахомов", "Барташук", "Малышева",
+              "Пахомова", "Кудряшова", "Енин"]
+first_names = ["Ольга", "Денис", "Сергей", "Денис", "Данил", "Владимир",
+               "Дмитрий", "Евгений", "Екатерина", "Михаил", "Леонид", "Юлия",
+               "Дмитрий", "Тимур", "Максим", "Анастасия", "Алина",
+               "Арина", "Дарья", "Никита"]
 
-# gen_users(11111, 20, last_names, first_names)
-# create_comission("Анастасия", "Барташук", "PM-Partner")
-# create_comission("Дарья", "Кудряшова", "КультМасс")
-# create_comission("Никита", "Енин", "FunCom")
-# create_comission("Сергей", "Рыбаков", "СпортКом")
-# create_comission("Арина", "Пахомова", "PM-Photo")
-# create_comission("Алина", "Малышева", "Профбюро")
-# create_comission("Ольга", "Крылова", "PM-Design")
-# gen_following(11111, 20)
-#
-tasks_news_num = 15
+gen_users(11111, 20, last_names, first_names)
+create_comission("Анастасия", "Барташук", "PM-Partner")
+create_comission("Дарья", "Кудряшова", "КультМасс")
+create_comission("Никита", "Енин", "FunCom")
+create_comission("Сергей", "Рыбаков", "СпортКом")
+create_comission("Арина", "Пахомова", "PM-Photo")
+create_comission("Ольга", "Крылова", "PM-Design")
+create_comission("Алина", "Малышева", "Профбюро")
 
-# gen_tasks(tasks_news_num)
-# gen_news(tasks_news_num)
-# gen_put_tasks(tasks_news_num)
+gen_following(11111, 20)
 
-# gen_sent_tasks(tasks_news_num)
+tasks_news_num = 25
+
+gen_tasks(tasks_news_num)
+gen_news(tasks_news_num)
+gen_put_tasks(tasks_news_num)
+
+gen_sent_tasks(tasks_news_num)
 
 

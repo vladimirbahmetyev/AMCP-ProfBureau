@@ -1,10 +1,7 @@
 {
-  "function": "reg_user",
+  "function": "delete_news",
   "body": {
-    "user_st": 11140,
-    "first_name": "Мария",
-    "last_name": "Васильева",
-    "course": 1,
-    "password": "password"
+    "com_name": "PM-Design",
+    "title": "Какая-то новость"
   }
 }

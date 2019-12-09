@@ -18,16 +18,9 @@
 }
 
 {
-  "function": "get_users_tasks",
+  "function": "get_actual_tasks_news",
   "body": {
-    "user_st": 11113
-  }
-}
-
-{
-  "function": "get_comission_tasks",
-  "body": {
-    "name": "FunCom"
+    "user_st": 11111
   }
 }
 
@@ -35,5 +28,76 @@
   "function": "get_comission_sent_tasks",
   "body": {
     "com_name": "СпортКом"
+  }
+}
+
+{
+  "function": "check_sent_task",
+  "body": {
+    "comission": "PM-Design",
+    "title": "Название 8 задания",
+    "done": true
+  }
+}
+
+{
+  "function": "add_task",
+  "body": {
+    "com_name": "PM-Partner",
+    "title": "Какое-то задание",
+    "description": "Какое-то описание какого-то задания",
+    "deadline": "2019-12-10"
+  }
+}
+
+{
+  "function": "add_news",
+  "body": {
+    "com_name": "PM-Design",
+    "title": "Какая-то новость",
+    "description": "Какое-то описание какой-то новости"
+  }
+}
+
+{
+  "function": "get_task",
+  "body": {
+    "com_name": "PM-Partner",
+    "user_st": 11114,
+    "title": "Какое-то задание"
+  }
+}
+
+{
+  "function": "get_task",
+  "body": {
+    "com_name": "PM-Design",
+    "user_st": 11114,
+    "title": "Какое-то задание"
+  }
+}
+
+{
+  "function": "send_task",
+  "body": {
+    "com_name": "PM-Design",
+    "user_st": 11114,
+    "title": "Какое-то задание"
+  }
+}
+
+{
+  "function": "delete_task",
+  "body": {
+    "com_name": "PM-Design",
+    "title": "Какое-то задани"
+  }
+}
+
+{
+  "function": "delete_news",
+  "body": {
+    "com_name": "PM-Design",
+    "title": "Какая-то новость"
   }
 }
