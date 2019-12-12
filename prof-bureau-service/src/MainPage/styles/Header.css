@@ -44,6 +44,16 @@
     text-align: right;
 }
 
+.del-account {
+    text-align: right;
+    font-weight: bold;
+}
+
+.del-account:hover {
+    color: brown;
+    cursor: pointer;
+}
+
 .acc-action{
     display: flex;
     flex-direction: column;

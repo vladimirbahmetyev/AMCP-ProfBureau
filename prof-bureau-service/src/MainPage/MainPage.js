@@ -12,7 +12,7 @@ export default class MainPage extends React.Component {
 
     state = {
         comission: 'Профбюро',
-        isAuthorized: false,
+        isAuthorized: true,
         login: '',
         course: 0,
         page: 'main'
@@ -58,6 +58,12 @@ export default class MainPage extends React.Component {
             page: flag ? 'auth' : 'main'
         })
     }
+
+    // openReg = flag => {
+    //     this.setState({
+    //         page: flag ? 'reg' : 'main'
+    //     })
+    // }
     
     render() {
             return(

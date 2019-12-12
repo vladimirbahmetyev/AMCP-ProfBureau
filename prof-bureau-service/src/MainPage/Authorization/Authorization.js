@@ -1,6 +1,7 @@
 import React from 'react'
 import './Auth.css'
 import AuthWindow from './AuthWindow'
+import RegWindow from './RegWindow'
 
 export default class Authorization extends React.Component {
 
@@ -8,9 +9,17 @@ export default class Authorization extends React.Component {
         window: 'auth'
     }
 
+    openReg = flag => {
+        this.setState({
+            window: flag ? 'reg' : 'auth'
+        })
+    }
+
     render() {
         if (this.state.window === 'auth') {
-            return <AuthWindow openAuth={this.props.openAuth}/>
+            return <AuthWindow openAuth={this.props.openAuth} openReg={this.openReg}/>
+        } else if (this.state.window === 'reg') {
+            return <RegWindow openReg={this.openReg}/>
         }
     }
 }

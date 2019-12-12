@@ -3,6 +3,7 @@
     justify-content: flex-start;
     width: 38%;
     height: auto;
+    z-index: 1;
 }
   
 .chairman {
@@ -86,7 +87,7 @@
 .chairman:hover, .socialNetworks:hover {
   transform: scale(1.02);
   transition-duration: 300ms;
-  z-index: 2;
+  z-index: 1;
 }
 
 .block-title {

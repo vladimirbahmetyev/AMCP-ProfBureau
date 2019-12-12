@@ -13,5 +13,5 @@
 .information-block:hover {
     transform: scale(1.01);
     transition-duration: 300ms;
-    z-index: 2;
+    z-index: 1;
 }
