@@ -1,0 +1,152 @@
+.new-task-form{
+    width: 40vw;
+    height: auto;
+    background-color: white;
+    border-radius: 40px;
+    border: 1px solid #2c3343;
+    z-index: 3;
+    opacity: 1;
+    text-align: center;
+    box-shadow: 0px 0px 8px 0px #2c3343;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.new-task-form-back{
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 150vh;
+    background-color: rgba(0, 0, 0, 0.8);
+    /* Fix this translate */
+    position: absolute;
+    transform: translateY(-25vh);
+}
+.new-task-title-form{
+    display: flex;
+    flex-direction: column;
+    margin-top: 2%;
+    font-size: 3vh;
+    color: #2c3343;
+}
+
+.new-task-title-form > input{
+    border: none;
+    border-bottom: 2px solid #2c3343;
+    font-family: 'PFBeauSansPro-light';
+    outline: none;
+    margin-top: 5%;
+    margin-bottom: 10%;
+}
+
+.new-task-title-form > input:focus {
+    border-bottom: 2px solid lightcoral;
+}
+
+.new-task-description-form{
+    border: none;
+    height: 15vh;
+    width: 70%;
+    border-radius: 20px;
+    border: 1px solid #2c3343;
+    padding: 2%;
+    outline: none;
+    color: #2c3343;
+    font-family: 'PFBeauSansPro-light';
+}
+
+.new-task-description-form:focus {
+    border: 1px solid lightcoral;
+}
+
+.new-task-deadline-form{
+    width: 40%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    outline: none;
+    font-size: 2vh;
+    margin-top: 2%;
+    margin-bottom: 4%;
+    color: #2c3343;
+}
+
+.new-task-input-date {
+    border: none;
+    outline: none;
+    font-size: 2vh;
+    font-family: 'PFBeauSansPro-light';
+    border-bottom: 1px solid #2c3343;
+    color: #2c3343;
+}
+
+.new-task-input-date:focus {
+    border-bottom: 1px solid lightcoral;
+}
+
+.new-task-picture-container-form{
+    display: flex;
+    width: 70%;
+    height: 20%;
+    justify-content: space-around;
+}
+.new-task-picture-container-form > div{
+    border-radius: 10px;
+    height: 8vh;
+    width: 8vh; 
+    display: flex;
+    justify-content: center;
+    align-self: center;
+}
+
+.new-task-picture-container-form > div >div{
+    mask-image: url("../sprite.svg#plus");
+    background-color: #2c3343;
+    mask-size: 85% 85%;
+    height: 7.25vh;
+    width: 7.25vh;  
+    mask-repeat: no-repeat;
+    mask-position: center;
+}
+
+.new-task-add-form{
+    background-color: #2c3343;
+    outline: none;
+    border: none;
+    margin-bottom: 2%;
+    margin-top: 4%;
+    height: 5vh;
+    width: 10vw;
+    border-radius: 2.5vh;
+    color: white;
+    font-family: 'PFBeauSansPro-light';
+    font-size: 2vh;
+}
+
+.new-task-add-form:hover {
+    background-color: lightcoral;
+    cursor: pointer;
+}
+
+.exit-button-form{
+    width: 4vh;
+    height: 4vh;
+    border: 1px solid #2c3343;
+    position: absolute;
+    transform: translateX(17vw) translateY(-22vh);
+    border-radius: 50%;
+    mask-image: url('../sprite.svg#cross');
+    mask-size: 50% 50%;
+    mask-repeat: no-repeat;
+    mask-position: center;
+    background-color: #2c3343;
+}
+
+.exit-button-form:hover {
+    background-color: lightcoral;
+    cursor: pointer;
+}

@@ -4,45 +4,47 @@ import "./CurrentComissionTask.css"
 export default class CurrentComissionTask extends React.Component{
 
     state = {
-        descriptionState:"current-task-description-hide"
+        descriptionClassName:"current-task-description-hide",
+        isDescriptionOpen: false
     }
 
-    watchClassStatus = "current-task-left active-watch-icon " + this.state.descriptionState
+    watchClassNames = "current-task-left active-watch-icon " + this.state.descriptionClassName
 
     onDescpButtonClick = ()=>{
-        if(this.state.descriptionState ==="current-task-description-hide"){
-            this.watchClassStatus = "current-task-left active-watch-icon current-task-description-show"
+        if(!this.state.isDescriptionOpen){
+            this.watchClassNames = "current-task-left active-watch-icon current-task-description-show"
             this.setState({
-                descriptionState:"current-task-description-show"
+                descriptionClassName:"current-task-description-show",
+                isDescriptionOpen: true
             })        
         }
         else{  
-              this.watchClassStatus = "current-task-left active-watch-icon current-task-description-hide"
+              this.watchClassNames = "current-task-left active-watch-icon current-task-description-hide"
               this.setState({
-                descriptionState:"current-task-description-hide"
-            })
-            
+                descriptionClassName:"current-task-description-hide",
+                isDescriptionOpen: false
+            })            
          }
     }
 
     render(){
     return(
         <div className="current-task-item">
-        <div className="current-task-item-prev">
-            <div className={this.watchClassStatus} onClick={this.onDescpButtonClick}>
-                <div className="current-task-eye"></div>
-            </div>
-            <div className="current-task-right">
-                <div className="current-task-name">
-                    Название задания
+            <div className="current-task-item-prev">
+                <div className={this.watchClassNames} onClick={this.onDescpButtonClick}>
+                    <div className="current-task-eye"></div>
                 </div>
-                <div className="current-task-buttons">
-                     <div className="current-task-add"></div>
+                <div className="current-task-right">
+                    <div className="current-task-name">
+                        Название задания
+                    </div>
+                    <div className="current-task-buttons" onClick={this.props.onClickAdd}>
+                        <div className="current-task-add"></div>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div className={this.state.descriptionState}>
-                описание какого то задания бла бла бла авпвапывпвпвыаыа
+            <div className={this.state.descriptionClassName}>
+                    описание какого то задания бла бла бла авпвапывпвпвыаыа
             </div>
         </div>
         )

@@ -57,7 +57,11 @@ export default class ComissionsTable extends React.Component{
                 <div>Оформители</div>
             </div>
 
-            <div className="cultmass com-item" onClick={()=>this.props.onClickCom("none")}>
+            <div className="cultmass com-item" onClick={()=>this.props.onClickCom(
+                {
+                    comName:"none"
+                }
+            )}>
                 <div className="com-picture"></div>
                 <div>КультМасс</div>
             </div>
