@@ -20,35 +20,9 @@ import CssTransition from "react-transition-group/CSSTransition"
 
 export default class PersonalAccount extends React.Component{
 
-    state = {
-        isAPred: false,
-        selectComission:"none",
-        topRightBlock: <ActionsTable/>,//Добавить блок для отрисовки новостей
-        bottomLeftBlock: <ItemList type={CurrentTask} titleName = "Мой швапс" taskList={this.props.persAccInfo.userTasks} sendFunction={this.sendTaskOnChecking}/>,
-        bottomRightBlock: <ItemList type={EndedTask} titleName = "Выпитый швапс" taskList={this.props.persAccInfo.userTasksEnded}/>,
-        isRedrawNeeded : false,
-        isNewTaskFormOpen: false,
-        comInfo: this.props.persAccInfo.comInfo,
-        userTasks: this.props.persAccInfo.userTasks,
-        userTasksEnded: this.props.persAccInfo.userTasksEnded
-    }
-    
-    redrawCallback = ()=>{
-        this.setState({
-            isRedrawNeeded: false
-        })                           
-    }
-
-    onClickAddNewTask = ()=>{
-        this.setState({isNewTaskFormOpen:true})
-    
-    }
-    onClickCloseNewTask = ()=>{
-        this.setState({isNewTaskFormOpen:false})
-    }
     sendTaskOnChecking = (taskTitle)=>{alert(taskTitle)}
-    // url = 'http://127.0.0.1:8000/api/'
     // sendTaskOnChecking = (taskTitle)=>{
+    //     let url = 'http://127.0.0.1:8000/api/'
     //     fetch(url + "sendTask/",{
     //         method:"POST",
     //         headers:{
@@ -74,6 +48,35 @@ export default class PersonalAccount extends React.Component{
     //         }
     //     })
     // }
+    //Забавный баг: если данную функцию поставить после стейта, тогда js не может ее найти и не считает это функцией
+    state = {
+        isAPred: false,
+        selectComission:"none",
+        topRightBlock: <ActionsTable/>,//Добавить блок для отрисовки новостей
+        bottomLeftBlock: <ItemList type={CurrentTask} titleName = "Мой швапс" taskList={this.props.persAccInfo.userTasks} function1={this.sendTaskOnChecking}/>,
+        bottomRightBlock: <ItemList type={EndedTask} titleName = "Выпитый швапс" taskList={this.props.persAccInfo.userTasksEnded}/>,
+        isRedrawNeeded : false,
+        isNewTaskFormOpen: false,
+        comInfo: this.props.persAccInfo.comInfo,
+        userTasks: this.props.persAccInfo.userTasks,
+        userTasksEnded: this.props.persAccInfo.userTasksEnded
+    }
+    
+    redrawCallback = ()=>{
+        this.setState({
+            isRedrawNeeded: false
+        })                           
+    }
+
+    onClickAddNewTask = ()=>{
+        this.setState({isNewTaskFormOpen:true})
+    
+    }
+    onClickCloseNewTask = ()=>{
+        this.setState({isNewTaskFormOpen:false})
+    }
+    
+    
     //Предлагаю устанавливать инфу о преде как сравнение ссылка на вк пользователя=== ссылка на вк преда (из бд)
     //Придумать откуда брать инфу, являетс человек предом или нет и засунуть сюда
     topRightBlock = (pushedCom, predStatus)=>{
@@ -93,7 +96,7 @@ export default class PersonalAccount extends React.Component{
                 selectComission:"none",
                 isRedrawNeeded: true,
                 topRightBlock: <ActionsTable/>,
-                bottomLeftBlock: <ItemList type={CurrentTask} titleName = "Мой швапс" taskList={this.state.userTasks} sendFunction={this.sendTaskOnChecking}/>,
+                bottomLeftBlock: <ItemList type={CurrentTask} titleName = "Мой швапс" taskList={this.state.userTasks} function1={this.sendTaskOnChecking}/>,
                 bottomRightBlock: <ItemList type={EndedTask} titleName = "Выпитый швапс" taskList={this.state.userTasksEnded}/>,
             })
         }
