@@ -19,6 +19,161 @@ export default class MainPage extends React.Component {
         stNum: 0
     }
 
+    testJSON = {
+        "userTasks":
+            [{
+                "title":"titleTask1",
+                "description":"descriptionTask1"
+            },
+            {
+                "title":"titleTask2",
+                "description":"descriptionTask2"
+            }
+            ],
+        "userTasksEnded":
+            [{
+                "title":"titleTaskEnded1",
+                "description":"descriptionTaskEnded1"
+            },
+            {
+                "title":"titleTaskEnded2",
+                "description":"descriptionTaskEnded2"
+            }
+            ],
+        
+        "comInfo":{
+            "PM-Design":{
+                "predName":"Ольга крылова",
+                "newsList":{},
+                "taskList":[         
+                    {
+                        "title":"titleTask1",
+                        "description":"descriptionTask1"
+                    },
+                   {
+                        "title":"titleTask2",
+                        "description":"descriptionTask2"
+                   }
+                ],      
+                "isAPred":false,
+                "isAMember":true
+            },
+            "PM-Photo":{
+                "predName":"Ольга крылова",
+                "newsList":{},
+                "taskList":[         
+                    {
+                        "title":"titleTask1",
+                        "description":"descriptionTask1"
+                    },
+                   {
+                        "title":"titleTask2",
+                        "description":"descriptionTask2"
+                   }
+                ],
+                "isAPred":true,
+                "isAMember":true
+            },
+            "HR":{
+                "predName":"Ольга крылова",
+                "newsList":{},
+                "taskList":[         
+                    {
+                        "title":"titleTask1",
+                        "description":"descriptionTask1"
+                    },
+                   {
+                        "title":"titleTask2",
+                        "description":"descriptionTask2"
+                   }
+                ],
+                "isAPred":true,
+                "isAMember":true
+            },
+            "pm-profi":{
+                "predName":"Ольга крылова",
+                "newsList":{},
+                "taskList":[         
+                    {
+                        "title":"titleTask1",
+                        "description":"descriptionTask1"
+                    },
+                   {
+                        "title":"titleTask2",
+                        "description":"descriptionTask2"
+                   }
+                ],
+                "isAPred":true,
+                "isAMember":true
+            },
+            "funcom":{
+                "predName":"Ольга крылова",
+                "newsList":{},
+                "taskList":[         
+                    {
+                        "title":"titleTask1",
+                        "description":"descriptionTask1"
+                    },
+                   {
+                        "title":"titleTask2",
+                        "description":"descriptionTask2"
+                   }
+                ],
+                "isAPred":true,
+                "isAMember":true
+            },
+            "sportcom":{
+                "predName":"Ольга крылова",
+                "newsList":{},
+                "taskList":[         
+                    {
+                        "title":"titleTask1",
+                        "description":"descriptionTask1"
+                    },
+                   {
+                        "title":"titleTask2",
+                        "description":"descriptionTask2"
+                   }
+                ],
+                "isAPred":true,
+                "isAMember":true
+            },
+            "mounting":{
+                "predName":"Ольга крылова",
+                "newsList":{},
+                "taskList":[         
+                    {
+                        "title":"titleTask1",
+                        "description":"descriptionTask1"
+                    },
+                   {
+                        "title":"titleTask2",
+                        "description":"descriptionTask2"
+                   }
+                ],
+                "isAPred":true,
+                "isAMember":true
+            },
+            "cultmass":{
+                "predName":"Ольга крылова",
+                "newsList":{},
+                "taskList":[         
+                    {
+                        "title":"titleTask1",
+                        "description":"descriptionTask1"
+                    },
+                   {
+                        "title":"titleTask2",
+                        "description":"descriptionTask2"
+                   }
+                ],
+                "isAPred":true,
+                "isAMember":true
+            }
+        },
+        "newsList":{}
+    }
+
     changeComission = name => {
         this.setState({
             comission: name,
@@ -77,7 +232,7 @@ export default class MainPage extends React.Component {
             // })
 
             return(
-                <PersonalAccount />
+                <PersonalAccount persAccInfo={this.testJSON} />
             )
 
         } else if (page === 'auth') {

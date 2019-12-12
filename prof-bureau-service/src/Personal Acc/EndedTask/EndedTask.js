@@ -11,10 +11,10 @@ export default class EndedTask extends React.Component{
     return(
         <div className="ended-task-item ended-task-checking">
              <div className="ended-task-name">
-                {this.props.taskInfo.title}
+                {this.props.content.title}
              </div>
              <div className="ended-task-state">
-                {this.props.taskInfo.description}  
+                {this.props.content.description}  
              </div>
         </div>
     )

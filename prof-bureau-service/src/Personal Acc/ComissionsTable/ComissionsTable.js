@@ -8,7 +8,7 @@ export default class ComissionsTable extends React.Component{
         <div className="comissions-coloumn">
         <h2 className="com-title">Мои комиссии</h2>
         <div className="comissions-grid">
-            <div className={"pm-design com-item" + this.props.comInfo["pm-design"].isAMember? "":  " com-not-active"} onClick={()=>this.props.onClickCom(
+            <div className={"pm-design com-item" + (this.props.comInfo["PM-Design"].isAMember? "":  " com-not-active")} onClick={()=>this.props.onClickCom(
                 {
                     comName:"PM-Design",
                     predName:"Ольга крылова"
@@ -18,7 +18,7 @@ export default class ComissionsTable extends React.Component{
                 <div className='com-title'>PM-Design</div>
             </div>
 
-            <div className={"hr com-item" + this.props.comInfo["hr"].isAMember? "":  " com-not-active"} onClick={()=>this.props.onClickCom(
+            <div className={"hr com-item" + (this.props.comInfo["HR"].isAMember? "":  " com-not-active")} onClick={()=>this.props.onClickCom(
                 {
                     comName:"HR",
                     predName:"Мария Васильева"
@@ -28,7 +28,7 @@ export default class ComissionsTable extends React.Component{
                 <div className='com-title'>HR</div>
             </div>
 
-            <div className={"pm-profi com-item" + this.props.comInfo["pm-profi"].isAMember? "":  " com-not-active"} onClick={()=>this.props.onClickCom({
+            <div className={"pm-profi com-item" + (this.props.comInfo["pm-profi"].isAMember? "":  " com-not-active")} onClick={()=>this.props.onClickCom({
                 comName:"",
                 predName:""
             })}>
@@ -36,7 +36,7 @@ export default class ComissionsTable extends React.Component{
                 <div className='com-title'>PM-profi</div>
             </div>
 
-            <div className={"pm-photo com-item" + this.props.comInfo["pm-photo"].isAMember? "":  " com-not-active"} onClick={()=>this.props.onClickCom({
+            <div className={"pm-photo com-item" + (this.props.comInfo["PM-Photo"].isAMember? "":  " com-not-active")} onClick={()=>this.props.onClickCom({
                 comName:"",
                 predName:""
             })}>
@@ -44,7 +44,7 @@ export default class ComissionsTable extends React.Component{
                 <div className='com-title'>PM-photo</div>
             </div>
 
-            <div className={"funcom com-item" + this.props.comInfo["funcom"].isAMember? "":  " com-not-active"} onClick={()=>this.props.onClickCom({
+            <div className={"funcom com-item" + (this.props.comInfo["funcom"].isAMember? "":  " com-not-active")} onClick={()=>this.props.onClickCom({
                 comName:"",
                 predName:""
             })}>
@@ -52,7 +52,7 @@ export default class ComissionsTable extends React.Component{
                 <div className='com-title'>FunCom</div>
             </div>
 
-            <div className={"sportcom com-item" + this.props.comInfo["sportcom"].isAMember? "":  " com-not-active"} onClick={()=>this.props.onClickCom({
+            <div className={"sportcom com-item" + (this.props.comInfo["sportcom"].isAMember? "":  " com-not-active")} onClick={()=>this.props.onClickCom({
                 comName:"",
                 predName:""
             })}>
@@ -60,7 +60,7 @@ export default class ComissionsTable extends React.Component{
                 <div className='com-title'>СпортКом</div>
             </div>
 
-            <div className={"mounting com-item" + this.props.comInfo["mounting"].isAMember? "":  " com-not-active"} onClick={()=>this.props.onClickCom({
+            <div className={"mounting com-item" + (this.props.comInfo["mounting"].isAMember? "":  " com-not-active")} onClick={()=>this.props.onClickCom({
                 comName:"",
                 predName:""
             })}>
@@ -68,7 +68,7 @@ export default class ComissionsTable extends React.Component{
                 <div className='com-title'>Оформители</div>
             </div>
 
-            <div className={"cultmass com-item" + this.props.comInfo["cultmass"].isAMember? "":  " com-not-active"} onClick={()=>this.props.onClickCom(
+            <div className={"cultmass com-item" + (this.props.comInfo["cultmass"].isAMember? "":  " com-not-active")} onClick={()=>this.props.onClickCom(
                 {
                     comName: "Культмасс",
                     predName: 'Кудряшова Дарья'

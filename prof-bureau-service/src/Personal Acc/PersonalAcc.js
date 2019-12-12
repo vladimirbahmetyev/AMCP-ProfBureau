@@ -25,12 +25,12 @@ export default class PersonalAccount extends React.Component{
         selectComission:"none",
         topRightBlock: <ActionsTable/>,//Добавить блок для отрисовки новостей
         bottomLeftBlock: <ItemList type={CurrentTask} titleName = "Мой швапс" taskList={this.props.persAccInfo.userTasks}/>,
-        bottomRightBlock: <ItemList type={EndedTask} titleName = "Выпитый швапс" taskList={this.props.persAccInfo.EndedTask}/>,
+        bottomRightBlock: <ItemList type={EndedTask} titleName = "Выпитый швапс" taskList={this.props.persAccInfo.userTasksEnded}/>,
         isRedrawNeeded : false,
         isNewTaskFormOpen: false,
-        comInfo: this.props.persAccInfo.comissionsInfo,
-        usersTask: this.props.persAccInfo.userTasks,
-        endedTasks: this.props.persAccInfo.endedTasks
+        comInfo: this.props.persAccInfo.comInfo,
+        userTasks: this.props.persAccInfo.userTasks,
+        userTasksEnded: this.props.persAccInfo.userTasksEnded
     }
     
     redrawCallback = ()=>{
@@ -65,8 +65,8 @@ export default class PersonalAccount extends React.Component{
                 selectComission:"none",
                 isRedrawNeeded: true,
                 topRightBlock: <ActionsTable/>,
-                bottomLeftBlock: <ItemList type={CurrentTask} titleName = "Мой швапс" taskList={this.state.usersTask}/>,
-                bottomRightBlock: <ItemList type={EndedTask} titleName = "Выпитый швапс" taskList={this.state.endedTasks}/>,
+                bottomLeftBlock: <ItemList type={CurrentTask} titleName = "Мой швапс" taskList={this.state.userTasks}/>,
+                bottomRightBlock: <ItemList type={EndedTask} titleName = "Выпитый швапс" taskList={this.state.userTasksEnded}/>,
             })
         }
         else{

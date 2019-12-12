@@ -34,7 +34,7 @@ export default class CurrentTask extends React.Component{
             </div>
             <div className="current-task-right">
                 <div className="current-task-name">
-                    {this.props.taskInfo.title}
+                    {this.props.content.title}
                 </div>
                 <div className="current-task-buttons">
                      <div className="current-task-send"></div>
@@ -43,7 +43,7 @@ export default class CurrentTask extends React.Component{
             </div>
         </div>
         <div className={this.state.descriptionState}>
-                {this.props.taskInfo.description}
+                {this.props.content.description}
             </div>
         </div>
         )
