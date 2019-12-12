@@ -15,7 +15,7 @@ export default class Authorization extends React.Component {
         })
     }
 
-    finishReg =() => {
+    finishReg = () => {
         this.setState({
             window:'auth'
         })
@@ -23,7 +23,7 @@ export default class Authorization extends React.Component {
 
     render() {
         if (this.state.window === 'auth') {
-            return <AuthWindow openAuth={this.props.openAuth} openReg={this.openReg} onLogin = {this.props.onLogin}/>
+            return <AuthWindow openAuth={this.props.openAuth} openReg={this.openReg} login = {this.props.login}/>
         } else if (this.state.window === 'reg') {
             return <RegWindow finishReg = {this.finishReg} openReg={this.openReg}/>
         }

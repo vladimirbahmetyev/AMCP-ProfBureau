@@ -5,24 +5,24 @@ export default class RegWindow extends React.Component{
 
     buttonClicked = () => {
         // url = this.props.url
-        // fetch(url + 'registration/',{
-        //     method:"POST",
-        //     headers:{
-        //         'Content-Type': 'application/json',
-        //     },
-        //     body:JSON.stringify({
-        //         "firstName": document.getElementById('firstName').value,
-        //         "lastName": document.getElementById('lastName').value,
-        //         "course": document.getElementById('course').value,
-        //         "email": document.getElementById('e-mail').value,
-        //         "password": document.getElementById('password').value
-        //     }),
-        
-        // })
-        // .then((response) => {
-        //     if (response.status === 200)
-        //         this.props.finishReg()
-        // })
+        let url = 'http://127.0.0.1:8000/api/'
+        fetch(url + 'registration/',{
+            method:"POST",
+            headers:{
+                'Content-Type': 'application/json',
+            },
+            body:JSON.stringify({
+                "firstName": document.getElementById('firstName').value,
+                "lastName": document.getElementById('lastName').value,
+                "course": document.getElementById('course').value,
+                "email": document.getElementById('e-mail').value,
+                "password": document.getElementById('password').value
+            }),
+        })
+        .then((response) => {
+            if (response.status === 200)
+                this.props.finishReg()
+        })
     }
 
     render() {

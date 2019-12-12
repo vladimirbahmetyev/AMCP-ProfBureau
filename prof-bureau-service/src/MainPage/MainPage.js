@@ -15,7 +15,8 @@ export default class MainPage extends React.Component {
         isAuthorized: true,
         login: '',
         course: 0,
-        page: 'main'
+        page: 'main',
+        stNum: 0
     }
 
     changeComission = name => {
@@ -24,11 +25,13 @@ export default class MainPage extends React.Component {
         })
     }
 
-    login = (userInfo)=>{
+    login = (userInfo) => {
         this.setState({
             isAuthorized:true,
             login: userInfo.name,
-            course: userInfo.course
+            course: userInfo.course,
+            stNum: userInfo.stNum,
+            page: 'main' 
         })
     }        
 
@@ -57,7 +60,7 @@ export default class MainPage extends React.Component {
                 <PersonalAccount />
             )
         } else if (page === 'auth') {
-            return <Authorization openAuth={this.openAuth}/>
+            return <Authorization openAuth={this.openAuth} login={this.login}/>
         }
     }
 

@@ -1,33 +1,38 @@
 import React from 'react'
 import './Auth.css'
-import { userInfo } from 'os'
 
 export default class AuthWindow extends React.Component {
 
-    // login = ()=>{
-    //     url = this.props.url
-    //     fetch(url + 'login/',{
-    //         method:"POST",
-    //         headers:{
-    //             'Content-Type': 'application/json',
-    //         },
-    //         body:JSON.stringify({
-    //             "login": document.getElementById('login').value,
-    //             "password": document.getElementById('password').value
-    //         }),
+    login = () => {
+        // url = this.props.url
+        let url = 'http://127.0.0.1:8000/api/'
+        fetch(url + 'login/',{
+            method:"POST",
+            headers:{
+                'Content-Type': 'application/json',
+            },
+            body:JSON.stringify({
+                "login": document.getElementById('login').value,
+                "password": document.getElementById('password').value
+            }),
         
-    //     })
-    //     .then((response) => {
-    //         return response.JSON
-    //     })
-    //     .then((responseJson)=>{
-    //         userInfo = {
-    //             "course":responseJson.course,
-    //             "name":responseJson.name
-    //         }
-    //         this.props.login(userInfo)
-    //     })
-    // }
+        })
+        .then((response) => {
+            return response.json()
+        })
+        .then((responseJson) => {
+            if (responseJson.success) {
+                let userInfo = {
+                    "course": responseJson.course,
+                    "name": responseJson.name,
+                    "stNum": responseJson.st,
+                }
+                this.props.login(userInfo)
+            } else {
+                console.log(responseJson.error)
+            }
+        })
+    }
 
     render() {
         return (
@@ -43,7 +48,7 @@ export default class AuthWindow extends React.Component {
                         <input id='password'></input>
                     </div>
                     <div className='auth-bottom-buttons'>
-                        <div className='auth-button auth-login' onClick={this.login()}>
+                        <div className='auth-button auth-login' onClick={() => this.login()}>
                             <p>Войти</p>
                         </div>
                         <div className='auth-button auth-reg' onClick={() => this.props.openReg(true)}>
