@@ -24,6 +24,14 @@ export default class MainPage extends React.Component {
         })
     }
 
+    login = (userInfo)=>{
+        this.setState({
+            isAuthorized:true,
+            login: userInfo.name,
+            course: userInfo.course
+        })
+    }        
+
     changePage = () => {
         const actualPage = this.state.page === 'main' ? 'main' : 'account'
         const anotherPage = actualPage === 'main' ? 'account' : 'main'

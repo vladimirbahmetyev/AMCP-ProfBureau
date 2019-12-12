@@ -4,10 +4,25 @@ import './Reg.css'
 export default class RegWindow extends React.Component{
 
     buttonClicked = () => {
-        alert('name: ' + document.getElementById('firstName').value + '\n' +
-        'surname: ' + document.getElementById('lastName').value + '\n' + 
-        'course: ' + document.getElementById('course').value + '\n' +
-        'e-mail: ' + document.getElementById('e-mail').value + '\n')
+        // url = this.props.url
+        // fetch(url + 'registration/',{
+        //     method:"POST",
+        //     headers:{
+        //         'Content-Type': 'application/json',
+        //     },
+        //     body:JSON.stringify({
+        //         "firstName": document.getElementById('firstName').value,
+        //         "lastName": document.getElementById('lastName').value,
+        //         "course": document.getElementById('course').value,
+        //         "email": document.getElementById('e-mail').value,
+        //         "password": document.getElementById('password').value
+        //     }),
+        
+        // })
+        // .then((response) => {
+        //     if (response.status === 200)
+        //         this.props.finishReg()
+        // })
     }
 
     render() {
