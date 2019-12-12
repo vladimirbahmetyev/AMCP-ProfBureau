@@ -104,7 +104,7 @@ export default class MainPage extends React.Component {
                    }
                 ],
                 "isAPred":true,
-                "isAMember":true
+                "isAMember":false
             },
             "funcom":{
                 "predName":"Ольга крылова",
