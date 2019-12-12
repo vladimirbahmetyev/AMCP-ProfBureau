@@ -23,11 +23,14 @@ export default class PersonalAccount extends React.Component{
     state = {
         isAPred: false,
         selectComission:"none",
-        topRightBlock: <ActionsTable/>,
-        bottomLeftBlock: <ItemList type={<CurrentTask/>} titleName = "Мой швапс"/>,
-        bottomRightBlock: <ItemList type={<EndedTask/>} titleName = "Выпитый швапс"/>,
+        topRightBlock: <ActionsTable/>,//Добавить блок для отрисовки новостей
+        bottomLeftBlock: <ItemList type={CurrentTask} titleName = "Мой швапс" taskList={this.props.persAccInfo.userTasks}/>,
+        bottomRightBlock: <ItemList type={EndedTask} titleName = "Выпитый швапс" taskList={this.props.persAccInfo.EndedTask}/>,
         isRedrawNeeded : false,
-        isNewTaskFormOpen: false
+        isNewTaskFormOpen: false,
+        comInfo: this.props.persAccInfo.comissionsInfo,
+        usersTask: this.props.persAccInfo.userTasks,
+        endedTasks: this.props.persAccInfo.endedTasks
     }
     
     redrawCallback = ()=>{
@@ -45,8 +48,8 @@ export default class PersonalAccount extends React.Component{
     }
     //Предлагаю устанавливать инфу о преде как сравнение ссылка на вк пользователя=== ссылка на вк преда (из бд)
     //Придумать откуда брать инфу, являетс человек предом или нет и засунуть сюда
-    topRightBlock = (pushedCom)=>{
-        if(true)
+    topRightBlock = (pushedCom, predStatus)=>{
+        if(predStatus)
             return <PredControlPanel onAddNewTask={this.onClickAddNewTask} />
         else
             return <AboutComPred predName={pushedCom.predName} selectComission={pushedCom.comName} comState={this.state}/>
@@ -62,18 +65,18 @@ export default class PersonalAccount extends React.Component{
                 selectComission:"none",
                 isRedrawNeeded: true,
                 topRightBlock: <ActionsTable/>,
-                bottomLeftBlock: <ItemList type={<CurrentTask/>} titleName = "Мой швапс"/>,
-                bottomRightBlock: <ItemList type={<EndedTask/>} titleName = "Выпитый швапс"/>,
+                bottomLeftBlock: <ItemList type={CurrentTask} titleName = "Мой швапс" taskList={this.state.usersTask}/>,
+                bottomRightBlock: <ItemList type={EndedTask} titleName = "Выпитый швапс" taskList={this.state.endedTasks}/>,
             })
         }
         else{
             this.setState({
-                isAPred:false,
+                isAPred: this.state.comInfo[pushedCom.comName].isAPred,
                 selectComission: pushedCom.comName,
-                topRightBlock: this.topRightBlock(pushedCom),
+                topRightBlock: this.topRightBlock(pushedCom, this.state.comInfo[pushedCom.comName].isAPred),
                 // Fix open item staying when comission had been changed 
-                bottomLeftBlock: <ItemList type={<CurrentComissionTask/>} titleName={`Актуальный швапc ${pushedCom.comName}`}/>,
-                bottomRightBlock: <CurrentComissionEvents titleName="Швапс комиссии"/>,
+                bottomLeftBlock: <ItemList type={CurrentComissionTask} titleName={`Актуальный швапc ${pushedCom.comName}`} taskList={this.state.comInfo[pushedCom.comName].taskList}/>,
+                bottomRightBlock: <CurrentComissionEvents titleName="Швапс комиссии" newsList={this.state.comInfo[pushedCom.comName].news}/>,
                 isRedrawNeeded: true 
             })            
         }
@@ -92,7 +95,7 @@ export default class PersonalAccount extends React.Component{
     </CssTransition>
 
     <section className="comissions-and-actions">
-        <ComissionsTable onClickCom={this.comTableListener}/>
+        <ComissionsTable onClickCom={this.comTableListener} comInfo={this.state.comInfo}/>
         
         <FadeAnimationComponent 
         redrawCallback={this.redrawCallback} 

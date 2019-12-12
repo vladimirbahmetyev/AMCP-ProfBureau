@@ -56,9 +56,26 @@ export default class MainPage extends React.Component {
                 </div>
             )
         } else if (page === 'account') {
-            return(
-                <PersonalAccount />
-            )
+            // url = this.props.url
+            // fetch(url + 'persAccInfo/',{
+            //     method:"POST",
+            //     headers:{
+            //         'Content-Type': 'application/json',
+            //     },
+            //     body:JSON.stringify({
+            //         "login": this.state.login
+            //     }),
+            
+            // })
+            // .then((response) => {
+            //     return response.JSON
+            // })
+            // .then((responseJson)=>{
+                return(
+                    <PersonalAccount persAccInfo={responseJson.persAccInfo}/>
+                )
+            // })
+            
         } else if (page === 'auth') {
             return <Authorization openAuth={this.openAuth} login={this.login}/>
         }

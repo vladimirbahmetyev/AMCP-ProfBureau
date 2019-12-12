@@ -36,7 +36,7 @@ export default class CurrentComissionTask extends React.Component{
                 </div>
                 <div className="current-task-right">
                     <div className="current-task-name">
-                        Название задания
+                        {this.props.taskInfo.title}
                     </div>
                     <div className="current-task-buttons" onClick={this.props.onClickAdd}>
                         <div className="current-task-add"></div>
@@ -44,7 +44,7 @@ export default class CurrentComissionTask extends React.Component{
                 </div>
             </div>
             <div className={this.state.descriptionClassName}>
-                    описание какого то задания бла бла бла авпвапывпвпвыаыа
+                {this.props.taskInfo.decription}
             </div>
         </div>
         )
