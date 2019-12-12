@@ -24,7 +24,7 @@ export default class PersonalAccount extends React.Component{
         isAPred: false,
         selectComission:"none",
         topRightBlock: <ActionsTable/>,//Добавить блок для отрисовки новостей
-        bottomLeftBlock: <ItemList type={CurrentTask} titleName = "Мой швапс" taskList={this.props.persAccInfo.userTasks}/>,
+        bottomLeftBlock: <ItemList type={CurrentTask} titleName = "Мой швапс" taskList={this.props.persAccInfo.userTasks} sendFunction={this.sendTaskOnChecking}/>,
         bottomRightBlock: <ItemList type={EndedTask} titleName = "Выпитый швапс" taskList={this.props.persAccInfo.userTasksEnded}/>,
         isRedrawNeeded : false,
         isNewTaskFormOpen: false,
@@ -46,6 +46,34 @@ export default class PersonalAccount extends React.Component{
     onClickCloseNewTask = ()=>{
         this.setState({isNewTaskFormOpen:false})
     }
+    sendTaskOnChecking = (taskTitle)=>{alert(taskTitle)}
+    // url = 'http://127.0.0.1:8000/api/'
+    // sendTaskOnChecking = (taskTitle)=>{
+    //     fetch(url + "sendTask/",{
+    //         method:"POST",
+    //         headers:{
+    //             'Content-Type': 'application/json',
+    //         },
+    //         body:JSON.stringify({
+    //             "user":this.props.user,
+    //             "taskTitle": taskTitle
+    //         })
+    //     })
+    //     .then((response)=>{
+    //         return response.json()
+    //     })
+    //     .then((responseJson)=>{
+    //         if(responseJson.sucess){
+    //             this.setState({
+    //                 userTasks:responseJson.userTasks,
+    //                 userTasksEnded: responseJson.userTasksEnded
+    //             })
+    //         }
+    //         else{
+    //             console.log(responseJson.error)
+    //         }
+    //     })
+    // }
     //Предлагаю устанавливать инфу о преде как сравнение ссылка на вк пользователя=== ссылка на вк преда (из бд)
     //Придумать откуда брать инфу, являетс человек предом или нет и засунуть сюда
     topRightBlock = (pushedCom, predStatus)=>{
@@ -65,7 +93,7 @@ export default class PersonalAccount extends React.Component{
                 selectComission:"none",
                 isRedrawNeeded: true,
                 topRightBlock: <ActionsTable/>,
-                bottomLeftBlock: <ItemList type={CurrentTask} titleName = "Мой швапс" taskList={this.state.userTasks}/>,
+                bottomLeftBlock: <ItemList type={CurrentTask} titleName = "Мой швапс" taskList={this.state.userTasks} sendFunction={this.sendTaskOnChecking}/>,
                 bottomRightBlock: <ItemList type={EndedTask} titleName = "Выпитый швапс" taskList={this.state.userTasksEnded}/>,
             })
         }

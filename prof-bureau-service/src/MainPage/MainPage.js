@@ -168,7 +168,7 @@ export default class MainPage extends React.Component {
                    }
                 ],
                 "isAPred":true,
-                "isAMember":true
+                "isAMember":false
             }
         },
         "newsList":{}
@@ -232,7 +232,7 @@ export default class MainPage extends React.Component {
             // })
 
             return(
-                <PersonalAccount persAccInfo={this.testJSON} />
+                <PersonalAccount persAccInfo={this.testJSON} user={this.state.login}/>
             )
 
         } else if (page === 'auth') {
