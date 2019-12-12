@@ -12,7 +12,7 @@ export default class MainPage extends React.Component {
 
     state = {
         comission: 'Профбюро',
-        isAuthorized: true,
+        isAuthorized: false,
         login: '',
         course: 0,
         page: 'main',
@@ -50,7 +50,7 @@ export default class MainPage extends React.Component {
                     <NavigationBlock changeComission={this.changeComission} />
                     <div className='content'>
                         <InformationBlock comission={this.state.comission}/>
-                        <ContactBlock comission={this.state.comission}/>
+                        <ContactBlock comission={this.state.comission} openAuth={this.openAuth}/>
                         <ProjectsBlock />
                     </div>
                 </div>
@@ -71,11 +71,15 @@ export default class MainPage extends React.Component {
             //     return response.JSON
             // })
             // .then((responseJson)=>{
-                return(
-                    <PersonalAccount persAccInfo={responseJson.persAccInfo}/>
-                )
+                    // return(
+                    //     <PersonalAccount persAccInfo={responseJson.persAccInfo}/>
+                    // )
             // })
-            
+
+            return(
+                <PersonalAccount />
+            )
+
         } else if (page === 'auth') {
             return <Authorization openAuth={this.openAuth} login={this.login}/>
         }

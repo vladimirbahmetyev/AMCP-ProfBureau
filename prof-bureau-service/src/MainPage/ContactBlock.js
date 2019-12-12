@@ -36,7 +36,7 @@ export default class ContactBlock extends React.Component {
                     <a className='chairman-link' href={chairmans[comission][1]} target='_blank'>
                         Председатель:<br/>{chairmans[comission][0]}
                     </a>
-                    <button className='follow-button'>
+                    <button className='follow-button' onClick={() => this.props.openAuth(true)}>
                         Присоединиться <br/> к профбюро
                     </button>
                 </div>
