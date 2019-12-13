@@ -70,7 +70,7 @@ export default class PersonalAccount extends React.Component{
             body:JSON.stringify({
                 "stNum":this.props.stNum,
                 "title":newTaskTitle,
-                "taskTitle": newTaskDescription
+                "description": newTaskDescription
             })
         })
         .then((response)=>{
