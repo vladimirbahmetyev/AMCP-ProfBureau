@@ -20,34 +20,33 @@ import CssTransition from "react-transition-group/CSSTransition"
 
 export default class PersonalAccount extends React.Component{
 
-    actionWithTask = (taskTitle, action)=>{alert(taskTitle + "|" + action)}
-    // actionWithTask = (taskTitle, action)=>{
-    //     fetch(this.props.url + "action",{
-    //         method:"POST",
-    //         headers:{
-    //             'Content-Type': 'application/json',
-    //         },
-    //         body:JSON.stringify({
-    //             "user":this.props.user,
-    //             "taskTitle": taskTitle
-    //         })
-    //     })
-    //     .then((response)=>{
-    //         return response.json()
-    //     })
-    //     .then((responseJson)=>{
-    //         if(responseJson.sucess){
-    //             this.setState({
-    //                 userTasks:responseJson.userTasks,
-    //                 userTasksEnded: responseJson.userTasksEnded,
-    //                 comInfo: responseJsonJson.comInfo
-    //             })
-    //         }
-    //         else{
-    //             console.log(responseJson.error)
-    //         }
-    //     })
-    // }
+    actionWithTask = (taskTitle, action)=>{
+        fetch(this.props.url + "action",{
+            method:"POST",
+            headers:{
+                'Content-Type': 'application/json',
+            },
+            body:JSON.stringify({
+                "user":this.props.user,
+                "taskTitle": taskTitle
+            })
+        })
+        .then((response)=>{
+            return response.json()
+        })
+        .then((responseJson)=>{
+            if(responseJson.sucess){
+                this.setState({
+                    userTasks:responseJson.userTasks,
+                    userTasksEnded: responseJson.userTasksEnded,
+                    comInfo: responseJson.comInfo
+                })
+            }
+            else{
+                console.log(responseJson.error)
+            }
+        })
+    }
     //Забавный баг: если данную функцию поставить после стейта, тогда js не может ее найти и не считает это функцией
     state = {
         isAPred: false,
