@@ -16,7 +16,7 @@ export default class MainPage extends React.Component {
         login: '',
         course: 0,
         page: 'main',
-        stNum: 0
+        stNum: 54461
     }
 
     testJSON = {
@@ -222,12 +222,11 @@ export default class MainPage extends React.Component {
             
             })
             .then((response) => {
-                return response.JSON
+                return response.json()
             })
             .then((responseJson)=>{
-                    return(
-                        <PersonalAccount persAccInfo={responseJson.persAccInfo} url={this.props.url} user={this.state.stNum}/>
-                    )
+                    return <PersonalAccount persAccInfo={responseJson} url={this.props.url} user={this.state.stNum}/>
+                    
             })
         } else if (page === 'auth') {
             return <Authorization openAuth={this.openAuth} login={this.login} url={this.props.url}/>
