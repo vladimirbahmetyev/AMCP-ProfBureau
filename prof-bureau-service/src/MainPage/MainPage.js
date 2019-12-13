@@ -211,7 +211,7 @@ export default class MainPage extends React.Component {
                 </div>
             )
         } else if (page === 'account') {
-            fetch(this.props.url + 'persAccInfo/',{
+            fetch(this.props.url + 'get_personal_info/',{
                 method:"POST",
                 headers:{
                     'Content-Type': 'application/json',
