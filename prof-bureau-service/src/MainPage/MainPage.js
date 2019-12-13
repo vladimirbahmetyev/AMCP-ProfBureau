@@ -16,7 +16,8 @@ export default class MainPage extends React.Component {
         login: '',
         course: 0,
         page: 'main',
-        stNum: 54461
+        stNum: 54461,
+        responseData: JSON.stringify('')
     }
 
     testJSON = {
@@ -191,11 +192,32 @@ export default class MainPage extends React.Component {
     }        
 
     changePage = () => {
-        const actualPage = this.state.page === 'main' ? 'main' : 'account'
-        const anotherPage = actualPage === 'main' ? 'account' : 'main'
-        this.setState({
-            page: anotherPage
-        })
+        if (this.state.page == 'main') {
+            fetch(this.props.url + 'get_personal_info/',{
+                method:"POST",
+                headers:{
+                    'Content-Type': 'application/json',
+                },
+                body:JSON.stringify({
+                    "stNum": this.state.stNum
+                }),
+            
+            })
+            .then((response) => {
+                return response.json()
+            })
+            .then((responseJson)=>{
+                console.log('here')
+                this.setState({
+                    responseData: responseJson,
+                    page: 'account',
+                })
+            })
+        } else if (this.state.page == 'account') {
+            this.setState({
+                page: 'main'
+            })
+        }
     }
 
     setScreen = (page = this.state.page) => {
@@ -211,23 +233,7 @@ export default class MainPage extends React.Component {
                 </div>
             )
         } else if (page === 'account') {
-            fetch(this.props.url + 'get_personal_info/',{
-                method:"POST",
-                headers:{
-                    'Content-Type': 'application/json',
-                },
-                body:JSON.stringify({
-                    "stNum": this.state.stNum
-                }),
-            
-            })
-            .then((response) => {
-                return response.json()
-            })
-            .then((responseJson)=>{
-                    return <PersonalAccount persAccInfo={responseJson} url={this.props.url} user={this.state.stNum}/>
-                    
-            })
+            return <PersonalAccount persAccInfo={this.state.responseData} url={this.props.url} user={this.state.stNum}/>
         } else if (page === 'auth') {
             return <Authorization openAuth={this.openAuth} login={this.login} url={this.props.url}/>
         }
