@@ -28,14 +28,6 @@ export default class ComissionsTable extends React.Component{
                 <div className='com-title'>HR</div>
             </div>
 
-            <div className={"pm-profi com-item" + (this.props.comInfo["pm-profi"].isAMember? "":  " com-not-active")} onClick={()=>this.props.onClickCom({
-                comName:"",
-                predName:""
-            })}>
-                <div className="com-picture"></div>
-                <div className='com-title'>PM-profi</div>
-            </div>
-
             <div className={"pm-photo com-item" + (this.props.comInfo["PM-Photo"].isAMember? "":  " com-not-active")} onClick={()=>this.props.onClickCom({
                 comName:"",
                 predName:""
