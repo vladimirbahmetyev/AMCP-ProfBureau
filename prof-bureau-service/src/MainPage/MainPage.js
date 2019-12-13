@@ -217,7 +217,7 @@ export default class MainPage extends React.Component {
                     'Content-Type': 'application/json',
                 },
                 body:JSON.stringify({
-                    "login": this.state.login
+                    "stNum": this.state.stNum
                 }),
             
             })
@@ -226,7 +226,7 @@ export default class MainPage extends React.Component {
             })
             .then((responseJson)=>{
                     return(
-                        <PersonalAccount persAccInfo={responseJson.persAccInfo} url={this.props.url} user={this.state.login}/>
+                        <PersonalAccount persAccInfo={responseJson.persAccInfo} url={this.props.url} user={this.state.stNum}/>
                     )
             })
         } else if (page === 'auth') {

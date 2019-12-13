@@ -21,13 +21,13 @@ import CssTransition from "react-transition-group/CSSTransition"
 export default class PersonalAccount extends React.Component{
 
     actionWithTask = (taskTitle, action)=>{
-        fetch(this.props.url + "action",{
+        fetch(this.props.url + action,{
             method:"POST",
             headers:{
                 'Content-Type': 'application/json',
             },
             body:JSON.stringify({
-                "user":this.props.user,
+                "stNum":this.props.user,
                 "taskTitle": taskTitle
             })
         })
@@ -62,13 +62,13 @@ export default class PersonalAccount extends React.Component{
     }
     
     addNewTask = (newTaskTitle, newTaskDescription)=>{
-        fetch(this.props.url + "action",{
+        fetch(this.props.url + 'addNewTask/',{
             method:"POST",
             headers:{
                 'Content-Type': 'application/json',
             },
             body:JSON.stringify({
-                "user":this.props.user,
+                "stNum":this.props.stNum,
                 "title":newTaskTitle,
                 "taskTitle": newTaskDescription
             })
