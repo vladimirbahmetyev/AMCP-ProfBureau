@@ -25,4 +25,7 @@ urlpatterns = [
     path('api/v1/pbsite', include('pbsite.urls')),
     path('api/registration/', registration),
     path('api/login/', login),
+    path('api/get_personal_info/', get_personal_info),
+    path('api/take_task/', take_task),
+    path('api/send_task/', send_task)
 ]

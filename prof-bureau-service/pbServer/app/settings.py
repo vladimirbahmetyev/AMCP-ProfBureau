@@ -25,8 +25,7 @@ SECRET_KEY = '*77n34%m5#*-7$c2!#&m(*=g00=s*a!w_lcww8=$o@^8sfr&ba'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = ['127.0.0.1', '84eb1cb0.ngrok.io']
 
 # Application definition
 
@@ -37,12 +36,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # 'pbsite',
     'corsheaders',
     'rest_framework',
     'pbsite.apps.PbsiteConfig',
-    'pbServer'
-    # 'app'
+    'pbServer',
+    'app',
+    # 'pbServer.pbsite.models'
     # 'pbsite.models'
 ]
 
