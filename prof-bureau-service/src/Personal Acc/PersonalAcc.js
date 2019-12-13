@@ -142,7 +142,7 @@ export default class PersonalAccount extends React.Component{
         }
     }
     render(){
-        alert(JSON.stringify(this.props.persAccInfo))
+        // alert(JSON.stringify(this.props.persAccInfo))
     return(
     <div style={{fontFamily: 'PFBeauSansPro-light'}}>
     
