@@ -5,8 +5,8 @@ export default class AuthWindow extends React.Component {
 
     login = () => {
         // url = this.props.url
-        let url = 'http://127.0.0.1:8000/api/'
-        fetch(url + 'login/',{
+        
+        fetch(this.props.url + 'login/',{
             method:"POST",
             headers:{
                 'Content-Type': 'application/json',

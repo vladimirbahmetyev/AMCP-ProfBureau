@@ -227,7 +227,7 @@ export default class MainPage extends React.Component {
             // })
             // .then((responseJson)=>{
                     // return(
-                    //     <PersonalAccount persAccInfo={responseJson.persAccInfo}/>
+                    //     <PersonalAccount persAccInfo={responseJson.persAccInfo} url={this.props.url}/>
                     // )
             // })
 
@@ -236,7 +236,7 @@ export default class MainPage extends React.Component {
             )
 
         } else if (page === 'auth') {
-            return <Authorization openAuth={this.openAuth} login={this.login}/>
+            return <Authorization openAuth={this.openAuth} login={this.login} url={this.props.url}/>
         }
     }
 

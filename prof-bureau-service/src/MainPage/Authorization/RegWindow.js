@@ -6,7 +6,7 @@ export default class RegWindow extends React.Component{
     buttonClicked = () => {
         // url = this.props.url
         let url = 'http://127.0.0.1:8000/api/'
-        fetch(url + 'registration/',{
+        fetch(this.props.url + 'registration/',{
             method:"POST",
             headers:{
                 'Content-Type': 'application/json',

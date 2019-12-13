@@ -22,8 +22,7 @@ export default class PersonalAccount extends React.Component{
 
     actionWithTask = (taskTitle, action)=>{alert(taskTitle + "|" + action)}
     // actionWithTask = (taskTitle, action)=>{
-    //     let url = 'http://127.0.0.1:8000/api/'
-    //     fetch(url + "action",{
+    //     fetch(this.props.url + "action",{
     //         method:"POST",
     //         headers:{
     //             'Content-Type': 'application/json',
@@ -64,8 +63,7 @@ export default class PersonalAccount extends React.Component{
     }
     
     addNewTask = (newTaskTitle, newTaskDescription)=>{
-        let url = 'http://127.0.0.1:8000/api/'
-        fetch(url + "action",{
+        fetch(this.props.url + "action",{
             method:"POST",
             headers:{
                 'Content-Type': 'application/json',
