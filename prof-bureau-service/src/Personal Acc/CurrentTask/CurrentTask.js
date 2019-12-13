@@ -4,7 +4,8 @@ import "./CurrentTask.css"
 export default class CurrentTask extends React.Component{
 
     state = {
-        descriptionState:"current-task-description-hide"
+        descriptionState:"current-task-description-hide",
+        comissionName:this.props.comission
     }
 
     watchClassStatus = "current-task-left active-watch-icon " + this.state.descriptionState
@@ -37,8 +38,8 @@ export default class CurrentTask extends React.Component{
                     {this.props.content.title}
                 </div>
                 <div className="current-task-buttons">
-                     <div className="current-task-send" onClick={()=>this.props.function1(this.props.content.title, "sendTask/")}></div>
-                     <div className="current-task-delete" onClick={()=>this.props.function1(this.props.content.title, "declineTask/")}></div>
+                     <div className="current-task-send" onClick={()=>this.props.function1(this.props.content.title, "sendTask/", this.state.comissionName)}></div>
+                     <div className="current-task-delete" onClick={()=>this.props.function1(this.props.content.title, "declineTask/", this.state.comissionName)}></div>
                 </div>
             </div>
         </div>

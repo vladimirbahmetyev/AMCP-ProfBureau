@@ -20,7 +20,8 @@ import CssTransition from "react-transition-group/CSSTransition"
 
 export default class PersonalAccount extends React.Component{
 
-    actionWithTask = (taskTitle, action)=>{
+    actionWithTask = (taskTitle, action, comissionLabel)=>{
+        alert(comissionLabel)
         fetch(this.props.url + action,{
             method:"POST",
             headers:{
@@ -28,7 +29,8 @@ export default class PersonalAccount extends React.Component{
             },
             body:JSON.stringify({
                 "stNum":this.props.user,
-                "taskTitle": taskTitle
+                "taskTitle": taskTitle,
+                "comName":comissionLabel
             })
         })
         .then((response)=>{
@@ -142,7 +144,6 @@ export default class PersonalAccount extends React.Component{
         }
     }
     render(){
-        // alert(JSON.stringify(this.props.persAccInfo))
     return(
     <div style={{fontFamily: 'PFBeauSansPro-light'}}>
     
