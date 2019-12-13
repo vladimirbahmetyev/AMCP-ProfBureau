@@ -20,10 +20,10 @@ import CssTransition from "react-transition-group/CSSTransition"
 
 export default class PersonalAccount extends React.Component{
 
-    sendTaskOnChecking = (taskTitle)=>{alert(taskTitle)}
-    // sendTaskOnChecking = (taskTitle)=>{
+    actionWithTask = (taskTitle, action)=>{alert(taskTitle + "|" + action)}
+    // actionWithTask = (taskTitle, action)=>{
     //     let url = 'http://127.0.0.1:8000/api/'
-    //     fetch(url + "sendTask/",{
+    //     fetch(url + "action",{
     //         method:"POST",
     //         headers:{
     //             'Content-Type': 'application/json',
@@ -40,7 +40,8 @@ export default class PersonalAccount extends React.Component{
     //         if(responseJson.sucess){
     //             this.setState({
     //                 userTasks:responseJson.userTasks,
-    //                 userTasksEnded: responseJson.userTasksEnded
+    //                 userTasksEnded: responseJson.userTasksEnded,
+    //                 comInfo: responseJsonJson.comInfo
     //             })
     //         }
     //         else{
@@ -53,7 +54,7 @@ export default class PersonalAccount extends React.Component{
         isAPred: false,
         selectComission:"none",
         topRightBlock: <ActionsTable/>,//Добавить блок для отрисовки новостей
-        bottomLeftBlock: <ItemList type={CurrentTask} titleName = "Мой швапс" taskList={this.props.persAccInfo.userTasks} function1={this.sendTaskOnChecking}/>,
+        bottomLeftBlock: <ItemList type={CurrentTask} titleName = "Мой швапс" taskList={this.props.persAccInfo.userTasks} function1={this.actionWithTask}/>,
         bottomRightBlock: <ItemList type={EndedTask} titleName = "Выпитый швапс" taskList={this.props.persAccInfo.userTasksEnded}/>,
         isRedrawNeeded : false,
         isNewTaskFormOpen: false,
@@ -62,6 +63,34 @@ export default class PersonalAccount extends React.Component{
         userTasksEnded: this.props.persAccInfo.userTasksEnded
     }
     
+    addNewTask = (newTaskTitle, newTaskDescription)=>{
+        let url = 'http://127.0.0.1:8000/api/'
+        fetch(url + "action",{
+            method:"POST",
+            headers:{
+                'Content-Type': 'application/json',
+            },
+            body:JSON.stringify({
+                "user":this.props.user,
+                "title":newTaskTitle,
+                "taskTitle": newTaskDescription
+            })
+        })
+        .then((response)=>{
+            return response.json()
+        })
+        .then((responseJson)=>{
+            if(responseJson.sucess){
+                this.setState({
+                    comInfo: responseJson.comInfo
+                })
+            }
+            else{
+                console.log(responseJson.error)
+            }
+        })
+    }
+
     redrawCallback = ()=>{
         this.setState({
             isRedrawNeeded: false
@@ -96,7 +125,7 @@ export default class PersonalAccount extends React.Component{
                 selectComission:"none",
                 isRedrawNeeded: true,
                 topRightBlock: <ActionsTable/>,
-                bottomLeftBlock: <ItemList type={CurrentTask} titleName = "Мой швапс" taskList={this.state.userTasks} function1={this.sendTaskOnChecking}/>,
+                bottomLeftBlock: <ItemList type={CurrentTask} titleName = "Мой швапс" taskList={this.state.userTasks} function1={this.actionWithTask}/>,
                 bottomRightBlock: <ItemList type={EndedTask} titleName = "Выпитый швапс" taskList={this.state.userTasksEnded}/>,
             })
         }
@@ -106,7 +135,10 @@ export default class PersonalAccount extends React.Component{
                 selectComission: pushedCom.comName,
                 topRightBlock: this.topRightBlock(pushedCom, this.state.comInfo[pushedCom.comName].isAPred),
                 // Fix open item staying when comission had been changed 
-                bottomLeftBlock: <ItemList type={CurrentComissionTask} titleName={`Актуальный швапc ${pushedCom.comName}`} taskList={this.state.comInfo[pushedCom.comName].taskList}/>,
+                bottomLeftBlock: <ItemList type={CurrentComissionTask} 
+                                           titleName={`Актуальный швапc ${pushedCom.comName}`} 
+                                           taskList={this.state.comInfo[pushedCom.comName].taskList}
+                                           function1={this.actionWithTask}/>,
                 bottomRightBlock: <CurrentComissionEvents titleName="Швапс комиссии" newsList={this.state.comInfo[pushedCom.comName].news}/>,
                 isRedrawNeeded: true 
             })            
@@ -122,7 +154,7 @@ export default class PersonalAccount extends React.Component{
                 unmountOnExit
                 mountOnEnter
                 in={this.state.isNewTaskFormOpen}>
-                    <NewTaskForm closeClick={this.onClickCloseNewTask}/>
+                    <NewTaskForm closeClick={this.onClickCloseNewTask} addClick={this.addNewTask}/>
     </CssTransition>
 
     <section className="comissions-and-actions">

@@ -8,11 +8,11 @@ export default class NewTaskForm extends React.Component{
                 <div className="new-task-form">
                     <label className="new-task-title-form">                        
                         Название задания
-                        <input type="text"/>                        
+                        <input id ='title' type="text"/>                        
                     </label>
                     <label className="exit-button-form"
                             onClick={this.props.closeClick}></label>
-                    <textarea className="new-task-description-form"
+                    <textarea id="description" className="new-task-description-form"
                     placeholder='Описание'>
                     </textarea> 
                     
@@ -25,7 +25,13 @@ export default class NewTaskForm extends React.Component{
                         <div><div></div></div>
                         <div><div></div></div>
                     </div>
-                    <button className="new-task-add-form">Добавить</button>
+                    <button className="new-task-add-form" onClick={
+                        ()=>this.props.addClick(
+                        document.getElementById('title').value,
+                         document.getElementById('description').value)
+                    }>
+                        Добавить
+                    </button>
                 </div>
             </div>
         )
