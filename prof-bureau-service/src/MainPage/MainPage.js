@@ -192,7 +192,7 @@ export default class MainPage extends React.Component {
     }        
 
     changePage = () => {
-        if (this.state.page == 'main') {
+        if (this.state.page === 'main') {
             fetch(this.props.url + 'get_personal_info/',{
                 method:"POST",
                 headers:{
@@ -213,7 +213,7 @@ export default class MainPage extends React.Component {
                     page: 'account',
                 })
             })
-        } else if (this.state.page == 'account') {
+        } else if (this.state.page === 'account') {
             this.setState({
                 page: 'main'
             })

@@ -38,8 +38,8 @@ export default class CurrentTask extends React.Component{
                     {this.props.content.title}
                 </div>
                 <div className="current-task-buttons">
-                     <div className="current-task-send" onClick={()=>this.props.function1(this.props.content.title, "sendTask/", this.state.comissionName)}></div>
-                     <div className="current-task-delete" onClick={()=>this.props.function1(this.props.content.title, "declineTask/", this.state.comissionName)}></div>
+                     <div className="current-task-send" onClick={()=>this.props.function1(this.props.content.title, "send_task/", this.state.comissionName)}></div>
+                     <div className="current-task-delete" onClick={()=>this.props.function1(this.props.content.title, "decline_task/", this.state.comissionName)}></div>
                 </div>
             </div>
         </div>

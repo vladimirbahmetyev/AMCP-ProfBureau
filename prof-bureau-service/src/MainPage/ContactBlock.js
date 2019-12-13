@@ -33,7 +33,7 @@ export default class ContactBlock extends React.Component {
             <div className='contactBlock'>
                 <div className='chairman'>
                     <div className={cssClassPhoto}></div>
-                    <a className='chairman-link' href={chairmans[comission][1]} target='_blank'>
+                    <a className='chairman-link' href={chairmans[comission][1]} rel="noopener noreferrer" target='_blank'>
                         Председатель:<br/>{chairmans[comission][0]}
                     </a>
                     <button className='follow-button' onClick={() => this.props.openAuth(true)}>
@@ -43,7 +43,7 @@ export default class ContactBlock extends React.Component {
                 <div className='socialNetworks'>
                     <h2 className='block-title'>Мы в соцсетях</h2>
                     <div className='social-net-icons'>
-                        <a className='vk-icon' href='https://vk.com/pmpu_news' target='_blank'></a>
+                        <a className='vk-icon' href='https://vk.com/pmpu_news' target='_blank' rel="noopener noreferrer"></a>
                         <div className='inst-icon'></div>
                     </div>
                 </div>

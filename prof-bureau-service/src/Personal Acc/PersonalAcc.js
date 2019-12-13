@@ -21,7 +21,6 @@ import CssTransition from "react-transition-group/CSSTransition"
 export default class PersonalAccount extends React.Component{
 
     actionWithTask = (taskTitle, action, comissionLabel)=>{
-        alert(comissionLabel)
         fetch(this.props.url + action,{
             method:"POST",
             headers:{
@@ -37,12 +36,20 @@ export default class PersonalAccount extends React.Component{
             return response.json()
         })
         .then((responseJson)=>{
-            if(responseJson.sucess){
+            if(responseJson.success){
+                alert(JSON.stringify(responseJson))
+                if(action=== "take_task/")
                 this.setState({
                     userTasks:responseJson.userTasks,
-                    userTasksEnded: responseJson.userTasksEnded,
-                    comInfo: responseJson.comInfo
+                    userTasksEnded: responseJson.userTasksEnded,                    
+                    bottomLeftBlock: <ItemList type={CurrentComissionTask} titleName = {comissionLabel} taskList={responseJson.comTasks} function1={this.actionWithTask}/>
                 })
+                else{
+                    this.setState({
+                        userTasks:responseJson.userTasks,
+                        userTasksEnded: responseJson.userTasksEnded
+                    })
+                }
             }
             else{
                 console.log(responseJson.error)
