@@ -11,6 +11,7 @@ from .models import *
 import json
 from django.http import JsonResponse
 import re
+import datetime
 
 # Create your views here.
 from django.http import HttpResponse
@@ -264,18 +265,15 @@ def decline_task(request):
         for string in exec_tasks:
             if string.is_sent:
                 tasks_ended_array.append({"title": string.task.task_title,
-                                          "description": string.task.task_description,
-                                          "comission": string.task.comission.name})
+                                          "description": string.task.task_description})
             else:
                 tasks_array.append({"title": string.task.task_title,
-                                    "description": string.task.task_description,
-                                    "comission": string.task.comission.name})
+                                    "description": string.task.task_description})
         com_tasks_array = []
         com_tasks = Task.objects.filter(comission__exact=comission)
         for task in com_tasks:
             com_tasks_array.append({"title": task.task_title,
-                                    "description": task.task_description,
-                                    "comission": com_name})
+                                    "description": task.task_description})
 
         response_json = JsonResponse({"success": True,
                                       "userTasks": tasks_array,
@@ -299,4 +297,93 @@ def decline_task(request):
     return response_json
 
 
+@csrf_exempt
+@api_view(["POST"])
+@permission_classes((AllowAny,))
+def add_task(request):
+    request_json = json.load(request)
+    try:
+        chairman_st = request_json["stNum"]
+        title = request_json["title"]
+        description = request_json["description"]
+        deadline_str = request_json["deadline"]
 
+        deadline = datetime.datetime.strptime(deadline_str, '%Y-%m-%d').date()
+        chairman = User.objects.get(user_st=chairman_st)
+        comission = Comission.objects.get(chairman=chairman)
+        com_name = comission.name
+
+        Task(comission=comission, task_title=title, task_description=description, deadline=deadline).save()
+
+        com_tasks_array = []
+        com_tasks = Task.objects.filter(comission__exact=comission)
+        for task in com_tasks:
+            com_tasks_array.append({"title": task.task_title,
+                                    "description": task.task_description,
+                                    "comName": com_name})
+
+        response_json = JsonResponse({"success": True,
+                                      "comName": com_name,
+                                      "comTasks": com_tasks_array})
+    except KeyError:
+        response_json = JsonResponse({"success": False,
+                                      "error": "wrong request data"})
+    except User.DoesNotExist:
+        response_json = JsonResponse({"success": False,
+                                      "error": "user not found"})
+    except Comission.DoesNotExist:
+        response_json = JsonResponse({"success": False,
+                                      "error": "comission not found"})
+    except Task.DoesNotExist:
+        response_json = JsonResponse({"success": False,
+                                      "error": "task not found"})
+
+    response_json['Access-Control-Allow-Origin'] = '*'
+    response_json["Access-Control-Allow-Headers"] = '*'
+    return response_json
+
+
+@csrf_exempt
+@api_view(["POST"])
+@permission_classes((AllowAny,))
+def enter_or_leave_com(request):
+    request_json = json.load(request)
+
+    try:
+        user_st = request_json["stNum"]
+        action = request_json["action"]
+        com_name = request_json["comName"]
+
+        user = User.objects.get(user_st=user_st)
+        comission = Comission.objects.get(name=com_name)
+        response_json = JsonResponse({})
+
+        if action == 'leave':
+            Comission_member.objects.get(user=user, comission=comission).delete()
+            response_json = JsonResponse({"success": True})
+        elif action == 'enter':
+            try:
+                Comission_member.objects.get(user=user, comission=comission)
+                response_json = JsonResponse({"success": False,
+                                              "error": "already exists"})
+            except Comission_member.DoesNotExist:
+                Comission_member(user=user, comission=comission).save()
+                ch_name = comission.chairman.last_name + " " + comission.chairman.first_name
+                response_json = JsonResponse({"predName": ch_name,
+                                              "success": True})
+    except KeyError:
+        response_json = JsonResponse({"success": False,
+                                      "error": "wrong request data"})
+    except User.DoesNotExist:
+        response_json = JsonResponse({"success": False,
+                                      "error": "user not found"})
+    except Comission.DoesNotExist:
+        response_json = JsonResponse({"success": False,
+                                      "error": "comission not found"})
+    except Comission_member.DoesNotExist:
+        response_json = JsonResponse({"success": False,
+                                      "error": "comission member not found"})
+
+    response_json['Access-Control-Allow-Origin'] = '*'
+    response_json["Access-Control-Allow-Headers"] = '*'
+    return response_json

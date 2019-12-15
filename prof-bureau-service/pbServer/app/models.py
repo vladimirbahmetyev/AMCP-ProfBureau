@@ -63,6 +63,7 @@ class News(models.Model):
         return self.comission.__str__() + " - " + self.news_title
 
 
+
 # user = User.objects.get(user_st=11111, password='')
 # print(user)
 # # registration

@@ -25,8 +25,8 @@ SECRET_KEY = '*77n34%m5#*-7$c2!#&m(*=g00=s*a!w_lcww8=$o@^8sfr&ba'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', '84eb1cb0.ngrok.io']
-
+# ALLOWED_HOSTS = ['127.0.0.1', '49fc3863.ngrok.io', '192.168.0.1']
+ALLOWED_HOSTS = ['192.168.0.100']
 # Application definition
 
 INSTALLED_APPS = [
@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'corsheaders',
     'rest_framework',
     'app.apps.AppConfig',
+    # 'pbServer.app.models',
+    # 'app.add_data'
     # 'pbServer',
     # 'app',
     # 'pbServer.pbsite.models'
