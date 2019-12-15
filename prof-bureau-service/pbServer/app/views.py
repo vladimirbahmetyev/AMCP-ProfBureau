@@ -260,20 +260,24 @@ def decline_task(request):
         for string in exec_tasks:
             if string.is_sent:
                 tasks_ended_array.append({"title": string.task.task_title,
-                                          "description": string.task.task_description})
+                                          "description": string.task.task_description,
+                                          "comName": com_name})
             else:
                 tasks_array.append({"title": string.task.task_title,
-                                    "description": string.task.task_description})
+                                    "description": string.task.task_description,
+                                    "comName": com_name})
         com_tasks_array = []
         com_tasks = Task.objects.filter(comission__exact=comission)
         for task in com_tasks:
             com_tasks_array.append({"title": task.task_title,
-                                    "description": task.task_description})
+                                    "description": task.task_description,
+                                    "comName": com_name})
 
         response_json = JsonResponse({"success": True,
                                       "userTasks": tasks_array,
                                       "userTasksEnded": tasks_ended_array,
-                                      "comTasks": com_tasks_array})
+                                      "comTasks": com_tasks_array,
+                                      "comName": com_name})
     except User.DoesNotExist:
         response_json = JsonResponse({"success": False,
                                       "error": "user not found"})
