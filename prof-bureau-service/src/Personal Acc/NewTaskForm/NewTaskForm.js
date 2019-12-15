@@ -18,7 +18,7 @@ export default class NewTaskForm extends React.Component{
                     
                     <label className="new-task-deadline-form">
                         Дедлайн:
-                        <input type='date' className='new-task-input-date'/>
+                        <input type='date' className='new-task-input-date' id="deadline"/>
                     </label>
                     <div className="new-task-picture-container-form">
                         <div><div></div></div>
@@ -28,7 +28,9 @@ export default class NewTaskForm extends React.Component{
                     <button className="new-task-add-form" onClick={
                         ()=>this.props.addClick(
                         document.getElementById('title').value,
-                         document.getElementById('description').value)
+                         document.getElementById('description').value,
+                         document.getElementById('deadline').value
+                         )
                     }>
                         Добавить
                     </button>

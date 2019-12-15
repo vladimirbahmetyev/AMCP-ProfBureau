@@ -16,7 +16,7 @@ export default class MainPage extends React.Component {
         login: '',
         course: 0,
         page: 'main',
-        stNum: 54461,
+        stNum: 61177,
         responseData: JSON.stringify('')
     }
 
