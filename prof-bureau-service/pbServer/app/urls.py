@@ -27,5 +27,6 @@ urlpatterns = [
     path('api/login/', login),
     path('api/get_personal_info/', get_personal_info),
     path('api/take_task/', take_task),
-    path('api/send_task/', send_task)
+    path('api/send_task/', send_task),
+    path('api/decline_task/', decline_task)
 ]

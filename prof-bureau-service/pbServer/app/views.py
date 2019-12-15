@@ -13,7 +13,7 @@ from django.http import JsonResponse
 import re
 
 # Create your views here.
-# from django.http import HttpResponse
+from django.http import HttpResponse
 
 
 @csrf_exempt
@@ -27,11 +27,15 @@ def registration(request):
     email = request_json["email"]
     password = request_json["password"]
 
-    st = int(re.search(r'[0-9]{6}', email).group(0))
+    try:
+        st = int(re.search(r'[0-9]{6}', email).group(0))
+        User(user_st=st, last_name=last_name, first_name=first_name, course=course, password=password).save()
+        resp = JsonResponse({"success": True,
+                             "st": st})
+    except AttributeError:
+        resp = JsonResponse({"success": False,
+                             "error": "wrong email"})
 
-    User(user_st=st, last_name=last_name, first_name=first_name, course=course, password=password).save()
-
-    resp = JsonResponse({"st": st})
     resp['Access-Control-Allow-Origin'] = '*'
     resp["Access-Control-Allow-Headers"] = '*'
     return resp
@@ -50,7 +54,8 @@ def login(request):
             user = User.objects.get(user_st=user_login, password=password)
             response_json = JsonResponse({"name": user.first_name + " " + user.last_name,
                                           "course": user.course,
-                                          "success": True})
+                                          "success": True,
+                                          "stNum": user_login})
         except User.DoesNotExist:
             response_json = JsonResponse({"success": False,
                                           "error": "user does not exist"})
@@ -71,9 +76,7 @@ def get_personal_info(request):
 
     try:
         user_st = request_json["stNum"]
-        # print(user_st)
         user = User.objects.get(user_st=user_st)
-        # print(user.__str__())
         tasks_array = []
         tasks_ended_array = []
         exec_tasks = Task_executor.objects.filter(who_do__exact=user)
@@ -237,3 +240,63 @@ def send_task(request):
     response_json['Access-Control-Allow-Origin'] = '*'
     response_json["Access-Control-Allow-Headers"] = '*'
     return response_json
+
+
+@csrf_exempt
+@api_view(["POST"])
+@permission_classes((AllowAny,))
+def decline_task(request):
+    request_json = json.load(request)
+    user_st = request_json["stNum"]
+    task_title = request_json["taskTitle"]
+    com_name = request_json["comName"]
+
+    try:
+        user = User.objects.get(user_st=user_st)
+        comission = Comission.objects.get(name=com_name)
+        task = Task.objects.get(comission=comission, task_title=task_title)
+
+        Task_executor.objects.get(who_do=user, task=task).delete()
+
+        tasks_array = []
+        tasks_ended_array = []
+        exec_tasks = Task_executor.objects.filter(who_do__exact=user)
+        for string in exec_tasks:
+            if string.is_sent:
+                tasks_ended_array.append({"title": string.task.task_title,
+                                          "description": string.task.task_description,
+                                          "comission": string.task.comission.name})
+            else:
+                tasks_array.append({"title": string.task.task_title,
+                                    "description": string.task.task_description,
+                                    "comission": string.task.comission.name})
+        com_tasks_array = []
+        com_tasks = Task.objects.filter(comission__exact=comission)
+        for task in com_tasks:
+            com_tasks_array.append({"title": task.task_title,
+                                    "description": task.task_description,
+                                    "comission": com_name})
+
+        response_json = JsonResponse({"success": True,
+                                      "userTasks": tasks_array,
+                                      "userTasksEnded": tasks_ended_array,
+                                      "comTasks": com_tasks_array})
+    except User.DoesNotExist:
+        response_json = JsonResponse({"success": False,
+                                      "error": "user not found"})
+    except Comission.DoesNotExist:
+        response_json = JsonResponse({"success": False,
+                                      "error": "comission not found"})
+    except Task.DoesNotExist:
+        response_json = JsonResponse({"success": False,
+                                      "error": "task not found"})
+    except Task_executor.DoesNotExist:
+        response_json = JsonResponse({"success": False,
+                                      "error": "user's tasks not found"})
+
+    response_json['Access-Control-Allow-Origin'] = '*'
+    response_json["Access-Control-Allow-Headers"] = '*'
+    return response_json
+
+
+
