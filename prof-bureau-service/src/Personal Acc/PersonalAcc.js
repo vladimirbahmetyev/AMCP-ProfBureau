@@ -132,19 +132,34 @@ export default class PersonalAccount extends React.Component{
         })
         .then((responseJson)=>{
             if(responseJson.success){
+                
                 let newComInfo = this.state.comInfo
-                newComInfo[comName].isAMember = (action=="enter"? true : false)
-                this.setState({
-                    comInfo: newComInfo,
-                    isEntryOpen: false,
-                    topRightBlock: this.topRightBlock(comName, this.state.comInfo[comName].isAPred),
-                    bottomLeftBlock: <ItemList type={CurrentComissionTask} 
-                                           titleName={`Актуальный швапc ${comName}`} 
-                                           taskList={this.state.comInfo[comName].taskList}
-                                           function1={this.actionWithTask}/>,
-                    bottomRightBlock: <CurrentComissionEvents titleName="Швапс комиссии" newsList={this.state.comInfo[comName].news}/>,
-                    isRedrawNeeded: true
-                })
+                if(action == "enter"){
+                    newComInfo[comName].isAMember = true
+                    this.setState({
+                        comInfo: newComInfo,
+                        isEntryOpen: false,
+                        topRightBlock: this.topRightBlock({"comName":comName, "predName":responseJson.predName}, this.state.comInfo[comName].isAPred),
+                        bottomLeftBlock: <ItemList type={CurrentComissionTask} 
+                                            titleName={`Актуальный швапc ${comName}`} 
+                                            taskList={this.state.comInfo[comName].taskList}
+                                            function1={this.actionWithTask}/>,
+                        bottomRightBlock: <CurrentComissionEvents titleName="Швапс комиссии" newsList={this.state.comInfo[comName].news}/>,
+                        isRedrawNeeded: true
+                    })    
+                }
+                else{
+                    newComInfo[comName].isAMember = false
+                    this.setState({
+                        comInfo:newComInfo,
+                        selectComission:"none",
+                        isRedrawNeeded: true,
+                        topRightBlock: <ActionsTable/>,
+                        bottomLeftBlock: <ItemList type={CurrentTask} titleName = "Мой швапс" taskList={this.state.userTasks} function1={this.actionWithTask}/>,
+                        bottomRightBlock: <ItemList type={EndedTask} titleName = "Выпитый швапс" taskList={this.state.userTasksEnded}/>
+                    })
+                }
+                
             }
             else{
                 console.log(responseJson.error)
@@ -184,7 +199,7 @@ export default class PersonalAccount extends React.Component{
         if(predStatus)
             return <PredControlPanel onAddNewTask={this.onClickAddNewTask} />
         else
-            return <AboutComPred predName={pushedCom.predName} selectComission={pushedCom.comName} comState={this.state}/>
+            return <AboutComPred predName={pushedCom.predName} selectComission={pushedCom.comName} comState={this.state} exitFunction={this.actionWithComission}/>
     }
 
     comTableListener = (pushedCom)=>{

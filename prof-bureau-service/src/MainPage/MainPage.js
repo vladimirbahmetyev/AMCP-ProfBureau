@@ -22,7 +22,7 @@ export default class MainPage extends React.Component {
 
     changeComission = name => {
         this.setState({
-            comission: name,
+            comission: name
         })
     }
 
@@ -62,10 +62,10 @@ export default class MainPage extends React.Component {
                 return response.json()
             })
             .then((responseJson)=>{
-                console.log('here')
+                console.log(JSON.stringify(responseJson))
                 this.setState({
                     responseData: responseJson,
-                    page: 'account',
+                    page: 'account'
                 })
             })
         } else if (this.state.page === 'account') {
