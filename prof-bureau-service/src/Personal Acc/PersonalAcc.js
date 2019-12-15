@@ -115,6 +115,43 @@ export default class PersonalAccount extends React.Component{
         })
     }
 
+    actionWithComission = (comName, action)=>{
+        fetch(this.props.url + "enter_or_leave_com/",{
+            method:"POST",
+            headers:{
+                'Content-Type': 'application/json',
+            },
+            body:JSON.stringify({
+                "stNum":this.props.user,
+                "comName": comName,
+                "action":action
+            })
+        })
+        .then((response)=>{
+            return response.json()
+        })
+        .then((responseJson)=>{
+            if(responseJson.success){
+                let newComInfo = this.state.comInfo
+                newComInfo[comName].isAMember = (action=="enter"? true : false)
+                this.setState({
+                    comInfo: newComInfo,
+                    isEntryOpen: false,
+                    topRightBlock: this.topRightBlock(comName, this.state.comInfo[comName].isAPred),
+                    bottomLeftBlock: <ItemList type={CurrentComissionTask} 
+                                           titleName={`Актуальный швапc ${comName}`} 
+                                           taskList={this.state.comInfo[comName].taskList}
+                                           function1={this.actionWithTask}/>,
+                    bottomRightBlock: <CurrentComissionEvents titleName="Швапс комиссии" newsList={this.state.comInfo[comName].news}/>,
+                    isRedrawNeeded: true
+                })
+            }
+            else{
+                console.log(responseJson.error)
+            }
+        })
+    }
+
     redrawCallback = ()=>{
         this.setState({
             isRedrawNeeded: false
@@ -198,7 +235,7 @@ export default class PersonalAccount extends React.Component{
                 unmountOnExit
                 mountOnEnter
                 in={this.state.isEntryOpen}>
-                <EntryWindow closeClick={this.onClickCloseNewTask} addClick={this.addNewTask} closeClick={this.onClickCloseEntry} comName={this.state.selectComission}/>
+                <EntryWindow actionOnEntry={this.actionWithComission} closeClick={this.onClickCloseEntry} comName={this.state.selectComission}/>
     </CssTransition>
 
     <section className="comissions-and-actions">
