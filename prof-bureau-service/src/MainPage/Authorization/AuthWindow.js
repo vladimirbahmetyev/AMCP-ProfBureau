@@ -25,7 +25,7 @@ export default class AuthWindow extends React.Component {
                 let userInfo = {
                     "course": responseJson.course,
                     "name": responseJson.name,
-                    "stNum": responseJson.st,
+                    "stNum": responseJson.stNum,
                 }
                 this.props.login(userInfo)
             } else {

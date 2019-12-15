@@ -14,7 +14,7 @@ export default class EndedTask extends React.Component{
                 {this.props.content.title}
              </div>
              <div className="ended-task-state">
-                {this.props.content.description}  
+                {/* {this.props.content.description}   */}
              </div>
         </div>
     )

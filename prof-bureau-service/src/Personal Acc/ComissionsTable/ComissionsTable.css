@@ -12,9 +12,16 @@
     text-align: center;
     font-style: italic;
     margin-top: 7px;
-    font-size: 2vh;
+    font-size: 1vw;
 }
 
+.com-main-title{
+    text-align: center;
+    font-style: italic;
+    margin-top: 7px;
+    margin-bottom: 0px;
+    font-size: 2vw;
+}
 .comissions-grid{
     display: flex;
     flex-wrap: wrap;
@@ -96,6 +103,12 @@
 .cultmass .com-picture{
     mask-image: url("../sprite.svg#CultMass");
     mask-size: 80% 80%;
+    mask-repeat: no-repeat;
+    mask-position: center;
+}
+.PM-Partner .com-picture{
+    mask-image: url("../sprite.svg#PM-Partner");
+    mask-size: 100% 100%;
     mask-repeat: no-repeat;
     mask-position: center;
 }
