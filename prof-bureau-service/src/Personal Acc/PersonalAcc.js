@@ -66,16 +66,20 @@ export default class PersonalAccount extends React.Component{
     //Забавный баг: если данную функцию поставить после стейта, тогда js не может ее найти и не считает это функцией
     state = {
         isAPred: false,
-        selectComission:"none",
-        topRightBlock: <ActionsTable/>,//Добавить блок для отрисовки новостей
-        bottomLeftBlock: <ItemList type={CurrentTask} titleName = "Мой швапс" taskList={this.props.persAccInfo.userTasks} function1={this.actionWithTask}/>,
-        bottomRightBlock: <ItemList type={EndedTask} titleName = "Выпитый швапс" taskList={this.props.persAccInfo.userTasksEnded}/>,
         isRedrawNeeded : false,
         isNewTaskFormOpen: false,
+        isEntryOpen:false,
+
+        selectComission:"none",
+
         comInfo: this.props.persAccInfo.comInfo,
         userTasks: this.props.persAccInfo.userTasks,
         userTasksEnded: this.props.persAccInfo.userTasksEnded,
-        isEntryOpen:false
+
+                
+        topRightBlock: <ActionsTable/>,//Добавить блок для отрисовки новостей
+        bottomLeftBlock: <ItemList type={CurrentTask} titleName = "Мой швапс" taskList={this.props.persAccInfo.userTasks} function1={this.actionWithTask}/>,
+        bottomRightBlock: <ItemList type={EndedTask} titleName = "Выпитый швапс" taskList={this.props.persAccInfo.userTasksEnded}/>,        
     }
     
     addNewTask = (newTaskTitle, newTaskDescription, deadline)=>{
