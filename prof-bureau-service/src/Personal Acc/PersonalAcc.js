@@ -37,17 +37,23 @@ export default class PersonalAccount extends React.Component{
         })
         .then((responseJson)=>{
             if(responseJson.success){
-                alert(JSON.stringify(responseJson))
                 if(action=== "take_task/")
                 this.setState({
                     userTasks:responseJson.userTasks,
+                    isRedrawNeeded: true,
                     userTasksEnded: responseJson.userTasksEnded,                    
                     bottomLeftBlock: <ItemList type={CurrentComissionTask} titleName = {comissionLabel} taskList={responseJson.comTasks} function1={this.actionWithTask}/>
                 })
                 else{
+                    let newComInfo = this.state.comInfo
+                    newComInfo[comissionLabel].comTasks = responseJson.comTasks
                     this.setState({
+                        isRedrawNeeded: true,
                         userTasks:responseJson.userTasks,
-                        userTasksEnded: responseJson.userTasksEnded
+                        userTasksEnded: responseJson.userTasksEnded,
+                        bottomLeftBlock: <ItemList type={CurrentTask} titleName = "Мой Швапс" taskList={responseJson.userTasks} function1={this.actionWithTask}/>,
+                        bottomRightBlock: <ItemList type={EndedTask} titleName = "Выпитый Швапс" taskList={responseJson.userTasksEnded} function1={this.actionWithTask}/>,
+                        comInfo: newComInfo
                     })
                 }
             }
