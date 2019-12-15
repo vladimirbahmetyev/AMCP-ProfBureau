@@ -15,6 +15,7 @@ import CurrentTask from "./CurrentTask/CurrentTask"
 import PredControlPanel from "./PredControlPanel/PredControlPanel"
 
 import NewTaskForm from "./NewTaskForm/NewTaskForm"
+import EntryWindow from "./entryComissionWindow/EntryComissionWindow"
 
 import CssTransition from "react-transition-group/CSSTransition"
 
@@ -73,7 +74,8 @@ export default class PersonalAccount extends React.Component{
         isNewTaskFormOpen: false,
         comInfo: this.props.persAccInfo.comInfo,
         userTasks: this.props.persAccInfo.userTasks,
-        userTasksEnded: this.props.persAccInfo.userTasksEnded
+        userTasksEnded: this.props.persAccInfo.userTasksEnded,
+        isEntryOpen:false
     }
     
     addNewTask = (newTaskTitle, newTaskDescription, deadline)=>{
@@ -127,6 +129,17 @@ export default class PersonalAccount extends React.Component{
         this.setState({isNewTaskFormOpen:false})
     }
     
+    onClickEntry = (selectComission)=>{
+        this.setState({
+            selectComission:selectComission,
+            isEntryOpen:true
+        })
+    
+    }
+    onClickCloseEntry = ()=>{
+        this.setState({isEntryOpen:false})
+    }
+
     
     //Предлагаю устанавливать инфу о преде как сравнение ссылка на вк пользователя=== ссылка на вк преда (из бд)
     //Придумать откуда брать инфу, являетс человек предом или нет и засунуть сюда
@@ -179,8 +192,17 @@ export default class PersonalAccount extends React.Component{
                     <NewTaskForm closeClick={this.onClickCloseNewTask} addClick={this.addNewTask}/>
     </CssTransition>
 
+    <CssTransition
+                classNames="fade"
+                timeout={600}
+                unmountOnExit
+                mountOnEnter
+                in={this.state.isEntryOpen}>
+                <EntryWindow closeClick={this.onClickCloseNewTask} addClick={this.addNewTask} closeClick={this.onClickCloseEntry} comName={this.state.selectComission}/>
+    </CssTransition>
+
     <section className="comissions-and-actions">
-        <ComissionsTable onClickCom={this.comTableListener} comInfo={this.state.comInfo}/>
+        <ComissionsTable onClickCom={this.comTableListener} comInfo={this.state.comInfo} entryFunction={this.onClickEntry}/>
         
         <FadeAnimationComponent 
         redrawCallback={this.redrawCallback} 
