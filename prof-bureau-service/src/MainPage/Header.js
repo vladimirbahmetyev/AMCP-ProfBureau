@@ -6,8 +6,8 @@ export default class Header extends React.Component {
     render() {
         const { isAuthorized } = this.props
         const { page } = this.props
-        const auth = isAuthorized ? '' : 'Авторизация |'
-        const accExit = page === 'account' ? 'Выход из ЛК' : 'Вход в ЛК'
+        const auth = isAuthorized ? 'Смена аккаунта' : 'Авторизация'
+        const accExit = isAuthorized ? (page === 'account' ? '| Выход из ЛК' : '| Вход в ЛК') : ''
         const { login } = this.props
         const course = isAuthorized ? this.props.course + ' курс' : ''
         const deleteAcoount = isAuthorized ? 'Удалить аккаунт' : ''
@@ -28,9 +28,9 @@ export default class Header extends React.Component {
                         <div className="course">
                             {course}
                         </div>
-                        <div className='del-account'>
+                        {/* <div className='del-account'>
                             {deleteAcoount}
-                        </div>
+                        </div> */}
                     </div>
                     <div className="acc-action">
                         <div className='personal-info-picture'></div>

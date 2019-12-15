@@ -33,6 +33,7 @@
     margin-right: 10%;
     display: flex;
     align-items: center;
+    justify-content: flex-end;
 }
   
 .personal-info-about{
