@@ -38,9 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'corsheaders',
     'rest_framework',
-    'pbsite.apps.PbsiteConfig',
-    'pbServer',
-    'app',
+    'app.apps.AppConfig',
+    # 'pbServer',
+    # 'app',
     # 'pbServer.pbsite.models'
     # 'pbsite.models'
 ]
