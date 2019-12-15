@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.urls import path, include
 # from rest_framework import urls
 from .views import *
+from .gen_data import *
 
 app_name = 'app'
 urlpatterns = [
@@ -30,5 +31,7 @@ urlpatterns = [
     path('api/send_task/', send_task),
     path('api/decline_task/', decline_task),
     path('api/add_task/', add_task),
-    path('api/enter_or_leave_com/', enter_or_leave_com)
+    path('api/enter_or_leave_com/', enter_or_leave_com),
+
+    path('api/gen_data/', gen_data)
 ]

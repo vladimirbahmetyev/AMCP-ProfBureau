@@ -1,12 +1,7 @@
-# from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
-# from rest_framework.authtoken.models import Token
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import AllowAny
 from .models import *
-# from rest_framework.response import Response
-# from django.views.generic import TemplateView
-# from django.shortcuts import render
 
 import json
 from django.http import JsonResponse
