@@ -7,7 +7,7 @@ export default class Header extends React.Component {
         const { isAuthorized } = this.props
         const { page } = this.props
         const auth = isAuthorized ? '' : 'Авторизация |'
-        const accExit = page === 'account' ? 'Выход' : 'Вход в ЛК'
+        const accExit = page === 'account' ? 'Выход из ЛК' : 'Вход в ЛК'
         const { login } = this.props
         const course = isAuthorized ? this.props.course + ' курс' : ''
         const deleteAcoount = isAuthorized ? 'Удалить аккаунт' : ''
