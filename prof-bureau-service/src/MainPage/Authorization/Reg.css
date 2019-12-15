@@ -82,7 +82,7 @@
     mask-repeat: no-repeat;
     mask-position: center;
     margin-left: 2vh;
-    transform: translateY(-30vh);
+    transform: translateY(17vh);
 }
 
 .reg-close-circle:hover {
