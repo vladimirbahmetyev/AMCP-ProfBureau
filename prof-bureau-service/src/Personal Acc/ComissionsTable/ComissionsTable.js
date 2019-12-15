@@ -16,7 +16,7 @@ export default class ComissionsTable extends React.Component{
                     comName:"PM-Design",
                     predName:"Ольга крылова"
                 })
-                :{}            
+                : ()=>this.props.entryFunction("PM-Design")            
             }>
                 <div className="com-picture"></div>
                 <div className='com-title'>PM-Design</div>
@@ -28,7 +28,7 @@ export default class ComissionsTable extends React.Component{
                     predName:"Мария Васильева"
                 }
             )
-            :{}
+            :()=>this.props.entryFunction("HR")
         }>
                 <div className="com-picture"></div>
                 <div className='com-title'>HR</div>
@@ -37,7 +37,8 @@ export default class ComissionsTable extends React.Component{
             <div className={"pm-photo com-item" + (this.props.comInfo["PM-Photo"].isAMember? "":  " com-not-active")} onClick={this.props.comInfo["PM-Photo"].isAMember?()=>this.props.onClickCom({
                 comName:"PM-Photo",
                 predName:"Пахомова Арина"
-            }):{}}>
+            }):()=>this.props.entryFunction("PM-Photo")
+            }>
                 <div className="com-picture"></div>
                 <div className='com-title'>PM-photo</div>
             </div>
@@ -45,15 +46,15 @@ export default class ComissionsTable extends React.Component{
             <div className={"PM-Partner com-item" + (this.props.comInfo["PM-Partner"].isAMember? "":  " com-not-active")} onClick={this.props.comInfo["PM-Partner"].isAMember?()=>this.props.onClickCom({
                 comName:"PM-Partner",
                 predName:"Барташук Анастасия"
-            }):{}}>
+            }):()=>this.props.entryFunction("PM-Partner")}>
                 <div className="com-picture"></div>
                 <div className='com-title'>PM-Partner</div>
             </div>
 
-            <div className={"funcom com-item" + (this.props.comInfo["FunCom"].isAMember? "":  " com-not-active")} onClick={()=>this.props.onClickCom({
+            <div className={"funcom com-item" + (this.props.comInfo["FunCom"].isAMember? "":  " com-not-active")} onClick={this.props.comInfo["FunCom"].isAMember?()=>this.props.onClickCom({
                 comName:"FunCom",
                 predName:"Енин Никита"
-            })}>
+            }): this.props.entryFunction("FunCom")}>
                 <div className="com-picture"></div>
                 <div className='com-title'>FunCom</div>
             </div>
@@ -61,7 +62,7 @@ export default class ComissionsTable extends React.Component{
             <div className={"sportcom com-item" + (this.props.comInfo["СпортКом"].isAMember? "":  " com-not-active")} onClick={this.props.comInfo["СпортКом"].isAMember?()=>this.props.onClickCom({
                 comName:"СпортКом",
                 predName:"Рыбаков Сергей"
-            }):{}}>
+            }):()=>this.props.entryFunction("СпортКом")}>
                 <div className="com-picture"></div>
                 <div className='com-title'>СпортКом</div>
             </div>
@@ -69,7 +70,7 @@ export default class ComissionsTable extends React.Component{
             <div className={"mounting com-item" + (this.props.comInfo["Оформители"].isAMember ? "":  " com-not-active")} onClick={this.props.comInfo["Оформители"].isAMember ?()=>this.props.onClickCom({
                 comName:"Оформители",
                 predName:"Чернышова Александра"
-            }):{}}>
+            }):()=>this.props.entryFunction("Оформители")}>
                 <div className="com-picture"></div>
                 <div className='com-title'>Оформители</div>
             </div>
@@ -79,7 +80,7 @@ export default class ComissionsTable extends React.Component{
                     comName: "КультМасс",
                     predName: 'Кудряшова Дарья'
                 }
-            ):{}}>
+            ):()=>this.props.entryFunction("КультМасс")}>
                 <div className="com-picture"></div>
                 <div className='com-title'>КультМасс</div>
             </div>
