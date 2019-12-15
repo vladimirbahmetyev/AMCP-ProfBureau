@@ -76,25 +76,35 @@ export default class PersonalAccount extends React.Component{
         userTasksEnded: this.props.persAccInfo.userTasksEnded
     }
     
-    addNewTask = (newTaskTitle, newTaskDescription)=>{
-        fetch(this.props.url + 'addNewTask/',{
+    addNewTask = (newTaskTitle, newTaskDescription, deadline)=>{
+        fetch(this.props.url + 'add_task/',{
             method:"POST",
             headers:{
                 'Content-Type': 'application/json',
             },
             body:JSON.stringify({
-                "stNum":this.props.stNum,
+                "stNum":this.props.user,
                 "title":newTaskTitle,
-                "description": newTaskDescription
+                "description": newTaskDescription,
+                "deadline": deadline
             })
         })
         .then((response)=>{
             return response.json()
         })
         .then((responseJson)=>{
-            if(responseJson.sucess){
+            if(responseJson.success){
+                let newComInfo = this.state.comInfo
+                newComInfo[responseJson.comName].comTasks = responseJson.comTasks
                 this.setState({
-                    comInfo: responseJson.comInfo
+                    comInfo: newComInfo,
+                    isRedrawNeeded:true,
+                    isNewTaskFormOpen: false,
+                    bottomLeftBlock: <ItemList 
+                    type={CurrentComissionTask} 
+                    titleName = {responseJson.comName} 
+                    taskList={responseJson.comTasks} 
+                    function1={this.actionWithTask}/>
                 })
             }
             else{
