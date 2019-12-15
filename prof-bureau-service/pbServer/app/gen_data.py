@@ -20,9 +20,9 @@ def gen_data(request):
     #                "Дмитрий", "Евгений", "Екатерина", "Михаил", "Леонид", "Юлия",
     #                "Дмитрий", "Тимур", "Максим"]
     # gen_users(first_names, last_names, 22222)
-    # gen_following(3)
-    # gen_tasks(12)
-    # gen_take_tasks(12)
+    gen_following(2, 3)
+    gen_tasks(20)
+    gen_take_tasks(20)
     # gen_news(5)
     return HttpResponse()
 
@@ -45,11 +45,15 @@ def gen_passwords(length, num):
     return passwords
 
 
-def gen_following(num):
+def gen_following(min_num, max_num):
     comissions = Comission.objects.all()
+    for com in comissions:
+        chairman = com.chairman
+        Comission_member(user=chairman, comission=com).save()
+
     users = User.objects.all()
     for user in users:
-        for _ in range(num):
+        for _ in range(random.randint(min_num, max_num)):
             comission = comissions[random.randint(0, 7)]
             try:
                 Comission_member.objects.get(user=user, comission=comission)
@@ -75,11 +79,19 @@ def gen_take_tasks(num):
         for user_com in user_coms:
             com = user_com.comission
             com_tasks = Task.objects.filter(comission__exact=com)
-            try:
-                Task_executor(who_do=user, task=com_tasks[random.randint(0, num // 2 - 1)], is_sent=True).save()
-                Task_executor(who_do=user, task=com_tasks[random.randint(num // 2, num - 1)]).save()
-            except IntegrityError:
-                continue
+            # i = 0
+            while True:
+                try:
+                    Task_executor(who_do=user, task=com_tasks[random.randint(0, num - 1)]).save()
+                    break
+                except IntegrityError:
+                    continue
+            while True:
+                try:
+                    Task_executor(who_do=user, task=com_tasks[random.randint(0, num - 1)], is_sent=True).save()
+                    break
+                except IntegrityError:
+                    continue
 
 
 def gen_news(num):
