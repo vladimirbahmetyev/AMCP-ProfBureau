@@ -34,7 +34,17 @@ export default class MainPage extends React.Component {
             stNum: userInfo.stNum,
             page: 'main' 
         })
-    }        
+    }
+    
+    logout = () => {
+        this.setState({
+            isAuthorized: false,
+            login: '',
+            course: 0,
+            stNum: 0,
+            page: 'main'
+        })
+    }
 
     changePage = () => {
         if (this.state.page === 'main') {
@@ -105,7 +115,8 @@ export default class MainPage extends React.Component {
                             course={this.state.course}
                             changePage={this.changePage}
                             openAuth={this.openAuth}
-                            page={this.state.page}/>
+                            page={this.state.page}
+                            logout={this.logout}/>
                     {this.setScreen()}
                 </div>   
             )
