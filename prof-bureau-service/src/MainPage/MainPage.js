@@ -62,7 +62,6 @@ export default class MainPage extends React.Component {
                 return response.json()
             })
             .then((responseJson)=>{
-                console.log(JSON.stringify(responseJson))
                 this.setState({
                     responseData: responseJson,
                     page: 'account'
@@ -75,7 +74,8 @@ export default class MainPage extends React.Component {
         }
     }
 
-    setScreen = (page = this.state.page) => {
+    setScreen = () => {
+        let page = this.state.page
         if (page === 'main') {
             return(
                 <div className='mainBlock'>

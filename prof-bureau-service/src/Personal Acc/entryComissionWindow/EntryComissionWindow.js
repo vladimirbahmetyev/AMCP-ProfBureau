@@ -8,7 +8,7 @@ export default class EntryComissionWindow extends React.Component{
                 <div className="entry-form">
                     <label className="question-entry-form">{`Вы дейстительно хотите вступить в комиссию ${this.props.comName}?`}</label>
                     <label className="exit-button-form-entry"
-                            onClick={this.props.closeClick}></label>
+                            onClick={()=>this.props.closeClick()}></label>
                     <button className="entry-button-form" onClick={()=>this.props.actionOnEntry(this.props.comName, "enter")}>
                         Вступить
                     </button>
