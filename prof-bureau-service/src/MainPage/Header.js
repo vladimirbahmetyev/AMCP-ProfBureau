@@ -5,7 +5,9 @@ export default class Header extends React.Component {
 
     render() {
         const { isAuthorized } = this.props
-        const accExit = isAuthorized ? 'Выход' : 'Вход'
+        const { page } = this.props
+        const auth = isAuthorized ? '' : 'Авторизация |'
+        const accExit = page === 'account' ? 'Выход' : 'Вход в ЛК'
         const { login } = this.props
         const course = isAuthorized ? this.props.course + ' курс' : ''
         const deleteAcoount = isAuthorized ? 'Удалить аккаунт' : ''
@@ -31,10 +33,15 @@ export default class Header extends React.Component {
                         </div>
                     </div>
                     <div className="acc-action">
-                        <div className='personal-info-picture'
-                            onClick={() => this.props.openAuth(true)}></div>
-                        <div className="acc-exit" onClick={() => this.props.changePage()}>
-                            {accExit}
+                        <div className='personal-info-picture'></div>
+                        
+                        <div className="auth-or-exit">
+                            <div className="acc-exit" onClick={() => this.props.openAuth(true)}>
+                                {auth}&#160;
+                            </div>
+                            <div className="acc-exit" onClick={() => this.props.changePage()}>
+                                {accExit}
+                            </div>
                         </div>
                     </div>
                 </div>

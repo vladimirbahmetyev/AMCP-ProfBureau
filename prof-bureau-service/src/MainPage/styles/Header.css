@@ -63,10 +63,10 @@
     color: #2c3343;
 }
 
-.acc-action:hover {
+/* .acc-action:hover {
     color: lightcoral;
     cursor: pointer;
-}
+} */
   
 .personal-info-picture{
     display: flex;
@@ -82,8 +82,18 @@
     background-color: lightcoral;
     cursor: pointer;
 }
+
+.auth-or-exit {
+    display: flex;
+    flex-direction: row;
+}
   
 .acc-exit{
     font-size: 2vh;
     font-weight: bolder;
+}
+
+.acc-exit:hover{
+    color: lightcoral;
+    cursor: pointer;
 }

@@ -259,7 +259,8 @@ export default class MainPage extends React.Component {
                             login={this.state.login}
                             course={this.state.course}
                             changePage={this.changePage}
-                            openAuth={this.openAuth}/>
+                            openAuth={this.openAuth}
+                            page={this.state.page}/>
                     {this.setScreen()}
                 </div>   
             )

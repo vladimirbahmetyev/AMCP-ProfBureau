@@ -4,7 +4,7 @@ import MainPage from './MainPage/MainPage';
 class App extends React.Component {
     render() {
         return (
-            <MainPage url="http://84eb1cb0.ngrok.io/api/"/>
+            <MainPage url="http://51fdc9d8.ngrok.io/api/"/>
         );
     }
 }
