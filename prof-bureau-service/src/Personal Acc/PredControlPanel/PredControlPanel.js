@@ -6,10 +6,13 @@ export default class PredControlPanel extends React.Component{
     {
         return (
             <div className="pred-control-panel">
-                <h2>Панель управления преда</h2>
-                <div className="pred-add-button" onClick={this.props.onAddNewTask}>Добавить новый таск</div>
-                <div className="pred-add-button">Добавить новый ивент</div>
-                <div className='pred-add-button'>Список членов комиссии</div>
+                <h2 className="pred-control-title">Панель управления преда</h2>
+                <div className="pred-control-items">
+                    <div className="pred-add-button" onClick={this.props.onAddNewTask}>Добавить новый таск</div>
+                    <div className="pred-add-button">Добавить новый ивент</div>
+                    <div className='pred-add-button'>Список членов комиссии</div>
+                    <div className='pred-add-button'>Проверка выполненных заданий</div>
+                </div>
             </div>
         )
     }

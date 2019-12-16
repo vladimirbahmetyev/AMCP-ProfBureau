@@ -3,6 +3,10 @@ import './styles/Header.css'
 
 export default class Header extends React.Component {
 
+    setHeaderOpacity = (page) => {
+        return page === 'account' ? 1 : 0.7
+    }
+
     render() {
         const { isAuthorized } = this.props
         const { page } = this.props
@@ -12,7 +16,7 @@ export default class Header extends React.Component {
         const course = isAuthorized ? this.props.course + ' курс' : ''
         // const deleteAcoount = isAuthorized ? 'Удалить аккаунт' : ''
         return(
-            <header className='header'>
+            <header className='header' style={{opacity: this.setHeaderOpacity(page)}}>
                 <div style={{marginLeft: '10%'}}>
                     <button className='title-button'
                             onClick={() => this.props.changeComission('Профбюро')}
