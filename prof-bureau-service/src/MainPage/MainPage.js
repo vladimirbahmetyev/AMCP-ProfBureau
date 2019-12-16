@@ -13,8 +13,8 @@ export default class MainPage extends React.Component {
     state = {
         comission: 'Профбюро',
         isAuthorized: true,
-        login: '',
-        course: 0,
+        login: 'Ольга Крылова',
+        course: 3,
         page: 'main',
         stNum: 61177,
         responseData: JSON.stringify('')
