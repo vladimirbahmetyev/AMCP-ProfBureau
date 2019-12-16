@@ -21,7 +21,13 @@ import CssTransition from "react-transition-group/CSSTransition"
 
 export default class PersonalAccount extends React.Component{
 
-    actionWithTask = (taskTitle, action, comissionLabel)=>{
+    actionWithTask = (taskTitle, action, comissionLabel, isAPredAction)=>{
+        console.log(JSON.stringify({
+            "stNum":this.props.user,
+            "taskTitle": taskTitle,
+            "comName":comissionLabel,
+            "predAction": isAPredAction 
+        }))
         fetch(this.props.url + action,{
             method:"POST",
             headers:{
@@ -30,7 +36,8 @@ export default class PersonalAccount extends React.Component{
             body:JSON.stringify({
                 "stNum":this.props.user,
                 "taskTitle": taskTitle,
-                "comName":comissionLabel
+                "comName":comissionLabel,
+                "predAction": isAPredAction 
             })
         })
         .then((response)=>{
@@ -38,6 +45,7 @@ export default class PersonalAccount extends React.Component{
         })
         .then((responseJson)=>{
             if(responseJson.success){
+                console.log(JSON.stringify(responseJson))
                 if(action=== "take_task/")
                 this.setState({
                     userTasks:responseJson.userTasks,
@@ -46,16 +54,44 @@ export default class PersonalAccount extends React.Component{
                     bottomLeftBlock: <ItemList type={CurrentComissionTask} titleName = {comissionLabel} taskList={responseJson.comTasks} function1={this.actionWithTask}/>
                 })
                 else{
+                    if(isAPredAction){
+                        let newComInfo = this.state.comInfo
+                        newComInfo[comissionLabel].taskList = responseJson.comTasks
+                        newComInfo.userTasks = responseJson.userTasks
+                        newComInfo[comissionLabel].sentTasks = responseJson.sentTasks
+                        newComInfo.userTasksEnded = responseJson.userTasksEnded
+                        this.setState({
+                            userTasks:responseJson.userTasks,
+                            userTasksEnded: responseJson.userTasksEnded,
+                            bottomLeftBlock: <ItemList type={CurrentComissionTask} 
+                                               titleName={`Актуальный швапc ${comissionLabel}`} 
+                                               taskList={responseJson.comTasks}
+                                               function1={this.actionWithTask}
+                                               predAction={false}/>,
+                            bottomRightBlock: <ItemList type={CurrentTask} 
+                                                titleName={`Задания на проверку`} 
+                                                taskList={responseJson.sentTasks}
+                                                function1={this.actionWithTask}
+                                                predAction={true}/>,
+                            isRedrawNeeded: true,
+                            comInfo: newComInfo
+                        })
+                    }
+                    else{      
+
                     let newComInfo = this.state.comInfo
-                    newComInfo[comissionLabel].comTasks = responseJson.comTasks
+                    newComInfo[comissionLabel].sentTasks = responseJson.sentTasks
+                    newComInfo[comissionLabel].taskList = responseJson.comTasks
+                    
                     this.setState({
                         isRedrawNeeded: true,
                         userTasks:responseJson.userTasks,
                         userTasksEnded: responseJson.userTasksEnded,
-                        bottomLeftBlock: <ItemList type={CurrentTask} titleName = "Мой Швапс" taskList={responseJson.userTasks} function1={this.actionWithTask}/>,
+                        bottomLeftBlock: <ItemList type={CurrentTask} titleName = "Мой Швапс" taskList={responseJson.userTasks} function1={this.actionWithTask} predAction={false}/>,
                         bottomRightBlock: <ItemList type={EndedTask} titleName = "Выпитый Швапс" taskList={responseJson.userTasksEnded} function1={this.actionWithTask}/>,
                         comInfo: newComInfo
                     })
+                    }
                 }
             }
             else{
@@ -78,7 +114,7 @@ export default class PersonalAccount extends React.Component{
 
                 
         topRightBlock: <ActionsTable/>,//Добавить блок для отрисовки новостей
-        bottomLeftBlock: <ItemList type={CurrentTask} titleName = "Мой швапс" taskList={this.props.persAccInfo.userTasks} function1={this.actionWithTask}/>,
+        bottomLeftBlock: <ItemList type={CurrentTask} titleName = "Мой швапс" taskList={this.props.persAccInfo.userTasks} function1={this.actionWithTask} predAction={false}/>,
         bottomRightBlock: <ItemList type={EndedTask} titleName = "Выпитый швапс" taskList={this.props.persAccInfo.userTasksEnded}/>,        
     }
     
@@ -101,7 +137,7 @@ export default class PersonalAccount extends React.Component{
         .then((responseJson)=>{
             if(responseJson.success){
                 let newComInfo = this.state.comInfo
-                newComInfo[responseJson.comName].comTasks = responseJson.comTasks
+                newComInfo[responseJson.comName].taskList = responseJson.comTasks
                 this.setState({
                     comInfo: newComInfo,
                     isRedrawNeeded:true,
@@ -159,7 +195,7 @@ export default class PersonalAccount extends React.Component{
                         selectComission:"none",
                         isRedrawNeeded: true,
                         topRightBlock: <ActionsTable/>,
-                        bottomLeftBlock: <ItemList type={CurrentTask} titleName = "Мой швапс" taskList={this.state.userTasks} function1={this.actionWithTask}/>,
+                        bottomLeftBlock: <ItemList type={CurrentTask} titleName = "Мой швапс" taskList={this.state.userTasks} function1={this.actionWithTask} predAction={false}/>,
                         bottomRightBlock: <ItemList type={EndedTask} titleName = "Выпитый швапс" taskList={this.state.userTasksEnded}/>
                     })
                 }
@@ -216,13 +252,33 @@ export default class PersonalAccount extends React.Component{
                 selectComission:"none",
                 isRedrawNeeded: true,
                 topRightBlock: <ActionsTable/>,
-                bottomLeftBlock: <ItemList type={CurrentTask} titleName = "Мой швапс" taskList={this.state.userTasks} function1={this.actionWithTask}/>,
+                bottomLeftBlock: <ItemList type={CurrentTask} titleName = "Мой швапс" taskList={this.state.userTasks} function1={this.actionWithTask} predAction={false}/>,
                 bottomRightBlock: <ItemList type={EndedTask} titleName = "Выпитый швапс" taskList={this.state.userTasksEnded}/>,
             })
         }
         else{
+            if(this.state.comInfo[pushedCom.comName].isAPred){
+                this.setState({
+                    isAPred: true,
+                    selectComission: pushedCom.comName,
+                    topRightBlock: this.topRightBlock(pushedCom, this.state.comInfo[pushedCom.comName].isAPred),
+                    // Fix open item staying when comission had been changed 
+                    bottomLeftBlock: <ItemList type={CurrentComissionTask} 
+                                               titleName={`Актуальный швапc ${pushedCom.comName}`} 
+                                               taskList={this.state.comInfo[pushedCom.comName].taskList}
+                                               function1={this.actionWithTask}
+                                               predAction={false}/>,
+                    bottomRightBlock: <ItemList type={CurrentTask} 
+                                                titleName={`Задания на проверку`} 
+                                                taskList={this.state.comInfo[pushedCom.comName].sentTasks}
+                                                function1={this.actionWithTask}
+                                                predAction={true}/>,
+                    isRedrawNeeded: true 
+                })    
+            }
+            else{
             this.setState({
-                isAPred: this.state.comInfo[pushedCom.comName].isAPred,
+                isAPred: false,
                 selectComission: pushedCom.comName,
                 topRightBlock: this.topRightBlock(pushedCom, this.state.comInfo[pushedCom.comName].isAPred),
                 // Fix open item staying when comission had been changed 
@@ -233,7 +289,7 @@ export default class PersonalAccount extends React.Component{
                 bottomRightBlock: <CurrentComissionEvents titleName="Швапс комиссии" newsList={this.state.comInfo[pushedCom.comName].news}/>,
                 isRedrawNeeded: true 
             })            
-        }
+        }}
     }
     render(){
     return(

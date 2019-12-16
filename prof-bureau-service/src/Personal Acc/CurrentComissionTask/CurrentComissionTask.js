@@ -41,7 +41,7 @@ export default class CurrentComissionTask extends React.Component{
                     </div>
                     <div className="current-task-buttons">
                         <div className="current-task-add"
-                             onClick={()=>this.props.function1(this.props.content.title, "take_task/", this.state.comissionName )}
+                             onClick={()=>this.props.function1(this.props.content.title, "take_task/", this.props.comission)}
                         ></div>
                     </div>
                 </div>
