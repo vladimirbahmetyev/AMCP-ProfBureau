@@ -11,7 +11,6 @@ export default class PredControlPanel extends React.Component{
                     <div className="pred-add-button" onClick={this.props.onAddNewTask}>Добавить новый таск</div>
                     <div className="pred-add-button">Добавить новый ивент</div>
                     <div className='pred-add-button'>Список членов комиссии</div>
-                    <div className='pred-add-button'>Проверка выполненных заданий</div>
                 </div>
             </div>
         )

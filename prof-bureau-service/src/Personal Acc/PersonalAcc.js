@@ -138,7 +138,7 @@ export default class PersonalAccount extends React.Component{
             if(responseJson.success){
                 
                 let newComInfo = this.state.comInfo
-                if(action == "enter"){
+                if(action === "enter"){
                     newComInfo[comName].isAMember = true
                     this.setState({
                         comInfo: newComInfo,
@@ -152,7 +152,7 @@ export default class PersonalAccount extends React.Component{
                         isRedrawNeeded: true
                     })    
                 }
-                else{
+                else {
                     newComInfo[comName].isAMember = false
                     this.setState({
                         comInfo:newComInfo,

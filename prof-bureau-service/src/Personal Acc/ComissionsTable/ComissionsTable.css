@@ -13,6 +13,7 @@
     font-style: italic;
     margin-top: 7px;
     font-size: 1vw;
+    color: #2c3343;
 }
 
 .com-main-title{
@@ -21,6 +22,7 @@
     margin-top: 7px;
     margin-bottom: 0px;
     font-size: 2vw;
+    color: #2c3343;
 }
 .comissions-grid{
     display: flex;

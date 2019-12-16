@@ -69,7 +69,6 @@ def login(request):
 @permission_classes((AllowAny,))
 def get_personal_info(request):
     request_json = json.load(request)
-
     try:
         user_st = request_json["stNum"]
         user = User.objects.get(user_st=user_st)
@@ -77,46 +76,50 @@ def get_personal_info(request):
         tasks_ended_array = []
         exec_tasks = Task_executor.objects.filter(who_do__exact=user)
         for string in exec_tasks:
-            if string.is_sent:
-                tasks_ended_array.append({"title": string.task.task_title,
-                                          "description": string.task.task_description,
-                                          "comission": string.task.comission.name})
-            else:
-                tasks_array.append({"title": string.task.task_title,
-                                    "description": string.task.task_description,
-                                    "comission": string.task.comission.name})
-
-        about_coms_dict = {}
+            if not string.is_done:
+                if string.is_sent:
+                    tasks_ended_array.append({"title": string.task.task_title,
+                                              # "description": string.task.task_description,
+                                              "comission": string.task.comission.name})
+                else:
+                    tasks_array.append({"title": string.task.task_title,
+                                        "description": string.task.task_description,
+                                        "comission": string.task.comission.name})
+        com_info_dict = {}
         for comission in Comission.objects.all():
+            is_pred = user_st == comission.chairman.user_st
             com_tasks = Task.objects.filter(comission__exact=comission)
             com_tasks_array = []
+            sent_tasks_array = []
             for task in com_tasks:
                 try:
-                    Task_executor.objects.get(task=task)
-                    continue
+                    task_exec = Task_executor.objects.get(task=task)
+                    if is_pred and task_exec.is_sent and not task_exec.is_done:
+                        sent_tasks_array.append({"title": task.task_title,
+                                                 "description": task_exec.who_do.__str__(),
+                                                 "comission": task.comission.name})
                 except Task_executor.DoesNotExist:
                     com_tasks_array.append({"title": task.task_title,
                                             "description": task.task_description,
                                             "comission": task.comission.name})
-
-            is_pred = user_st == comission.chairman.user_st
             try:
                 Comission_member.objects.get(user=user, comission=comission)
                 is_member = True
             except Comission_member.DoesNotExist:
                 is_member = False
 
-            about_coms_dict[comission.name] = {
+            com_info_dict[comission.name] = {
                 "predName": comission.chairman.__str__(),
                 "newsList": {},
                 "taskList": com_tasks_array,
                 "isAPred": is_pred,
-                "isAMember": is_member
+                "isAMember": is_member,
+                "sentTasks": sent_tasks_array
             }
         response = JsonResponse({"success": True,
                                  "userTasks": tasks_array,
                                  "userTasksEnded": tasks_ended_array,
-                                 "comInfo": about_coms_dict,
+                                 "comInfo": com_info_dict,
                                  "newsList": {}})
     except User.DoesNotExist:
         response = JsonResponse({"success": False,
@@ -149,20 +152,20 @@ def take_task(request):
         tasks_ended_array = []
         exec_tasks = Task_executor.objects.filter(who_do__exact=user)
         for string in exec_tasks:
-            if string.is_sent:
-                tasks_ended_array.append({"title": string.task.task_title,
-                                          "description": string.task.task_description,
-                                          "comission": string.task.comission.name})
-            else:
-                tasks_array.append({"title": string.task.task_title,
-                                    "description": string.task.task_description,
-                                    "comission": string.task.comission.name})
+            if not string.is_done:
+                if string.is_sent:
+                    tasks_ended_array.append({"title": string.task.task_title,
+                                              # "description": string.task.task_description,
+                                              "comission": string.task.comission.name})
+                else:
+                    tasks_array.append({"title": string.task.task_title,
+                                        "description": string.task.task_description,
+                                        "comission": string.task.comission.name})
         com_tasks = Task.objects.filter(comission__exact=comission)
         com_tasks_array = []
         for task in com_tasks:
             try:
                 Task_executor.objects.get(task=task)
-                continue
             except Task_executor.DoesNotExist:
                 com_tasks_array.append({"title": task.task_title,
                                         "description": task.task_description,
@@ -195,34 +198,54 @@ def send_task(request):
     user_st = request_json["stNum"]
     task_title = request_json["taskTitle"]
     com_name = request_json["comName"]
+    is_pred_action = request_json["predAction"]
 
     try:
         user = User.objects.get(user_st=user_st)
         comission = Comission.objects.get(name=com_name)
         task = Task.objects.get(comission=comission, task_title=task_title)
 
-        task_exec = Task_executor.objects.get(who_do=user, task=task)
-        task_exec.is_sent = True
+        task_exec = Task_executor.objects.get(task=task)
+        if is_pred_action:
+            task_exec.is_done = True
+        else:
+            task_exec.is_sent = True
         task_exec.save()
 
         tasks_array = []
         tasks_ended_array = []
-
         exec_tasks = Task_executor.objects.filter(who_do__exact=user)
         for string in exec_tasks:
-            if string.is_sent:
-                tasks_ended_array.append({"title": string.task.task_title,
-                                          "description": string.task.task_description,
-                                          "comission": string.task.comission.name})
-            else:
-                tasks_array.append({"title": string.task.task_title,
-                                    "description": string.task.task_description,
-                                    "comission": string.task.comission.name})
-
+            if not string.is_done:
+                if string.is_sent:
+                    tasks_ended_array.append({"title": string.task.task_title,
+                                              # "description": string.task.task_description,
+                                              "comission": string.task.comission.name})
+                else:
+                    tasks_array.append({"title": string.task.task_title,
+                                        "description": string.task.task_description,
+                                        "comission": string.task.comission.name})
+        com_tasks_array = []
+        com_tasks = Task.objects.filter(comission__exact=comission)
+        is_pred = user_st == comission.chairman.user_st
+        sent_tasks_array = []
+        for task in com_tasks:
+            try:
+                task_exec = Task_executor.objects.get(task=task)
+                if is_pred and task_exec.is_sent and not task_exec.is_done:
+                    sent_tasks_array.append({"title": task.task_title,
+                                             "description": task_exec.who_do.__str__(),
+                                             "comission": task.comission.name})
+            except Task_executor.DoesNotExist:
+                    com_tasks_array.append({"title": task.task_title,
+                                            "description": task.task_description,
+                                            "comission": task.comission.name})
         response_json = JsonResponse({"success": True,
                                       "userTasks": tasks_array,
-                                      "userTasksEnded": tasks_ended_array})
-
+                                      "userTasksEnded": tasks_ended_array,
+                                      "comTasks": com_tasks_array,
+                                      "sentTasks": sent_tasks_array,
+                                      "comName": com_name})
     except User.DoesNotExist:
         response_json = JsonResponse({"success": False,
                                       "error": "user not found"})
@@ -246,37 +269,54 @@ def decline_task(request):
     user_st = request_json["stNum"]
     task_title = request_json["taskTitle"]
     com_name = request_json["comName"]
+    is_pred_action = request_json["predAction"]
 
     try:
         user = User.objects.get(user_st=user_st)
         comission = Comission.objects.get(name=com_name)
         task = Task.objects.get(comission=comission, task_title=task_title)
 
-        Task_executor.objects.get(who_do=user, task=task).delete()
+        if is_pred_action:
+            task_exec = Task_executor.objects.get(task=task)
+            task_exec.is_sent = False
+            task_exec.save()
+        else:
+            Task_executor.objects.get(who_do=user, task=task).delete()
 
         tasks_array = []
         tasks_ended_array = []
         exec_tasks = Task_executor.objects.filter(who_do__exact=user)
         for string in exec_tasks:
-            if string.is_sent:
-                tasks_ended_array.append({"title": string.task.task_title,
-                                          "description": string.task.task_description,
-                                          "comName": com_name})
-            else:
-                tasks_array.append({"title": string.task.task_title,
-                                    "description": string.task.task_description,
-                                    "comName": com_name})
+            if not string.is_done:
+                if string.is_sent:
+                    tasks_ended_array.append({"title": string.task.task_title,
+                                              # "description": string.task.task_description,
+                                              "comission": string.task.comission.name})
+                else:
+                    tasks_array.append({"title": string.task.task_title,
+                                        "description": string.task.task_description,
+                                        "comission": string.task.comission.name})
         com_tasks_array = []
         com_tasks = Task.objects.filter(comission__exact=comission)
+        is_pred = user_st == comission.chairman.user_st
+        sent_tasks_array = []
         for task in com_tasks:
-            com_tasks_array.append({"title": task.task_title,
-                                    "description": task.task_description,
-                                    "comName": com_name})
+            try:
+                task_exec = Task_executor.objects.get(task=task)
+                if is_pred and task_exec.is_sent:
+                    sent_tasks_array.append({"title": task.task_title,
+                                             "description": task_exec.who_do.__str__(),
+                                             "comission": task.comission.name})
+            except Task_executor.DoesNotExist:
+                com_tasks_array.append({"title": task.task_title,
+                                        "description": task.task_description,
+                                        "comission": task.comission.name})
 
         response_json = JsonResponse({"success": True,
                                       "userTasks": tasks_array,
                                       "userTasksEnded": tasks_ended_array,
                                       "comTasks": com_tasks_array,
+                                      "sentTasks": sent_tasks_array,
                                       "comName": com_name})
     except User.DoesNotExist:
         response_json = JsonResponse({"success": False,
@@ -367,7 +407,7 @@ def enter_or_leave_com(request):
                                               "error": "already exists"})
             except Comission_member.DoesNotExist:
                 Comission_member(user=user, comission=comission).save()
-                ch_name = comission.chairman.last_name + " " + comission.chairman.first_name
+                ch_name = comission.chairman.__str__()
                 response_json = JsonResponse({"predName": ch_name,
                                               "success": True})
     except KeyError:
@@ -386,3 +426,6 @@ def enter_or_leave_com(request):
     response_json['Access-Control-Allow-Origin'] = '*'
     response_json["Access-Control-Allow-Headers"] = '*'
     return response_json
+
+
+

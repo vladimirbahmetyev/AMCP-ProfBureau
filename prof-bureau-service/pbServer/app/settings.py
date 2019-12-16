@@ -26,7 +26,7 @@ SECRET_KEY = '*77n34%m5#*-7$c2!#&m(*=g00=s*a!w_lcww8=$o@^8sfr&ba'
 DEBUG = True
 
 # ALLOWED_HOSTS = ['127.0.0.1', '49fc3863.ngrok.io', '192.168.0.1']
-ALLOWED_HOSTS = ['192.168.0.100']
+ALLOWED_HOSTS = ['192.168.0.107', '127.0.0.1']
 # Application definition
 
 INSTALLED_APPS = [
