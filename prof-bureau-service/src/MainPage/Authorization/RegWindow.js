@@ -53,7 +53,7 @@ export default class RegWindow extends React.Component{
                         <input id='e-mail'></input>
                     </div><div className='reg-field'>
                         <p>Пароль (не менее 8 символов)</p>
-                        <input id='password'></input>
+                        <input id='password' type='password'></input>
                     </div>
                     <div className='reg-button' onClick={() => this.buttonClicked()}>
                         <p>Зарегистрироваться</p>

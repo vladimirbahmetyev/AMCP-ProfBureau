@@ -12,11 +12,11 @@ export default class MainPage extends React.Component {
 
     state = {
         comission: 'Профбюро',
-        isAuthorized: true,
-        login: 'Ольга Крылова',
-        course: 3,
+        isAuthorized: false,
+        login: '',
+        course: 0,
         page: 'main',
-        stNum: 61177,
+        stNum: 0,
         responseData: JSON.stringify('')
     }
 
