@@ -1,1 +1,1 @@
-web: gunicorn prof-bureau-service/pbServer/app.wsgi 
+web: gunicorn pbServer:app --log-file -
