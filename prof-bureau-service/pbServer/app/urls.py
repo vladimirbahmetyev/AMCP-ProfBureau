@@ -33,5 +33,6 @@ urlpatterns = [
     path('api/add_task/', add_task),
     path('api/enter_or_leave_com/', enter_or_leave_com),
 
-    path('api/gen_data/', gen_data)
+    path('api/gen_data/', gen_data),
+    path('', index)
 ]

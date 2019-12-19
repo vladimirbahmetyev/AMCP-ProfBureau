@@ -87,6 +87,14 @@ CORS_ALLOW_HEADERS = [
 
 ROOT_URLCONF = 'app.urls'
 
+TEMPLATE_DIRS = (
+    os.path.join(os.path.dirname(__file__), 'templates'),
+)
+
+STATICFILES_DIRS = [
+    os.path.join(os.path.dirname(__file__), "static"),
+]
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',

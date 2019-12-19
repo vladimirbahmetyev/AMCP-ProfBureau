@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/static/css/main.f3e7d7bc.chunk.css",
+    "main.js": "/static/js/main.fe1086b3.chunk.js",
+    "main.js.map": "/static/js/main.fe1086b3.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.8b8c4a15.js",
+    "runtime-main.js.map": "/static/js/runtime-main.8b8c4a15.js.map",
+    "static/js/2.db0185bf.chunk.js": "/static/js/2.db0185bf.chunk.js",
+    "static/js/2.db0185bf.chunk.js.map": "/static/js/2.db0185bf.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.866f7bc1586f24b8681ab760ec9a18a7.js": "/precache-manifest.866f7bc1586f24b8681ab760ec9a18a7.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/main.f3e7d7bc.chunk.css.map": "/static/css/main.f3e7d7bc.chunk.css.map",
+    "static/media/PersonalAcc.css": "/static/media/PFBeauSansPro-LightItal.750b7183.ttf",
+    "static/media/MainPage.css": "/static/media/PM-cropped-blured.36ce358d.png",
+    "static/media/ChairmanPhoto.css": "/static/media/sportcom.94052f7c.jpg",
+    "static/media/Reg.css": "/static/media/sprite.1f1ebf15.svg",
+    "static/media/EntryComissionWindow.css": "/static/media/sprite.3bb5d5b1.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.8b8c4a15.js",
+    "static/js/2.db0185bf.chunk.js",
+    "static/css/main.f3e7d7bc.chunk.css",
+    "static/js/main.fe1086b3.chunk.js"
+  ]
+}

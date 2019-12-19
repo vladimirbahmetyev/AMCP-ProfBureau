@@ -140,13 +140,13 @@ export default class PersonalAccount extends React.Component{
                 newComInfo[responseJson.comName].taskList = responseJson.comTasks
                 this.setState({
                     comInfo: newComInfo,
-                    isRedrawNeeded:true,
                     isNewTaskFormOpen: false,
                     bottomLeftBlock: <ItemList 
-                    type={CurrentComissionTask} 
-                    titleName = {responseJson.comName} 
-                    taskList={responseJson.comTasks} 
-                    function1={this.actionWithTask}/>
+                                type={CurrentComissionTask} 
+                                titleName = {responseJson.comName} 
+                                taskList={responseJson.comTasks} 
+                                function1={this.actionWithTask}/>,
+                    isRedrawNeeded:true,
                 })
             }
             else{

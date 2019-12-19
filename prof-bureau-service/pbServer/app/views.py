@@ -1,5 +1,5 @@
 from django.views.decorators.csrf import csrf_exempt
-from rest_framework.decorators import api_view, permission_classes
+from rest_framework.decorators import api_view, permission_classes, authentication_classes
 from rest_framework.permissions import AllowAny
 from .models import *
 
@@ -7,14 +7,25 @@ import json
 from django.http import JsonResponse
 import re
 import datetime
-
+from django.shortcuts import render
 # Create your views here.
 from django.http import HttpResponse
+from rest_framework.authentication import SessionAuthentication
+
+
+class CsrfExemptSessionAuthentication(SessionAuthentication):
+    def enforce_csrf(self, request):
+        return None
+
+
+def index(request):
+    return render(request, "index.html")
 
 
 @csrf_exempt
 @api_view(["POST"])
 @permission_classes((AllowAny,))
+@authentication_classes((CsrfExemptSessionAuthentication,))
 def registration(request):
     request_json = json.load(request)
     first_name = request_json["firstName"]
@@ -40,6 +51,7 @@ def registration(request):
 @csrf_exempt
 @api_view(["POST"])
 @permission_classes((AllowAny,))
+@authentication_classes((CsrfExemptSessionAuthentication,))
 def login(request):
     request_json = json.load(request)
 
@@ -67,6 +79,7 @@ def login(request):
 @csrf_exempt
 @api_view(["POST"])
 @permission_classes((AllowAny,))
+@authentication_classes((CsrfExemptSessionAuthentication,))
 def get_personal_info(request):
     request_json = json.load(request)
     try:
@@ -135,6 +148,7 @@ def get_personal_info(request):
 @csrf_exempt
 @api_view(["POST"])
 @permission_classes((AllowAny,))
+@authentication_classes((CsrfExemptSessionAuthentication,))
 def take_task(request):
     request_json = json.load(request)
     com_name = request_json["comName"]
@@ -193,6 +207,7 @@ def take_task(request):
 @csrf_exempt
 @api_view(["POST"])
 @permission_classes((AllowAny,))
+@authentication_classes((CsrfExemptSessionAuthentication,))
 def send_task(request):
     request_json = json.load(request)
     user_st = request_json["stNum"]
@@ -264,6 +279,7 @@ def send_task(request):
 @csrf_exempt
 @api_view(["POST"])
 @permission_classes((AllowAny,))
+@authentication_classes((CsrfExemptSessionAuthentication,))
 def decline_task(request):
     request_json = json.load(request)
     user_st = request_json["stNum"]
@@ -339,6 +355,7 @@ def decline_task(request):
 @csrf_exempt
 @api_view(["POST"])
 @permission_classes((AllowAny,))
+@authentication_classes((CsrfExemptSessionAuthentication,))
 def add_task(request):
     request_json = json.load(request)
     try:
@@ -352,18 +369,24 @@ def add_task(request):
         comission = Comission.objects.get(chairman=chairman)
         com_name = comission.name
 
-        Task(comission=comission, task_title=title, task_description=description, deadline=deadline).save()
+        try:
+            Task.objects.get(comission=comission, task_title=title)
+            response_json = JsonResponse({"success": False,
+                                          "errror": "task already exists"})
+        except Task.DoesNotExist:
+            com_tasks_array = []
+            com_tasks = Task.objects.filter(comission__exact=comission)
+            for task in com_tasks:
+                try:
+                    Task_executor.objects.get(task=task)
+                except Task_executor.DoesNotExist:
+                    com_tasks_array.append({"title": task.task_title,
+                                            "description": task.task_description,
+                                            "comission": com_name})
 
-        com_tasks_array = []
-        com_tasks = Task.objects.filter(comission__exact=comission)
-        for task in com_tasks:
-            com_tasks_array.append({"title": task.task_title,
-                                    "description": task.task_description,
-                                    "comName": com_name})
-
-        response_json = JsonResponse({"success": True,
-                                      "comName": com_name,
-                                      "comTasks": com_tasks_array})
+            response_json = JsonResponse({"success": True,
+                                          "comName": com_name,
+                                          "comTasks": com_tasks_array})
     except KeyError:
         response_json = JsonResponse({"success": False,
                                       "error": "wrong request data"})
@@ -385,6 +408,7 @@ def add_task(request):
 @csrf_exempt
 @api_view(["POST"])
 @permission_classes((AllowAny,))
+@authentication_classes((CsrfExemptSessionAuthentication,))
 def enter_or_leave_com(request):
     request_json = json.load(request)
 

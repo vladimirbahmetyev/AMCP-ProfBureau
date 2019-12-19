@@ -13,7 +13,8 @@ export default class AuthWindow extends React.Component {
             },
             body:JSON.stringify({
                 "login": document.getElementById('login').value,
-                "password": document.getElementById('password').value
+                "password": document.getElementById('password').value,
+                csrfmiddlewaretoken: getCookie('csrftoken')
             }),
         
         })
@@ -45,7 +46,7 @@ export default class AuthWindow extends React.Component {
                     </div>
                     <div className='auth-field'>
                         <p>Пароль</p>
-                        <input id='password'></input>
+                        <input id='password' type='password'></input>
                     </div>
                     <div className='auth-bottom-buttons'>
                         <div className='auth-button auth-login' onClick={() => this.login()}>
