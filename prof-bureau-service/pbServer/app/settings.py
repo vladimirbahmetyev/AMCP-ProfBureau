@@ -11,10 +11,10 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
-import django_heroku
+# import django_heroku
 
 
-django_heroku.settings(locals())
+# django_heroku.settings(locals())
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -30,7 +30,7 @@ SECRET_KEY = '*77n34%m5#*-7$c2!#&m(*=g00=s*a!w_lcww8=$o@^8sfr&ba'
 DEBUG = True
 
 # ALLOWED_HOSTS = ['127.0.0.1', '49fc3863.ngrok.io', '192.168.0.1']
-ALLOWED_HOSTS = ['192.168.0.100', '127.0.0.1']
+ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
@@ -61,6 +61,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware'
 ]
 
 CORS_ORIGIN_ALLOW_ALL = True
@@ -95,9 +96,9 @@ TEMPLATE_DIRS = (
     os.path.join(os.path.dirname(__file__), 'templates'),
 )
 
-STATICFILES_DIRS = [
+STATICFILES_DIRS = (
     os.path.join(os.path.dirname(__file__), "static"),
-]
+)
 
 TEMPLATES = [
     {
@@ -165,4 +166,9 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
+STATIC_ROOT = os.path.join(os.path.dirname(__file__), 'staticfiles')
 STATIC_URL = '/static/'
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+# # for /static/root/favicon.ico    
+# WHITENOISE_ROOT = os.path.join(os.path.dirname(__file__), 'staticfiles', 'root') 

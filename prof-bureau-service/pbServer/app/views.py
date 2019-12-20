@@ -374,6 +374,7 @@ def add_task(request):
             response_json = JsonResponse({"success": False,
                                           "errror": "task already exists"})
         except Task.DoesNotExist:
+            Task(comission=comission, task_title=title, task_description=description, deadline=deadline).save()
             com_tasks_array = []
             com_tasks = Task.objects.filter(comission__exact=comission)
             for task in com_tasks:
