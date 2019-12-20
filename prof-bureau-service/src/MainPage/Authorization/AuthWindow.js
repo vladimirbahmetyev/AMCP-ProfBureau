@@ -51,7 +51,7 @@ export default class AuthWindow extends React.Component {
                         <div className='auth-button auth-login' onClick={() => this.login()}>
                             <p>Войти</p>
                         </div>
-                        <div className='vk-reg'></div>
+                        <a href='/login/vk-oauth2' className='vk-reg'></a>
                         <div className='auth-button auth-reg' onClick={() => this.props.openReg(true)}>
                             <p>Регистрация</p>
                         </div>

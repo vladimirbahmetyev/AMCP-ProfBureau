@@ -7,7 +7,7 @@ import ContactBlock from './ContactBlock';
 import ProjectsBlock from './ProjectsBlock';
 import PersonalAccount from '../Personal Acc/PersonalAcc'
 import Authorization from './Authorization/Authorization'
-import { SSL_OP_TLS_BLOCK_PADDING_BUG } from 'constants';
+import { type } from 'os';
 
 export default class MainPage extends React.Component {
 
@@ -27,7 +27,8 @@ export default class MainPage extends React.Component {
                 isAuthorized: true,
                 login: localStorage.getItem('login'),
                 course: localStorage.getItem('course'),
-                stNum: localStorage.getItem('stNum')
+                stNum: +localStorage.getItem('stNum'),
+                page: 'main'
             })
         }
     }
