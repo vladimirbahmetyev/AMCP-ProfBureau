@@ -43,9 +43,10 @@
 .auth-bottom-buttons {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
-    width: 60%;
+    justify-content: space-around;
+    width: 80%;
     margin: 3% 0 5% 0;
+    height: 8vh;
 }
 
 .auth-button {
@@ -56,6 +57,7 @@
     justify-content: center;
     align-items: center;
     transition-duration: 300ms;
+    font-size: 1.2vw;
 }
 
 .auth-button:hover {
@@ -65,11 +67,11 @@
 }
 
 .auth-login {
-    width: 30%;
+    width: 25%;
 }
 
 .auth-reg {
-    width: 60%;
+    width: 45%;
     background-color: lightcoral;
 }
 

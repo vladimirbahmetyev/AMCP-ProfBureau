@@ -55,8 +55,11 @@ export default class RegWindow extends React.Component{
                         <p>Пароль (не менее 8 символов)</p>
                         <input id='password' type='password'></input>
                     </div>
-                    <div className='reg-button' onClick={() => this.buttonClicked()}>
-                        <p>Зарегистрироваться</p>
+                    <div className='reg-buttons-field'>
+                        <div className='reg-button' onClick={() => this.buttonClicked()}>
+                            <p>Зарегистрироваться</p>
+                        </div>
+                        <div className='vk-reg'></div>
                     </div>
                 </div>
                 <div className='reg-close-circle' onClick={() => this.props.openReg(false)}>

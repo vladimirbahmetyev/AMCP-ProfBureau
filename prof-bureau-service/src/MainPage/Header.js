@@ -49,7 +49,7 @@ export default class Header extends React.Component {
                                     else return this.props.openAuth(true)}}>
                                 {auth}&#160;
                             </div>
-                            <div className="acc-exit" onClick={() => this.props.changePage()}>
+                            <div className="acc-exit" onClick={() => this.props.changePage(page)}>
                                 {accExit}
                             </div>
                         </div>

@@ -7,6 +7,7 @@ import ContactBlock from './ContactBlock';
 import ProjectsBlock from './ProjectsBlock';
 import PersonalAccount from '../Personal Acc/PersonalAcc'
 import Authorization from './Authorization/Authorization'
+import { SSL_OP_TLS_BLOCK_PADDING_BUG } from 'constants';
 
 export default class MainPage extends React.Component {
 
@@ -20,10 +21,23 @@ export default class MainPage extends React.Component {
         responseData: JSON.stringify('')
     }
 
+    componentWillMount() {
+        if (localStorage.getItem('login') !== null) {
+            this.setState({
+                isAuthorized: true,
+                login: localStorage.getItem('login'),
+                course: localStorage.getItem('course'),
+                stNum: localStorage.getItem('stNum')
+            })
+        }
+    }
+
     changeComission = name => {
-        this.setState({
-            comission: name
-        })
+        this.setState({ comission: name })
+
+        if (this.state.page === 'account') {
+            this.setState({page: 'main'})
+        }
     }
 
     login = (userInfo) => {
@@ -34,6 +48,10 @@ export default class MainPage extends React.Component {
             stNum: userInfo.stNum,
             page: 'main' 
         })
+
+        localStorage.setItem('login', userInfo.name)
+        localStorage.setItem('course', userInfo.course)
+        localStorage.setItem('stNum', userInfo.stNum)
     }
     
     logout = () => {
@@ -44,10 +62,14 @@ export default class MainPage extends React.Component {
             stNum: 0,
             page: 'main'
         })
+
+        localStorage.removeItem('login')
+        localStorage.removeItem('course')
+        localStorage.removeItem('stNum')
     }
 
-    changePage = () => {
-        if (this.state.page === 'main') {
+    changePage = (page) => {
+        if (page === 'main') {
             fetch(this.props.url + 'get_personal_info/',{
                 method:"POST",
                 headers:{
@@ -67,7 +89,7 @@ export default class MainPage extends React.Component {
                     page: 'account'
                 })
             })
-        } else if (this.state.page === 'account') {
+        } else if (page === 'account') {
             this.setState({
                 page: 'main'
             })

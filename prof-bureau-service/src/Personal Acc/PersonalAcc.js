@@ -106,7 +106,7 @@ export default class PersonalAccount extends React.Component{
         isNewTaskFormOpen: false,
         isEntryOpen:false,
 
-        selectComission:"none",
+        selectComission:"None",
 
         comInfo: this.props.persAccInfo.comInfo,
         userTasks: this.props.persAccInfo.userTasks,
@@ -245,7 +245,6 @@ export default class PersonalAccount extends React.Component{
     comTableListener = (pushedCom)=>{
         if(pushedCom.comName === this.state.selectComission)
             return
-
         if (pushedCom.comName ==="none") {
             this.setState({
                 isAPred: false,
