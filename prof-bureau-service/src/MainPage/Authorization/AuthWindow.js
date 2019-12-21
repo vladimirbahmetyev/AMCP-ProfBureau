@@ -34,6 +34,32 @@ export default class AuthWindow extends React.Component {
         })
     }
 
+    // vkLogin = () => {
+    //     console.log('got it')
+    //     fetch(this.props.url + 'vk_login/', {
+    //         method: "GET",
+    //     })
+    //     .then((response) => {
+    //         return response.json()
+    //     })
+    //     .then((responseJson) => {
+    //         if (responseJson.success) {
+    //             if (responseJson.isReged) {
+    //                 let userInfo = {
+    //                     "course": responseJson.course,
+    //                     "name": responseJson.name,
+    //                     "stNum": responseJson.stNum,
+    //                 }
+    //                 this.props.login(userInfo)
+    //             } else {
+    //                 this.props.openReg(true)
+    //             }
+    //         } else {
+    //             console.log(responseJson.error)
+    //         }
+    //     })
+    // }
+
     render() {
         return (
             <div className='auth-background'>
@@ -51,7 +77,7 @@ export default class AuthWindow extends React.Component {
                         <div className='auth-button auth-login' onClick={() => this.login()}>
                             <p>Войти</p>
                         </div>
-                        <a href='/login/vk-oauth2' className='vk-reg'></a>
+                        <a href='/login/vk-oauth2' className='vk-reg' onClick={() => localStorage.setItem('logged', true)}></a>
                         <div className='auth-button auth-reg' onClick={() => this.props.openReg(true)}>
                             <p>Регистрация</p>
                         </div>

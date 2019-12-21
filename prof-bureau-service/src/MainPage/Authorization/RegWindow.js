@@ -59,7 +59,7 @@ export default class RegWindow extends React.Component{
                         <div className='reg-button' onClick={() => this.buttonClicked()}>
                             <p>Зарегистрироваться</p>
                         </div>
-                        <div className='vk-reg'></div>
+                        {/* <a href='/login/vk-oauth2' className='vk-reg' onClick={() => localStorage.setItem('logged', true)}></a> */}
                     </div>
                 </div>
                 <div className='reg-close-circle' onClick={() => this.props.openReg(false)}>

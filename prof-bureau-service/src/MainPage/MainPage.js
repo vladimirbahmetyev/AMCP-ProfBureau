@@ -18,7 +18,8 @@ export default class MainPage extends React.Component {
         course: 0,
         page: 'main',
         stNum: 0,
-        responseData: JSON.stringify('')
+        responseData: JSON.stringify(''),
+        authWindow: 'auth'
     }
 
     componentWillMount() {
@@ -30,6 +31,41 @@ export default class MainPage extends React.Component {
                 stNum: +localStorage.getItem('stNum'),
                 page: 'main'
             })
+        } else if (localStorage.getItem('logged')) {
+            fetch(this.props.url + 'vk_login/', {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
+            .then((response) => {
+                return response.json()
+            })
+            .then((responseJson) => {
+                console.log(responseJson)
+                if (responseJson.success) {
+                    if (responseJson.isReged) {
+                        console.log('reged')
+                        let userInfo = {
+                            "course": responseJson.course,
+                            "name": responseJson.name,
+                            "stNum": responseJson.stNum,
+                        }
+                        this.login(userInfo)
+                    } else {
+                        console.log('not reged')
+                        this.setState({
+                            page: 'auth',
+                            authWindow: 'reg'
+                        })
+                    }
+                } else {
+                    console.log(responseJson.error)
+                }
+            })
+            .catch = error => {
+                console.log(error)
+            }
         }
     }
 
@@ -56,6 +92,22 @@ export default class MainPage extends React.Component {
     }
     
     logout = () => {
+        fetch(this.props.url + 'vk_logout/', {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+        .then((response) => {
+            return response.json()
+        })
+        .then((responseJson) => {
+            console.log(responseJson)
+        })
+        .catch = error => {
+            console.log(error)
+        }
+
         this.setState({
             isAuthorized: false,
             login: '',
@@ -67,6 +119,7 @@ export default class MainPage extends React.Component {
         localStorage.removeItem('login')
         localStorage.removeItem('course')
         localStorage.removeItem('stNum')
+        localStorage.removeItem('logged')
     }
 
     changePage = (page) => {
@@ -113,7 +166,7 @@ export default class MainPage extends React.Component {
         } else if (page === 'account') {
             return <PersonalAccount persAccInfo={this.state.responseData} url={this.props.url} user={this.state.stNum}/>
         } else if (page === 'auth') {
-            return <Authorization openAuth={this.openAuth} login={this.login} url={this.props.url}/>
+            return <Authorization openAuth={this.openAuth} login={this.login} url={this.props.url} window={this.state.authWindow}/>
         }
     }
 

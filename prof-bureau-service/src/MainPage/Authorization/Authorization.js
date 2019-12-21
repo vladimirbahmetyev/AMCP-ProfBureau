@@ -6,7 +6,7 @@ import RegWindow from './RegWindow'
 export default class Authorization extends React.Component {
 
     state = {
-        window: 'auth'
+        window: this.props.window
     }
 
     openReg = flag => {
