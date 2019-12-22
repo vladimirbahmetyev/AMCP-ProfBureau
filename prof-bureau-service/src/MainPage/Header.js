@@ -17,11 +17,11 @@ export default class Header extends React.Component {
         const course = isAuthorized ? this.props.course + ' курс' : ''
         return(
             <header className='header' style={{opacity: this.setHeaderOpacity(page)}}>
-                <div style={{marginLeft: '10%'}}>
+                <div style={{marginLeft: '5%'}}>
                     <button className='title-button'
                             onClick={() => this.props.changeComission('Профбюро')}
                     >
-                        <h1>Профбюро ПМ-ПУ</h1>
+                        <h1>ПБ ПМ-ПУ</h1>
                     </button>
                 </div>
                 <div className="personal-info">

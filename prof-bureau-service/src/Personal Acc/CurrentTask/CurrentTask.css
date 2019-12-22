@@ -1,7 +1,8 @@
 .current-task-item-prev{
     display: flex; 
     justify-content: flex-end;
-    height: 7vh;  
+    height: 7vh; 
+    max-height: 6vw;
     width: 100%;
 }
 
@@ -25,6 +26,7 @@
     background-color: #2c3343;
     width: 7vh;
     height: 7vh;
+    max-height: 6vw;
     border: 1px solid black;
     mask-repeat: no-repeat;
     mask-size: 55% 55%;
@@ -43,17 +45,19 @@
 
 .current-task-right{
     height: inherit;
+    max-height: inherit;
     display: flex;
     background-color: #fae7de;
     border-top-right-radius: 6.15vh;
     width: 100%;
     border-bottom-right-radius: 6.15vh;
-    width: 35vw;
+    width: 40vw;
 }
 .current-task-name{
     padding-left: 15px;
     width: 78.5%;
     height: inherit;
+    max-height: inherit;
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -82,6 +86,9 @@
     mask-size: 70% 70%;
     height: 6.15vh;
     width: 6.15vh;
+    min-height: 3vw;
+    min-width: 3.5vw;
+    max-height: 3.5vw;
     mask-repeat: no-repeat;
     mask-position: center;
 }
@@ -91,6 +98,9 @@
     mask-size: 60% 60%;
     height: 6.15vh;
     width: 6.15vh;
+    min-height: 3vw;
+    min-width: 3vw;
+    max-height: 3vw;
     mask-repeat: no-repeat;
     mask-position: center;
     margin-right: 10%;
@@ -116,5 +126,6 @@
     height: 10vh;
     width: 100%;
     padding: 20px;
+    font-size: 1.5vw;
     background-color:#fae7de ;
 }

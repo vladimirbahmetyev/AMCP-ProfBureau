@@ -29,21 +29,21 @@ export default class CurrentTask extends React.Component{
     render(){
     return(
         <div className="current-task-item">
-        <div className="current-task-item-prev">
-            <div className={this.watchClassStatus} onClick={this.onDescpButtonClick}>
-                <div className="current-task-eye"></div>
-            </div>
-            <div className="current-task-right">
-                <div className="current-task-name">
-                    {this.props.content.title}
+            <div className="current-task-item-prev">
+                <div className={this.watchClassStatus} onClick={this.onDescpButtonClick}>
+                    <div className="current-task-eye"></div>
                 </div>
-                <div className="current-task-buttons">
-                     <div className="current-task-send" onClick={()=>this.props.function1(this.props.content.title, "send_task/", this.props.comission, this.props.predAction)}></div>
-                     <div className="current-task-delete" onClick={()=>this.props.function1(this.props.content.title, "decline_task/", this.props.comission, this.props.predAction)}></div>
+                <div className="current-task-right">
+                    <div className="current-task-name">
+                        {this.props.content.title}
+                    </div>
+                    <div className="current-task-buttons">
+                        <div className="current-task-send" onClick={()=>this.props.function1(this.props.content.title, "send_task/", this.props.comission, this.props.predAction)}></div>
+                        <div className="current-task-delete" onClick={()=>this.props.function1(this.props.content.title, "decline_task/", this.props.comission, this.props.predAction)}></div>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div className={this.state.descriptionState}>
+            <div className={this.state.descriptionState}>
                 {this.props.content.description}
             </div>
         </div>

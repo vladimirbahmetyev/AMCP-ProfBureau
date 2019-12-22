@@ -4,8 +4,8 @@ import MainPage from './MainPage/MainPage';
 class App extends React.Component {
     render() {
         return (
-            <MainPage url="https://pb-amcp-app.herokuapp.com/api/"/>
-            // <MainPage url={document.location.href}/>
+            // <MainPage url="http://192.168.0.102:8000/api/"/>
+            <MainPage url={document.location.href + 'api/'}/>
         );
     }
 }

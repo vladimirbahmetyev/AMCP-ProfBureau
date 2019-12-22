@@ -292,7 +292,7 @@ export default class PersonalAccount extends React.Component{
     }
     render(){
     return(
-    <div style={{fontFamily: 'PFBeauSansPro-light'}}>
+    <div style={{fontFamily: 'PFBeauSansPro-light', minHeight: '100vh', backgroundColor: 'white'}}>
     
     <CssTransition
                 classNames="fade"

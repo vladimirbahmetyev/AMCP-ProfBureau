@@ -30,11 +30,11 @@ export default class RegWindow extends React.Component{
                     <p className='reg-text'>Регистрация</p>
                     <div className='reg-field'>
                         <p>Имя</p>
-                        <input id='firstName' type='text'></input>
+                        <input id='firstName' type='text' value={this.props.vkName}></input>
                     </div>
                     <div className='reg-field'>
                         <p>Фамилия</p>
-                        <input id='lastName'></input>
+                        <input id='lastName' value={this.props.vkSurname}></input>
                     </div>
                     <div className='reg-field'>
                         <p>Курс</p>

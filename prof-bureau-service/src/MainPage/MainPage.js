@@ -7,7 +7,6 @@ import ContactBlock from './ContactBlock';
 import ProjectsBlock from './ProjectsBlock';
 import PersonalAccount from '../Personal Acc/PersonalAcc'
 import Authorization from './Authorization/Authorization'
-import { type } from 'os';
 
 export default class MainPage extends React.Component {
 
@@ -19,7 +18,9 @@ export default class MainPage extends React.Component {
         page: 'main',
         stNum: 0,
         responseData: JSON.stringify(''),
-        authWindow: 'auth'
+        authWindow: 'auth',
+        vkName: '',
+        vkSurname: ''
     }
 
     componentWillMount() {
@@ -56,7 +57,9 @@ export default class MainPage extends React.Component {
                         console.log('not reged')
                         this.setState({
                             page: 'auth',
-                            authWindow: 'reg'
+                            authWindow: 'reg',
+                            vkName: responseJson.name.split(' ')[0],
+                            vkSurname: responseJson.name.split(' ')[1]
                         })
                     }
                 } else {
@@ -166,7 +169,8 @@ export default class MainPage extends React.Component {
         } else if (page === 'account') {
             return <PersonalAccount persAccInfo={this.state.responseData} url={this.props.url} user={this.state.stNum}/>
         } else if (page === 'auth') {
-            return <Authorization openAuth={this.openAuth} login={this.login} url={this.props.url} window={this.state.authWindow}/>
+            return <Authorization openAuth={this.openAuth} login={this.login} url={this.props.url} window={this.state.authWindow}
+                    vkName={this.state.vkName} vkSurname={this.state.vkSurname}/>
         }
     }
 

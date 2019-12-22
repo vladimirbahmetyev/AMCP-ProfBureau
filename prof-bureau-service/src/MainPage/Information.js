@@ -1,4 +1,5 @@
 import React from 'react'
+import './styles/InformationBlock.css'
 
 export default class Information extends React.Component {
 
@@ -8,7 +9,7 @@ export default class Information extends React.Component {
         switch(comission) {
             case 'Культмасс': {
                 return(
-                    <div>
+                    <div className='com-description'>
                         Культмасс — законодатель праздников и концертов на факультете.
                         <br/><br/>
                         Организация Мисс и Мистер ПМ-ПУ, День Первокурсника, гала-концерты, 
@@ -22,7 +23,7 @@ export default class Information extends React.Component {
 
             case 'HR': {
                 return(
-                    <div>
+                    <div className='com-description'>
                         HR — комиссия по кадрам.
                         <br/><br/>
                         Отбор людей в комиссии, обучение и сплочение комиссий, 
@@ -36,7 +37,7 @@ export default class Information extends React.Component {
 
             case 'FunCom': {
                 return(
-                    <div>
+                    <div className='com-description'>
                         FunCom — развлекательная комиссия.
                         <br/><br/>
                         Фанком занимается организацией тематических квестов и 
@@ -51,7 +52,7 @@ export default class Information extends React.Component {
 
             case 'PM-Design': {
                 return(
-                    <div>
+                    <div className='com-description'>
                         PM-Design — главные по дизайну на факультете.
                         <br/><br/>
                         Разработка официальной символики, дизайн афиш, 
@@ -65,7 +66,7 @@ export default class Information extends React.Component {
 
             case 'СпортКом': {
                 return(
-                    <div>
+                    <div className='com-description'>
                         СпортКом — ответственные за продвижение спорта на факультете.
                         <br/><br/>
                         Проведение спортивных турниров и трансляций, аренда спортивного 
@@ -79,7 +80,7 @@ export default class Information extends React.Component {
 
             case 'PM-Partner': {
                 return(
-                    <div>
+                    <div className='com-description'>
                         PM-Partner — главный по спонсорам.
                         <br/><br/>
                         Поиск спонсоров для финансирования мероприятий, организация клуба, 
@@ -93,7 +94,7 @@ export default class Information extends React.Component {
 
             case 'Оформители': {
                 return(
-                    <div>
+                    <div className='com-description'>
                         Оформители — создатели атмосферы.
                         <br/><br/>
                         Украшение факультета к праздникам, декорации 
@@ -108,7 +109,7 @@ export default class Information extends React.Component {
 
             case 'PM-Photo': {
                 return(
-                    <div>
+                    <div className='com-description'>
                         PM-Photo — папарацци факультета.
                         <br/><br/>
                         Фотоотчёты с различных мероприятий, организация фотовыставок, 
@@ -125,7 +126,7 @@ export default class Information extends React.Component {
 
             default: {
                 return(
-                    <div>
+                    <div className='com-description'>
                         Профсоюз факультета ПМ-ПУ — это большой и дружный коллектив, 
                         объединённый общей идеей — сделать годы обучения незабываемыми.
                         <br/><br/>

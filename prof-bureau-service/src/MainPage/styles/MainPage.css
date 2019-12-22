@@ -13,9 +13,10 @@
 .background {
     font-family: 'PFBeauSansPro-light';
     width: 100%;
+    min-height: 100vh;
     background-image: url(../images/PM-cropped-blured.png);
     background-attachment: fixed;
-    background-size: 100% auto;
+    background-size: cover;
     top: 0;
     left: 0;
     overflow: hidden;
@@ -28,7 +29,7 @@
   margin-left: 10%;
   margin-bottom: 3vh;
   width: 80%;
-  height: auto;
+  /* height: 100%; */
   text-align: center;
   flex-direction: row;
   justify-content: space-between;
