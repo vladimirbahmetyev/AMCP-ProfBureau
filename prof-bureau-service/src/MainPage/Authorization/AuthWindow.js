@@ -5,33 +5,38 @@ export default class AuthWindow extends React.Component {
 
     login = () => {
         // url = this.props.url
-        
-        fetch(this.props.url + 'login/',{
-            method:"POST",
-            headers:{
-                'Content-Type': 'application/json',
-            },
-            body:JSON.stringify({
-                "login": document.getElementById('login').value,
-                "password": document.getElementById('password').value
-            }),
-        
-        })
-        .then((response) => {
-            return response.json()
-        })
-        .then((responseJson) => {
-            if (responseJson.success) {
-                let userInfo = {
-                    "course": responseJson.course,
-                    "name": responseJson.name,
-                    "stNum": responseJson.stNum,
+        let login = document.getElementById('login').value
+        let password = document.getElementById('password').value
+        if (login !== '', password.length >= 8) {
+            fetch(this.props.url + 'login/',{
+                method:"POST",
+                headers:{
+                    'Content-Type': 'application/json',
+                },
+                body:JSON.stringify({
+                    "login": login,
+                    "password": password
+                }),
+            
+            })
+            .then((response) => {
+                return response.json()
+            })
+            .then((responseJson) => {
+                if (responseJson.success) {
+                    let userInfo = {
+                        "course": responseJson.course,
+                        "name": responseJson.name,
+                        "stNum": responseJson.stNum,
+                    }
+                    this.props.login(userInfo)
+                } else {
+                    console.log(responseJson.error)
                 }
-                this.props.login(userInfo)
-            } else {
-                console.log(responseJson.error)
-            }
-        })
+            })
+        } else {
+            alert('Wrong data!')
+        }
     }
 
     // vkLogin = () => {

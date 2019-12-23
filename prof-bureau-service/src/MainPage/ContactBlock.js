@@ -3,6 +3,15 @@ import './styles/ContactBlock.css'
 import './styles/ChairmanPhoto.css'
 
 export default class ContactBlock extends React.Component {
+    pbButton = () => {
+        if (!this.props.isAuthorized) {
+            return(
+                <button className='follow-button' onClick={() => this.props.openAuth(true)}>
+                    Присоединиться <br/> к профбюро
+                </button>
+            )
+        } else return
+    }
 
     render() {
         const chairmans = {
@@ -36,9 +45,10 @@ export default class ContactBlock extends React.Component {
                     <a className='chairman-link' href={chairmans[comission][1]} rel="noopener noreferrer" target='_blank'>
                         Председатель:<br/>{chairmans[comission][0]}
                     </a>
-                    <button className='follow-button' onClick={() => this.props.openAuth(true)}>
+                    {/* <button className='follow-button' onClick={() => this.props.openAuth(true)}>
                         Присоединиться <br/> к профбюро
-                    </button>
+                    </button> */}
+                    {this.pbButton()}
                 </div>
                 <div className='socialNetworks'>
                     <h2 className='block-title'>Мы в соцсетях</h2>

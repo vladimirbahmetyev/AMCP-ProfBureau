@@ -161,7 +161,7 @@ export default class MainPage extends React.Component {
                     <NavigationBlock changeComission={this.changeComission} />
                     <div className='content'>
                         <InformationBlock comission={this.state.comission}/>
-                        <ContactBlock comission={this.state.comission} openAuth={this.openAuth}/>
+                        <ContactBlock comission={this.state.comission} openAuth={this.openAuth} isAuthorized={this.state.isAuthorized}/>
                         <ProjectsBlock />
                     </div>
                 </div>
@@ -179,12 +179,6 @@ export default class MainPage extends React.Component {
             page: flag ? 'auth' : 'main'
         })
     }
-
-    // openReg = flag => {
-    //     this.setState({
-    //         page: flag ? 'reg' : 'main'
-    //     })
-    // }
     
     render() {
             return(

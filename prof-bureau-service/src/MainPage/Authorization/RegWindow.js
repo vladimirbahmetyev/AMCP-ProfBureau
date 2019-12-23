@@ -4,23 +4,32 @@ import './Reg.css'
 export default class RegWindow extends React.Component{
 
     buttonClicked = () => {
-        fetch(this.props.url + 'registration/',{
-            method:"POST",
-            headers:{
-                'Content-Type': 'application/json',
-            },
-            body:JSON.stringify({
-                "firstName": document.getElementById('firstName').value,
-                "lastName": document.getElementById('lastName').value,
-                "course": document.getElementById('course').value,
-                "email": document.getElementById('e-mail').value,
-                "password": document.getElementById('password').value
-            }),
-        })
-        .then((response) => {
-            if (response.status === 200)
-                this.props.finishReg()
-        })
+        let name = document.getElementById('firstNameReg').value
+        let surname = document.getElementById('lastNameReg').value
+        let email = document.getElementById('e-mail').value
+        let password = document.getElementById('password').value
+        alert(name + " " + surname)
+        if (name !== '' && surname !== '' && email !== '' && password.length >= 8) {
+            fetch(this.props.url + 'registration/',{
+                method:"POST",
+                headers:{
+                    'Content-Type': 'application/json',
+                },
+                body:JSON.stringify({
+                    "firstName": name,
+                    "lastName": surname,
+                    "course": document.getElementById('course').value,
+                    "email": email,
+                    "password": password
+                }),
+            })
+            .then((response) => {
+                if (response.status === 200)
+                    this.props.finishReg()
+            })
+        } else {
+            alert('Wrong data!')
+        }
     }
 
     render() {
@@ -30,11 +39,11 @@ export default class RegWindow extends React.Component{
                     <p className='reg-text'>Регистрация</p>
                     <div className='reg-field'>
                         <p>Имя</p>
-                        <input id='firstName' type='text' value={this.props.vkName}></input>
+                        <input id='firstNameReg' type='text'></input>
                     </div>
                     <div className='reg-field'>
                         <p>Фамилия</p>
-                        <input id='lastName' value={this.props.vkSurname}></input>
+                        <input id='lastNameReg'></input>
                     </div>
                     <div className='reg-field'>
                         <p>Курс</p>
@@ -59,7 +68,6 @@ export default class RegWindow extends React.Component{
                         <div className='reg-button' onClick={() => this.buttonClicked()}>
                             <p>Зарегистрироваться</p>
                         </div>
-                        {/* <a href='/login/vk-oauth2' className='vk-reg' onClick={() => localStorage.setItem('logged', true)}></a> */}
                     </div>
                 </div>
                 <div className='reg-close-circle' onClick={() => this.props.openReg(false)}>
