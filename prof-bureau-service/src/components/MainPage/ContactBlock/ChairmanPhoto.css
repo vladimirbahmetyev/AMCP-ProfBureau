@@ -1,0 +1,48 @@
+.chairman-photo {
+    display: flex;
+    margin: 5%;
+    width: 85%;
+    height: auto;
+    padding-top: 55%;
+    border-radius: 5px;
+    background-size: 100% auto;
+    background-position: center;
+}
+
+.pb-photo {
+    background-image: url('../../../media/chairmen/pb.jpg');
+}
+
+.cultmass-photo {
+    background-image: url('../../../media/chairmen/cultmass.jpg');
+}
+
+.HR-photo {
+    background-image: url('../../../media/chairmen/hr.jpg');
+}
+
+.FunCom-photo {
+    background-image: url('../../../media/chairmen/funcom.jpg');
+}
+
+.PM-Design-photo {
+    background-image: url('../../../media/chairmen/design.jpg');
+}
+
+.sportcom-photo {
+    background-image: url('../../../media/chairmen/sportcom.jpg');
+    background-position-y: 20%;
+}
+
+.PM-Partner-photo {
+    background-image: url('../../../media/chairmen/partner.jpg');
+}
+
+.oformiteli-photo {
+    background-image: url('../../../media/chairmen/oformiteli.jpg');
+}
+
+.PM-Photo-photo {
+    background-image: url('../../../media/chairmen/photo.jpg');
+}
+

@@ -1,0 +1,40 @@
+
+.cultmass-icon {
+    mask-image: url('../../../media/sprite.svg#CultMass');
+    mask-size: 90% 90%; 
+}
+
+.HR-icon {
+    mask-image: url('../../../media/sprite.svg#HR');
+    mask-size: 100% 100%;
+}
+
+.FunCom-icon {
+    mask-image: url('../../../media/sprite.svg#FunCom');
+    mask-size: 90% 90%; 
+}
+
+.PM-Design-icon {
+    mask-image: url('../../../media/sprite.svg#PM-Design');
+    mask-size: 80% 80%;
+}
+
+.sportcom-icon {
+    mask-image: url('../../../media/sprite.svg#sportcom');
+    mask-size: 80% 80%;
+}
+
+.PM-Partner-icon {
+    mask-image: url('../../../media/sprite.svg#PM-Partner');
+    mask-size: 90% 90%;
+}
+
+.oformiteli-icon {
+    mask-image: url('../../../media/sprite.svg#oformiteli');
+    mask-size: 85% 85%;
+}
+
+.PM-Photo-icon {
+    mask-image: url('../../../media/sprite.svg#PM-Photo');
+    mask-size: 80% 80%;
+}
