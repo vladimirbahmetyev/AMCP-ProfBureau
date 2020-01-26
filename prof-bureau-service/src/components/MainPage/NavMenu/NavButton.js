@@ -1,6 +1,10 @@
 import React from 'react'
 import './NavigationBlock.css'
 import './ComissionIcons.css'
+import { store } from '../../../store'
+import { setComission } from '../../../actions'
+import ReactDOM from 'react-dom'
+import App from '../../../App'
 
 export default class NavButton extends React.Component {
 
@@ -19,12 +23,20 @@ export default class NavButton extends React.Component {
         return(
             <li>
                 <div className='listElement'
-                        onClick={() => this.props.changeComission(comission)}
+                        // onClick={() => this.props.changeComission(comission)}
+                        onClick={() => this.dispatchComission(comission)}
                 >
                     <div className={cssClass}></div>
                     <div className='text'>{comission}</div>
                 </div>
             </li>
         )
+    }
+
+    dispatchComission = com => {
+        store.dispatch(setComission(com))
+
+        const render = () => ReactDOM.render(<App />, document.getElementById("root"));
+        render();
     }
 }

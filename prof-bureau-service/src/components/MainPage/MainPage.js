@@ -8,10 +8,12 @@ import ProjectsBlock from './ProjectsBlock/ProjectsBlock';
 import PersonalAccount from '../Personal Acc/PersonalAcc'
 import Authorization from './Authorization/Authorization'
 
+import { store } from '../../store'
+
 export default class MainPage extends React.Component {
 
     state = {
-        comission: 'Профбюро',
+        // comission: 'Профбюро',
         isAuthorized: false,
         login: '',
         course: 0,
@@ -73,7 +75,7 @@ export default class MainPage extends React.Component {
     }
 
     changeComission = name => {
-        this.setState({ comission: name })
+        // this.setState({ comission: name })
 
         if (this.state.page === 'account') {
             this.setState({page: 'main'})
@@ -160,8 +162,8 @@ export default class MainPage extends React.Component {
                 <div className='mainBlock'>
                     <NavigationBlock changeComission={this.changeComission} />
                     <div className='content'>
-                        <InformationBlock comission={this.state.comission}/>
-                        <ContactBlock comission={this.state.comission} openAuth={this.openAuth} isAuthorized={this.state.isAuthorized}/>
+                        <InformationBlock comission={store.getState().comission}/>
+                        <ContactBlock comission={store.getState().comission} openAuth={this.openAuth} isAuthorized={this.state.isAuthorized}/>
                         <ProjectsBlock />
                     </div>
                 </div>
@@ -169,8 +171,8 @@ export default class MainPage extends React.Component {
         } else if (page === 'account') {
             return <PersonalAccount persAccInfo={this.state.responseData} url={this.props.url} user={this.state.stNum}/>
         } else if (page === 'auth') {
-            return <Authorization openAuth={this.openAuth} login={this.login} url={this.props.url} window={this.state.authWindow}
-                    vkName={this.state.vkName} vkSurname={this.state.vkSurname}/>
+            return <Authorization openAuth={this.openAuth} login={this.login} 
+                    url={this.props.url} window={this.state.authWindow}/>
         }
     }
 
