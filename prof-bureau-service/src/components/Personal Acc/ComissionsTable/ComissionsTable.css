@@ -67,52 +67,52 @@
 }
 
 .pm-design .com-picture{
-    mask-image: url("../sprite.svg#PM-Design");
+    mask-image: url("../../../media/sprite.svg#PM-Design");
     mask-size: 75% 75%;
     mask-repeat: no-repeat;
     mask-position: center;
 }
 .hr .com-picture{
-    mask-image: url("../sprite.svg#HR");
+    mask-image: url("../../../media/sprite.svg#HR");
 }
 .pm-profi .com-picture{
-    mask-image: url("../sprite.svg#PM-Partner");
+    mask-image: url("../../../media/sprite.svg#PM-Partner");
     mask-size: 90% 90%;
     mask-repeat: no-repeat;
     mask-position: center;
 }
 .pm-photo .com-picture{
-    mask-image: url("../sprite.svg#PM-Photo");
+    mask-image: url("../../../media/sprite.svg#PM-Photo");
     mask-size: 80% 80%;
     mask-repeat: no-repeat;
     mask-position: center;
 }
 .funcom .com-picture{
-    mask-image: url("../sprite.svg#FunCom");
+    mask-image: url("../../../media/sprite.svg#FunCom");
     mask-size: 80% 80%;
     mask-repeat: no-repeat;
     mask-position: center;
 }
 .sportcom .com-picture{
-    mask-image: url("../sprite.svg#sportcom");
+    mask-image: url("../../../media/sprite.svg#sportcom");
     mask-size: 75% 75%;
     mask-repeat: no-repeat;
     mask-position: center;
 }
 .mounting .com-picture{
-    mask-image: url("../sprite.svg#oformiteli");
+    mask-image: url("../../../media/sprite.svg#oformiteli");
     mask-size: 80% 80%;
     mask-repeat: no-repeat;
     mask-position: center;
 }
 .cultmass .com-picture{
-    mask-image: url("../sprite.svg#CultMass");
+    mask-image: url("../../../media/sprite.svg#CultMass");
     mask-size: 80% 80%;
     mask-repeat: no-repeat;
     mask-position: center;
 }
 .PM-Partner .com-picture{
-    mask-image: url("../sprite.svg#PM-Partner");
+    mask-image: url("../../../media/sprite.svg#PM-Partner");
     mask-size: 100% 100%;
     mask-repeat: no-repeat;
     mask-position: center;
@@ -122,7 +122,7 @@
 }
 
 .account .com-picture {
-    mask-image: url("../sprite.svg#acc-pic");
+    mask-image: url("../../../media/sprite.svg#acc-pic");
     mask-size: 80% 80%;
     mask-repeat: no-repeat;
     mask-position: center;

@@ -57,7 +57,7 @@
     position: absolute;
     transform: translateX(600%) translateY(-200%);
     border-radius: 50%;
-    mask-image: url('../sprite.svg#cross');
+    mask-image: url('../../../media/sprite.svg#cross');
     mask-size: 50% 50%;
     mask-repeat: no-repeat;
     mask-position: center;
