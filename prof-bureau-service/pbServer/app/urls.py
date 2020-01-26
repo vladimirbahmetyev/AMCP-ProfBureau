@@ -34,5 +34,11 @@ urlpatterns = [
     path('api/enter_or_leave_com/', enter_or_leave_com),
 
     path('api/gen_data/', gen_data),
-    path('', index)
+    path('api/vk_login/', vk_login),
+    path('api/vk_logout/', vk_logout),
+    # path('api/test_lambda/', test_lambda),
+    path('', index),
+    path('', include('social_django.urls', namespace='social')),
+    # path('api/vk_auth/', vk_auth)
+    # url(r'', include('social_auth.urls')),
 ]

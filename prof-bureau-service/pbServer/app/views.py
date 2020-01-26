@@ -2,15 +2,16 @@ from django.views.decorators.csrf import csrf_exempt
 from rest_framework.decorators import api_view, permission_classes, authentication_classes
 from rest_framework.permissions import AllowAny
 from .models import *
+import social_core
 
 import json
 from django.http import JsonResponse
 import re
 import datetime
 from django.shortcuts import render
-# Create your views here.
 from django.http import HttpResponse
 from rest_framework.authentication import SessionAuthentication
+import requests
 
 
 class CsrfExemptSessionAuthentication(SessionAuthentication):
@@ -22,12 +23,23 @@ def index(request):
     return render(request, "index.html")
 
 
+# @csrf_exempt
+# @api_view(["POST"])
+# @permission_classes((AllowAny,))
+# @authentication_classes((CsrfExemptSessionAuthentication,))
+# def vk_auth(request):
+#     print(request.user)
+
+
 @csrf_exempt
 @api_view(["POST"])
 @permission_classes((AllowAny,))
 @authentication_classes((CsrfExemptSessionAuthentication,))
 def registration(request):
+    user_login = request.user.get_username()
+    print(user_login)
     request_json = json.load(request)
+    print(request_json)
     first_name = request_json["firstName"]
     last_name = request_json["lastName"]
     course = request_json["course"]
@@ -36,7 +48,8 @@ def registration(request):
 
     try:
         st = int(re.search(r'[0-9]{6}', email).group(0))
-        User(user_st=st, last_name=last_name, first_name=first_name, course=course, password=password).save()
+        User(user_st=st, last_name=last_name, first_name=first_name, course=course,
+             password=password, user_login=user_login).save()
         resp = JsonResponse({"success": True,
                              "st": st})
     except AttributeError:
@@ -52,8 +65,37 @@ def registration(request):
 @api_view(["POST"])
 @permission_classes((AllowAny,))
 @authentication_classes((CsrfExemptSessionAuthentication,))
+def vk_login(request):
+    if request.user.is_authenticated:
+        try:
+            user = User.objects.get(user_login=request.user.get_username())
+            response_json = JsonResponse({"success": True,
+                                          "isReged": True,
+                                          "name": user.__str__(),
+                                          "course": user.course,
+                                          "stNum": user.user_st})
+        except:
+            response_json = JsonResponse({"success": True,
+                                          "isReged": False,
+                                          "name": request.user.get_full_name()})
+    else:
+        response_json = JsonResponse({"success": False,
+                                      "error": "not authenticated"})
+
+    response_json['Access-Control-Allow-Origin'] = '*'
+    response_json["Access-Control-Allow-Headers"] = '*'
+    return response_json
+
+
+
+@csrf_exempt
+@api_view(["POST"])
+@permission_classes((AllowAny,))
+@authentication_classes((CsrfExemptSessionAuthentication,))
 def login(request):
     request_json = json.load(request)
+
+    # vk_id = VKOAuth2.
 
     try:
         user_login = int(re.search(r'[0-9]{6}', request_json["login"]).group(0))
@@ -225,6 +267,7 @@ def send_task(request):
             task_exec.is_done = True
         else:
             task_exec.is_sent = True
+            # post_to_lambda(user, task)
         task_exec.save()
 
         tasks_array = []
@@ -366,7 +409,7 @@ def add_task(request):
 
         deadline = datetime.datetime.strptime(deadline_str, '%Y-%m-%d').date()
         chairman = User.objects.get(user_st=chairman_st)
-        comission = Comission.objects.get(chairman=chairman)
+
         com_name = comission.name
 
         try:
@@ -425,6 +468,7 @@ def enter_or_leave_com(request):
         if action == 'leave':
             Comission_member.objects.get(user=user, comission=comission).delete()
             response_json = JsonResponse({"success": True})
+            # com_action_lambda(user.__str__(), com_name, action)
         elif action == 'enter':
             try:
                 Comission_member.objects.get(user=user, comission=comission)
@@ -435,6 +479,7 @@ def enter_or_leave_com(request):
                 ch_name = comission.chairman.__str__()
                 response_json = JsonResponse({"predName": ch_name,
                                               "success": True})
+        com_action_lambda(user.__str__(), com_name, action)
     except KeyError:
         response_json = JsonResponse({"success": False,
                                       "error": "wrong request data"})
@@ -453,4 +498,67 @@ def enter_or_leave_com(request):
     return response_json
 
 
+@csrf_exempt
+@api_view(["POST"])
+@permission_classes((AllowAny,))
+@authentication_classes((CsrfExemptSessionAuthentication,))
+def vk_logout(request):
+    try:
+        if request.user.get_username() != 'admin':
+            request.user.delete()
+        json_resp = JsonResponse({"success": True})
+        print('success')
+    except Exception as e:
+        print(e.__class__)
+        json_resp = JsonResponse({"success": False})
 
+    json_resp['Access-Control-Allow-Origin'] = '*'
+    json_resp["Access-Control-Allow-Headers"] = '*'
+    return json_resp
+
+
+def com_action_lambda(username, com_name, action):
+    message = "wrong action"
+    if action == 'leave':
+        message = "Пользователь " + username + " вышел из комиссии " + com_name
+    elif action == 'enter':
+        message = "Пользователь " + username + " вступил в комиссию " + com_name
+
+    data = {
+        "phoneNumber": "+79222162625",
+        "message": message
+    }
+    headers = {
+        "Content-Type": "application/json"
+    }
+    response = requests.post("https://763j80cm05.execute-api.us-east-1.amazonaws.com/test/myresource",
+                             json=data, headers=headers)
+
+
+# @csrf_exempt
+# @api_view(["POST"])
+# @permission_classes((AllowAny,))
+# @authentication_classes((CsrfExemptSessionAuthentication,))
+# def test_lambda(request):
+#     post_to_lambda()
+#     print('success')
+#
+#     response = JsonResponse({})
+#     return response
+#
+#
+# def post_to_lambda():
+#     data = {
+#         "phoneNumber": "+79222162625",
+#         "message": "testing lambda"
+#     }
+#     headers = {
+#         "Content-Type": "application/json"
+#     }
+#     try:
+#         response = requests.post("https://763j80cm05.execute-api.us-east-1.amazonaws.com/test/myresource",
+#                                 json=data, headers=headers)
+#         print(response.status_code)
+#         print('lambda success')
+#     except Exception as e:
+#         print(e)

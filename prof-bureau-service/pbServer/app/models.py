@@ -1,7 +1,7 @@
 from django.db import models
 import os
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'pbServer.app.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'app.settings')
 
 
 class User(models.Model):
@@ -10,6 +10,7 @@ class User(models.Model):
     first_name = models.CharField(max_length=20)
     course = models.SmallIntegerField()
     password = models.CharField(max_length=50, default='qwertyuiop')
+    user_login = models.CharField(max_length=30, default='')
 
     def __str__(self):
         return self.last_name + " " + self.first_name
