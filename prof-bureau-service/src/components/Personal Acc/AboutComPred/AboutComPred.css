@@ -10,18 +10,17 @@
     align-items: center;
 }
 
-.about-com-title{
-    font-style: italic;
+.about-com-title {
     text-align: center;
-    font-size: 2vw;
-    margin-top: 7px;
+    font-size: 1.7vw;
+    margin-top: 10px;
     margin-bottom: 0px;
     color: #2c3343;
 }
 
 .about-footer{
     color: white;
-    font-size: 1.5vw;
+    font-size: 1.3vw;
     text-align: center;
     background-color: #2c3343;
     height: 5vh;
@@ -34,9 +33,9 @@
 }
 
 .exit-com {
-    width: 65%;
-    /* max-width: 30vw; */
-    background-color: #2c3343;
+    width: auto;
+    padding: 0 5%;
+    background-color: brown;
     height: 6vh;
     max-height: 5vw;
     border-radius: 5vh;
@@ -44,8 +43,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 1.5vw;
-    font-style: italic;
+    font-size: 1.3vw;
     transition-duration: 300ms;
 }
 

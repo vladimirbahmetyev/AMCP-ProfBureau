@@ -10,6 +10,12 @@
   src: url('../../media/fonts/PFBeauSansPro-LightItal.ttf') format('truetype');
 }
 
+@font-face {
+  font-family: 'PFBeauSansPro-light';
+  font-style: bold;
+  src: url('../../media/fonts/PFBeauSansPro-SeBold.ttf') format('truetype');
+}
+
 .background {
     font-family: 'PFBeauSansPro-light';
     width: 100%;

@@ -22,9 +22,10 @@
 }
 
 .auth-text {
-    font-size: 4vh;
+    font-size: 3.5vh;
     color: #2c3343;
     margin: 3% 0 3% 0;
+    font-weight: bold;
 }
 
 .auth-field {

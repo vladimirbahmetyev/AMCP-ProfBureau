@@ -18,10 +18,10 @@
 
 .com-main-title{
     text-align: center;
-    font-style: italic;
-    margin-top: 7px;
+    /* font-style: italic; */
+    margin-top: 10px;
     margin-bottom: 0px;
-    font-size: 2vw;
+    font-size: 1.7vw;
     color: #2c3343;
 }
 .comissions-grid{

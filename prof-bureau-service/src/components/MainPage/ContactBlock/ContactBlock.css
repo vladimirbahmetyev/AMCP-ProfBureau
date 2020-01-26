@@ -41,14 +41,14 @@
     top: 89%;
     background-color: #2c3343;
     color: white;
-    font-style: italic;
+    font-style: bolder;
     font-size: 1.2vw;
     font-family: inherit;
     justify-content: center;
     align-items: center;
     border-radius: 100px;
     border: none;
-    box-shadow: 0px 0px 8px 0px black;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.3);
     transition-duration: 300ms;
     outline: none;
 }
@@ -81,7 +81,7 @@
 .chairman, .socialNetworks {
   background-color: white;
   opacity: 0.7;
-  box-shadow: 0px 0px 8px 0px black;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.3);
   transition-duration: 300ms;
 }
 
@@ -89,14 +89,6 @@
   transform: scale(1.02);
   transition-duration: 300ms;
   z-index: 1;
-}
-
-.block-title {
-    color: #2c3343;
-    font-style: italic;
-    margin-top: 3vh;
-    text-align: center;
-    font-size: 2vw;
 }
 
 .social-net-icons {

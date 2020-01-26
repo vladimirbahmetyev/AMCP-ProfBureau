@@ -11,16 +11,16 @@
 .projects-block {
     background-color: white;
     opacity: 0.7;
-    box-shadow: 0px 0px 8px 0px black;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.3);
     transition-duration: 300ms;
 }
   
 .block-title {
     color: #2c3343;
-    font-style: italic;
+    font-style: bolder;
     margin-top: 2%;
     text-align: center;
-    font-size: 2vw;
+    font-size: 1.7vw;
 }
   
 .projects {

@@ -11,10 +11,9 @@
 }
 
 .pred-control-title {
-    font-style: italic;
     text-align: center;
-    font-size: 2vw;
-    margin-top: 7px;
+    font-size: 1.7vw;
+    margin-top: 10px;
     margin-bottom: 0px;
     color: #2c3343;
 }
@@ -29,8 +28,8 @@
 }
 
 .pred-add-button{
-    width: 65%;
-    /* max-width: 30vw; */
+    width: auto;
+    padding: 0 5%;
     background-color: #2c3343;
     height: 6vh;
     max-height: 5vw;
@@ -39,8 +38,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 1.5vw;
-    font-style: italic;
+    font-size: 1.3vw;
     transition-duration: 300ms;
 }
 
