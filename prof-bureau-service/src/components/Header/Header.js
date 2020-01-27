@@ -1,5 +1,9 @@
 import React from 'react'
 import './Header.css'
+import { store } from '../../store'
+import { changePage, setPersonalInfo } from '../../actions'
+import ReactDOM from 'react-dom'
+import App from '../../App'
 
 export default class Header extends React.Component {
 
@@ -7,19 +11,80 @@ export default class Header extends React.Component {
         return page === 'account' ? 1 : 0.7
     }
 
+    openMain = () => {
+        store.dispatch({type: 'TO_MAIN_PAGE'})
+        ReactDOM.render(<App />, document.getElementById("root"));
+    }
+
+    openAuth = () => {
+        store.dispatch(changePage('auth'))
+        ReactDOM.render(<App />, document.getElementById("root"));
+    }
+
+    changePage = actualPage => {
+        if (actualPage === 'main') {
+            fetch(this.props.url + 'get_personal_info/',{
+                method:"POST",
+                headers:{
+                    'Content-Type': 'application/json',
+                },
+                body:JSON.stringify({
+                    "stNum": store.getState().stNum
+                }),
+            
+            })
+            .then((response) => {
+                return response.json()
+            })
+            .then((responseJson)=>{
+                store.dispatch(setPersonalInfo(responseJson));
+                ReactDOM.render(<App />, document.getElementById("root"));
+            })
+        } else if (actualPage === 'account') {
+            this.openMain()
+        }
+    }
+
+    logout = () => {
+        fetch(this.props.url + 'vk_logout/', {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+        .then((response) => {
+            return response.json()
+        })
+        .then((responseJson) => {
+            console.log(responseJson)
+
+        })
+        .catch = error => {
+            console.log(error)
+        }
+
+        store.dispatch({type: "LOGOUT"})
+        ReactDOM.render(<App />, document.getElementById("root"));
+
+        localStorage.removeItem('login')
+        localStorage.removeItem('course')
+        localStorage.removeItem('stNum')
+        localStorage.removeItem('logged')
+    }
+
     render() {
-        const { isAuthorized } = this.props
-        const { page } = this.props
+        const isAuthorized = store.getState().isAuthorized
+        const actualPage = store.getState().page
+        const login = store.getState().login
+        const course = isAuthorized ? store.getState().course + ' курс' : ''
         const auth = isAuthorized ? '' : 'Авторизация'
         const exit = isAuthorized ? 'Выход' : ''
-        const accExit = isAuthorized ? (page === 'account' ? '| Выход из ЛК' : '| Вход в ЛК') : ''
-        const { login } = this.props
-        const course = isAuthorized ? this.props.course + ' курс' : ''
+        const accExit = isAuthorized ? (actualPage === 'account' ? '| Выход из ЛК' : '| Вход в ЛК') : ''
         return(
-            <header className='header' style={{opacity: this.setHeaderOpacity(page)}}>
+            <header className='header' style={{opacity: this.setHeaderOpacity(actualPage)}}>
                 <div style={{marginLeft: '5%'}}>
                     <button className='title-button'
-                            onClick={() => this.props.changeComission('Профбюро')}
+                            onClick={() => this.openMain()}
                     >
                         <h1>ПБ ПМ-ПУ</h1>
                     </button>
@@ -37,16 +102,9 @@ export default class Header extends React.Component {
                         <div className='personal-info-picture'></div>
                         
                         <div className="auth-or-exit">
-                            {/* <a className="acc-exit"
-                                href={exitHref}
-                                onClick={() => {
-                                    if (isAuthorized) return this.props.logout()
-                                    else return this.props.openAuth(true)}}>
-                                {auth}&#160;
-                            </a> */}
-                            <div className="acc-exit" onClick={() => this.props.logout()}>{exit}&#160;</div>
-                            <div className="acc-exit" onClick={() => this.props.openAuth(true)}>{auth}</div>
-                            <div className="acc-exit" onClick={() => this.props.changePage(page)}>
+                            <div className="acc-exit" onClick={() => this.logout()}>{exit}&#160;</div>
+                            <div className="acc-exit" onClick={() => this.openAuth()}>{auth}</div>
+                            <div className="acc-exit" onClick={() => this.changePage(actualPage)}>
                                 {accExit}
                             </div>
                         </div>

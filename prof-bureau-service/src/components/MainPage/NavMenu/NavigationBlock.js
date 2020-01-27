@@ -8,14 +8,14 @@ export default class NavigationBlock extends React.Component {
         return(
             <div className='nav-block'>
                 <ul className="comissionList">
-                    <NavButton comission='Культмасс' changeComission={this.props.changeComission}/>
-                    <NavButton comission='HR' changeComission={this.props.changeComission}/>
-                    <NavButton comission='FunCom' changeComission={this.props.changeComission}/>
-                    <NavButton comission='PM-Design' changeComission={this.props.changeComission}/>
-                    <NavButton comission='СпортКом' changeComission={this.props.changeComission}/>
-                    <NavButton comission='PM-Partner' changeComission={this.props.changeComission}/>
-                    <NavButton comission='Оформители' changeComission={this.props.changeComission}/>
-                    <NavButton comission='PM-Photo' changeComission={this.props.changeComission}/>
+                    <NavButton comission='Культмасс' />
+                    <NavButton comission='HR' />
+                    <NavButton comission='FunCom' />
+                    <NavButton comission='PM-Design' />
+                    <NavButton comission='СпортКом' />
+                    <NavButton comission='PM-Partner' />
+                    <NavButton comission='Оформители' />
+                    <NavButton comission='PM-Photo' />
                 </ul>
             </div>
         )

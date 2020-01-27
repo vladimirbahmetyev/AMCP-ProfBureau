@@ -8,6 +8,11 @@ import App from '../../../App'
 
 export default class NavButton extends React.Component {
 
+    changeComission = com => {
+        store.dispatch(setComission(com))
+        ReactDOM.render(<App />, document.getElementById("root"));
+    }
+
     render() {
         const {comission} = this.props
 
@@ -23,20 +28,12 @@ export default class NavButton extends React.Component {
         return(
             <li>
                 <div className='listElement'
-                        // onClick={() => this.props.changeComission(comission)}
-                        onClick={() => this.dispatchComission(comission)}
+                        onClick={() => this.changeComission(comission)}
                 >
                     <div className={cssClass}></div>
                     <div className='text'>{comission}</div>
                 </div>
             </li>
         )
-    }
-
-    dispatchComission = com => {
-        store.dispatch(setComission(com))
-
-        const render = () => ReactDOM.render(<App />, document.getElementById("root"));
-        render();
     }
 }

@@ -1,16 +1,25 @@
 import React from 'react'
 import './ContactBlock.css'
 import './ChairmanPhoto.css'
+import { store } from '../../../store'
+import { changePage } from '../../../actions'
+import ReactDOM from 'react-dom'
+import App from '../../../App'
 
 export default class ContactBlock extends React.Component {
     pbButton = () => {
-        if (!this.props.isAuthorized) {
+        if (!store.getState().isAuthorized) {
             return(
-                <button className='follow-button' onClick={() => this.props.openAuth(true)}>
+                <button className='follow-button' onClick={() => this.openAuth()}>
                     Присоединиться <br/> к профбюро
                 </button>
             )
         } else return
+    }
+
+    openAuth = () => {
+        store.dispatch(changePage('auth'))
+        ReactDOM.render(<App />, document.getElementById("root"));
     }
 
     render() {
@@ -26,7 +35,7 @@ export default class ContactBlock extends React.Component {
             'PM-Photo': ['Пахомова Арина', 'https://vk.com/pahooomova']
         }
 
-        const {comission} = this.props
+        const comission = store.getState().comission
         let cssClassPhoto = "chairman-photo " + comission + "-photo"
         if (comission === 'Профбюро') {
             cssClassPhoto = 'chairman-photo pb-photo'
@@ -45,9 +54,6 @@ export default class ContactBlock extends React.Component {
                     <a className='chairman-link' href={chairmans[comission][1]} rel="noopener noreferrer" target='_blank'>
                         Председатель:<br/>{chairmans[comission][0]}
                     </a>
-                    {/* <button className='follow-button' onClick={() => this.props.openAuth(true)}>
-                        Присоединиться <br/> к профбюро
-                    </button> */}
                     {this.pbButton()}
                 </div>
                 <div className='socialNetworks'>

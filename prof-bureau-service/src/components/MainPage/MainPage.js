@@ -9,31 +9,20 @@ import PersonalAccount from '../Personal Acc/PersonalAcc'
 import Authorization from './Authorization/Authorization'
 
 import { store } from '../../store'
+import { changePage, login, reloadLogin } from '../../actions';
+import ReactDOM from 'react-dom'
+import App from '../../App'
 
 export default class MainPage extends React.Component {
 
-    state = {
-        // comission: 'Профбюро',
-        isAuthorized: false,
-        login: '',
-        course: 0,
-        page: 'main',
-        stNum: 0,
-        responseData: JSON.stringify(''),
-        authWindow: 'auth',
-        vkName: '',
-        vkSurname: ''
-    }
-
-    componentWillMount() {
+    componentDidMount() {
         if (localStorage.getItem('login') !== null) {
-            this.setState({
-                isAuthorized: true,
-                login: localStorage.getItem('login'),
-                course: localStorage.getItem('course'),
-                stNum: +localStorage.getItem('stNum'),
-                page: 'main'
-            })
+            store.dispatch(reloadLogin([
+                localStorage.getItem('login'),
+                localStorage.getItem('course'),
+                +localStorage.getItem('stNum'),
+            ]))
+            ReactDOM.render(<App />, document.getElementById("root"));
         } else if (localStorage.getItem('logged')) {
             fetch(this.props.url + 'vk_login/', {
                 method: "POST",
@@ -57,12 +46,8 @@ export default class MainPage extends React.Component {
                         this.login(userInfo)
                     } else {
                         console.log('not reged')
-                        this.setState({
-                            page: 'auth',
-                            authWindow: 'reg',
-                            vkName: responseJson.name.split(' ')[0],
-                            vkSurname: responseJson.name.split(' ')[1]
-                        })
+                        store.dispatch(changePage('reg'))
+                        ReactDOM.render(<App />, document.getElementById("root"));
                     }
                 } else {
                     console.log(responseJson.error)
@@ -74,125 +59,38 @@ export default class MainPage extends React.Component {
         }
     }
 
-    changeComission = name => {
-        // this.setState({ comission: name })
-
-        if (this.state.page === 'account') {
-            this.setState({page: 'main'})
-        }
-    }
-
     login = (userInfo) => {
-        this.setState({
-            isAuthorized:true,
-            login: userInfo.name,
-            course: userInfo.course,
-            stNum: userInfo.stNum,
-            page: 'main' 
-        })
-
+        store.dispatch(login(userInfo))
+        ReactDOM.render(<App />, document.getElementById("root"));
         localStorage.setItem('login', userInfo.name)
         localStorage.setItem('course', userInfo.course)
         localStorage.setItem('stNum', userInfo.stNum)
     }
-    
-    logout = () => {
-        fetch(this.props.url + 'vk_logout/', {
-            method: "POST",
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        })
-        .then((response) => {
-            return response.json()
-        })
-        .then((responseJson) => {
-            console.log(responseJson)
-        })
-        .catch = error => {
-            console.log(error)
-        }
-
-        this.setState({
-            isAuthorized: false,
-            login: '',
-            course: 0,
-            stNum: 0,
-            page: 'main'
-        })
-
-        localStorage.removeItem('login')
-        localStorage.removeItem('course')
-        localStorage.removeItem('stNum')
-        localStorage.removeItem('logged')
-    }
-
-    changePage = (page) => {
-        if (page === 'main') {
-            fetch(this.props.url + 'get_personal_info/',{
-                method:"POST",
-                headers:{
-                    'Content-Type': 'application/json',
-                },
-                body:JSON.stringify({
-                    "stNum": this.state.stNum
-                }),
-            
-            })
-            .then((response) => {
-                return response.json()
-            })
-            .then((responseJson)=>{
-                this.setState({
-                    responseData: responseJson,
-                    page: 'account'
-                })
-            })
-        } else if (page === 'account') {
-            this.setState({
-                page: 'main'
-            })
-        }
-    }
 
     setScreen = () => {
-        let page = this.state.page
+        let page = store.getState().page
         if (page === 'main') {
             return(
                 <div className='mainBlock'>
-                    <NavigationBlock changeComission={this.changeComission} />
+                    <NavigationBlock />
                     <div className='content'>
-                        <InformationBlock comission={store.getState().comission}/>
-                        <ContactBlock comission={store.getState().comission} openAuth={this.openAuth} isAuthorized={this.state.isAuthorized}/>
+                        <InformationBlock />
+                        <ContactBlock />
                         <ProjectsBlock />
                     </div>
                 </div>
             )
         } else if (page === 'account') {
-            return <PersonalAccount persAccInfo={this.state.responseData} url={this.props.url} user={this.state.stNum}/>
-        } else if (page === 'auth') {
-            return <Authorization openAuth={this.openAuth} login={this.login} 
-                    url={this.props.url} window={this.state.authWindow}/>
+            return <PersonalAccount persAccInfo={store.getState().responseData} url={this.props.url} user={store.getState().stNum}/>
+        } else if (page === 'auth' || page === 'reg') {
+            return <Authorization url={this.props.url} login={this.login}/>
         }
-    }
-
-    openAuth = (flag) => {
-        this.setState({
-            page: flag ? 'auth' : 'main'
-        })
     }
     
     render() {
             return(
                 <div className="background">
-                    <Header changeComission={this.changeComission} 
-                            isAuthorized={this.state.isAuthorized}
-                            login={this.state.login}
-                            course={this.state.course}
-                            changePage={this.changePage}
-                            openAuth={this.openAuth}
-                            page={this.state.page}
-                            logout={this.logout}/>
+                    <Header url={this.props.url} />
                     {this.setScreen()}
                 </div>   
             )

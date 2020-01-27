@@ -1,5 +1,9 @@
 import React from 'react'
 import './Reg.css'
+import { store } from '../../../store'
+import { changePage } from '../../../actions'
+import ReactDOM from 'react-dom'
+import App from '../../../App'
 
 export default class RegWindow extends React.Component{
 
@@ -25,11 +29,16 @@ export default class RegWindow extends React.Component{
             })
             .then((response) => {
                 if (response.status === 200)
-                    this.props.finishReg()
+                    this.openAuth()
             })
         } else {
             alert('Wrong data!')
         }
+    }
+
+    openAuth = () => {
+        store.dispatch(changePage('auth'))
+        ReactDOM.render(<App />, document.getElementById("root"));
     }
 
     render() {
@@ -47,8 +56,8 @@ export default class RegWindow extends React.Component{
                     </div>
                     <div className='reg-field'>
                         <p>Курс</p>
-                        <select id='course'>
-                            <option selected='selected' disabled>Выберите</option>
+                        <select id='course' defaultValue='Выберите'>
+                            <option disabled>Выберите</option>
                             <option value='1'>1 бакалавриат</option>
                             <option value='2'>2 бакалавриат</option>
                             <option value='3'>3 бакалавриат</option>
@@ -70,7 +79,7 @@ export default class RegWindow extends React.Component{
                         </div>
                     </div>
                 </div>
-                <div className='reg-close-circle' onClick={() => this.props.openReg(false)}>
+                <div className='reg-close-circle' onClick={() => this.openAuth()}>
                 </div>
             </div>
         )
