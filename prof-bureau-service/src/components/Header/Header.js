@@ -75,11 +75,6 @@ export default class Header extends React.Component {
     render() {
         const isAuthorized = store.getState().isAuthorized
         const actualPage = store.getState().page
-        const login = store.getState().login
-        const course = isAuthorized ? store.getState().course + ' курс' : ''
-        const auth = isAuthorized ? '' : 'Авторизация'
-        const exit = isAuthorized ? 'Выход' : ''
-        const accExit = isAuthorized ? (actualPage === 'account' ? '| Выход из ЛК' : '| Вход в ЛК') : ''
         return(
             <header className='header' style={{opacity: this.setHeaderOpacity(actualPage)}}>
                 <div style={{marginLeft: '5%'}}>
@@ -92,20 +87,24 @@ export default class Header extends React.Component {
                 <div className="personal-info">
                     <div className="personal-info-about">
                         <div className="personal-info-about-name">
-                            {login}
+                            {store.getState().login}
                         </div>
                         <div className="course">
-                            {course}
+                            {isAuthorized ? store.getState().course + ' курс' : ''}
                         </div>
                     </div>
                     <div className="acc-action">
                         <div className='personal-info-picture'></div>
                         
                         <div className="auth-or-exit">
-                            <div className="acc-exit" onClick={() => this.logout()}>{exit}&#160;</div>
-                            <div className="acc-exit" onClick={() => this.openAuth()}>{auth}</div>
+                            <div className="acc-exit" onClick={() => this.logout()}>
+                                {isAuthorized ? 'Выход' : ''}&#160;
+                                </div>
+                            <div className="acc-exit" onClick={() => this.openAuth()}>
+                                {isAuthorized ? '' : 'Авторизация'}
+                            </div>
                             <div className="acc-exit" onClick={() => this.changePage(actualPage)}>
-                                {accExit}
+                                {isAuthorized ? (actualPage === 'account' ? '| Выход из ЛК' : '| Вход в ЛК') : ''}
                             </div>
                         </div>
                     </div>
