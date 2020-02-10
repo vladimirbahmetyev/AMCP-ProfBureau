@@ -1,13 +1,11 @@
 import React from 'react'
 import './Auth.css'
-import { store } from '../../../store'
-import { changePage, login } from '../../../actions'
-import ReactDOM from 'react-dom'
-import App from '../../../App'
+import {connect} from "react-redux"
+import {login, changePage} from "../../../redux/actions"
 
-export default class AuthWindow extends React.Component {
+class AuthWindow extends React.Component {
 
-    login = () => {
+    loginHandler = () => {
         let persLogin = document.getElementById('login').value
         let password = document.getElementById('password').value
         if (login !== '', password.length >= 8) {
@@ -33,18 +31,13 @@ export default class AuthWindow extends React.Component {
                         "stNum": responseJson.stNum,
                     }
                     this.props.login(userInfo)
-                } else {
+                } else {    
                     console.log(responseJson.error)
                 }
             })
         } else {
             alert('Wrong data!')
         }
-    }
-
-    changePage = page => {
-        store.dispatch(changePage(page));
-        ReactDOM.render(<App />, document.getElementById("root"));
     }
 
     render() {
@@ -61,18 +54,25 @@ export default class AuthWindow extends React.Component {
                         <input id='password' type='password'></input>
                     </div>
                     <div className='auth-bottom-buttons'>
-                        <div className='auth-button auth-login' onClick={() => this.login()}>
+                        <div className='auth-button auth-login' onClick={() => this.loginHandler()}>
                             <p>Войти</p>
                         </div>
                         <a href='/login/vk-oauth2' className='vk-reg' onClick={() => localStorage.setItem('logged', true)}></a>
-                        <div className='auth-button auth-reg' onClick={() => this.changePage('reg')}>
+                        <div className='auth-button auth-reg' onClick={() => this.props.changePage('reg')}>
                             <p>Регистрация</p>
                         </div>
                     </div>
                 </div>
-                <div className='close-circle' onClick={() => this.changePage('main')}>
+                <div className='close-circle' onClick={() => this.props.changePage('main')}>
                 </div>
             </div>
         )
     }
 }
+
+const mapDispatchToProps = {
+    login:login,
+    changePage: changePage
+}
+
+export default connect(null, mapDispatchToProps)(AuthWindow)

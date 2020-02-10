@@ -1,17 +1,10 @@
 import React from 'react'
 import './NavigationBlock.css'
 import './ComissionIcons.css'
-import { store } from '../../../store'
-import { setComission } from '../../../actions'
-import ReactDOM from 'react-dom'
-import App from '../../../App'
+import {setComInfo} from "../../../redux/actions"
+import { connect } from 'react-redux'
 
-export default class NavButton extends React.Component {
-
-    changeComission = com => {
-        store.dispatch(setComission(com))
-        ReactDOM.render(<App />, document.getElementById("root"));
-    }
+class NavButton extends React.Component {
 
     render() {
         const {comission} = this.props
@@ -28,7 +21,7 @@ export default class NavButton extends React.Component {
         return(
             <li>
                 <div className='listElement'
-                        onClick={() => this.changeComission(comission)}
+                        onClick={() => this.props.setComission(comission)}
                 >
                     <div className={cssClass}></div>
                     <div className='text'>{comission}</div>
@@ -37,3 +30,9 @@ export default class NavButton extends React.Component {
         )
     }
 }
+
+const mapDispatchToProps = {
+    setComission:setComInfo
+}
+
+export default connect(null, mapDispatchToProps)(NavButton)

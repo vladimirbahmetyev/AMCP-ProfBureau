@@ -1,25 +1,18 @@
 import React from 'react'
 import './ContactBlock.css'
 import './ChairmanPhoto.css'
-import { store } from '../../../store'
-import { changePage } from '../../../actions'
-import ReactDOM from 'react-dom'
-import App from '../../../App'
+import {changePage} from "../../../redux/actions"
+import { connect } from 'react-redux'
 
-export default class ContactBlock extends React.Component {
+class ContactBlock extends React.Component {
     pbButton = () => {
-        if (!store.getState().isAuthorized) {
+        if (!this.props.isAuthorized) {
             return(
-                <button className='follow-button' onClick={() => this.openAuth()}>
+                <button className='follow-button' onClick={() => this.props.changePage("auth")}>
                     Присоединиться <br/> к профбюро
                 </button>
             )
         } else return
-    }
-
-    openAuth = () => {
-        store.dispatch(changePage('auth'))
-        ReactDOM.render(<App />, document.getElementById("root"));
     }
 
     render() {
@@ -35,7 +28,7 @@ export default class ContactBlock extends React.Component {
             'PM-Photo': ['Пахомова Арина', 'https://vk.com/pahooomova']
         }
 
-        const comission = store.getState().comission
+        const comission = this.props.mainComission
         let cssClassPhoto = "chairman-photo " + comission + "-photo"
         if (comission === 'Профбюро') {
             cssClassPhoto = 'chairman-photo pb-photo'
@@ -67,3 +60,17 @@ export default class ContactBlock extends React.Component {
         )
     }
 }
+
+function mapStateToProps(state) {
+    const {comission, isAuthorized} = state
+    return{
+        mainComission:comission,
+        isAuthorized:isAuthorized
+    }
+}
+
+const mapDispatchToProps = {
+    changePage:changePage
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ContactBlock)

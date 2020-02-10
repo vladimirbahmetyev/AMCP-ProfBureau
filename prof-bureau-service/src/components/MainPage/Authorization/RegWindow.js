@@ -1,11 +1,9 @@
 import React from 'react'
 import './Reg.css'
-import { store } from '../../../store'
-import { changePage } from '../../../actions'
-import ReactDOM from 'react-dom'
-import App from '../../../App'
+import {changePage} from"../../../redux/actions"
+import {connect} from "react-redux"
 
-export default class RegWindow extends React.Component{
+class RegWindow extends React.Component{
 
     buttonClicked = () => {
         let name = document.getElementById('firstNameReg').value
@@ -29,16 +27,11 @@ export default class RegWindow extends React.Component{
             })
             .then((response) => {
                 if (response.status === 200)
-                    this.openAuth()
+                    this.props.changePage('auth')
             })
         } else {
             alert('Wrong data!')
         }
-    }
-
-    openAuth = () => {
-        store.dispatch(changePage('auth'))
-        ReactDOM.render(<App />, document.getElementById("root"));
     }
 
     render() {
@@ -79,9 +72,15 @@ export default class RegWindow extends React.Component{
                         </div>
                     </div>
                 </div>
-                <div className='reg-close-circle' onClick={() => this.openAuth()}>
+                <div className='reg-close-circle' onClick={() => this.props.changePage("auth")}>
                 </div>
             </div>
         )
     }
 }
+
+const mapDispatchToProps = {
+    changePage:changePage
+}
+
+export default connect(null, mapDispatchToProps)(RegWindow)

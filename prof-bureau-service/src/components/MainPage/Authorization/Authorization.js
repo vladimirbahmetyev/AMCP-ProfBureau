@@ -2,7 +2,7 @@ import React from 'react'
 import './Auth.css'
 import AuthWindow from './AuthWindow'
 import RegWindow from './RegWindow'
-import { store } from '../../../store'
+import { store } from '../../../redux/store'
 
 export default class Authorization extends React.Component {
 

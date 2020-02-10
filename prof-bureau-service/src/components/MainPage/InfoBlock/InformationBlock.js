@@ -1,7 +1,7 @@
 import React from 'react'
 import './InformationBlock.css'
 import Information from './Information'
-import { store } from '../../../store'
+import { store } from '../../../redux/store'
 
 export default class InformationBlock extends React.Component {
 

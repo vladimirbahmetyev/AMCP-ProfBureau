@@ -1,20 +1,20 @@
 import  React from "react"
 import './PersonalAcc.css'
 
-import ItemList from "./Layouts/ItemList"
+import ItemList from "./ItemList/ItemList"
 
 import FadeAnimationComponent from "./FadeAnimationComponent/FadeAnimationComponent";
 
-import ComissionsTable from "./Layouts/ComissionsTable"
-import ActionsTable from "./Layouts/ActionsTable"
-import CurrentComissionEvents from "./Layouts/CurrentComissionsEvents";
-import AboutComPred from "./Layouts/AboutComPred";
-import CurrentComissionTask from "./Tasks/CurrentComissionTask"
-import EndedTask from "./Tasks/EndedTask"
-import CurrentTask from "./Tasks/CurrentTask"
-import PredControlPanel from "./Layouts/PredControlPanel"
+import ComissionsTable from "./ComissionsTable/ComissionsTable"
+import ActionsTable from "./ActionsTable/ActionsTable"
+import CurrentComissionEvents from "./CurrentComissionEvents/CurrentComissionsEvents";
+import AboutComPred from "./AboutComPred/AboutComPred";
+import CurrentComissionTask from "./CurrentComissionTask/CurrentComissionTask"
+import EndedTask from "./EndedTask/EndedTask"
+import CurrentTask from "./CurrentTask/CurrentTask"
+import PredControlPanel from "./PredControlPanel/PredControlPanel"
 
-import NewTaskForm from "./Tasks/NewTaskForm"
+import NewTaskForm from "./NewTaskForm/NewTaskForm"
 import EntryWindow from "./entryComissionWindow/EntryComissionWindow"
 
 import CssTransition from "react-transition-group/CSSTransition"
@@ -106,7 +106,7 @@ export default class PersonalAccount extends React.Component{
         isNewTaskFormOpen: false,
         isEntryOpen:false,
 
-        selectComission:"None",
+        selectComission:"none",
 
         comInfo: this.props.persAccInfo.comInfo,
         userTasks: this.props.persAccInfo.userTasks,
@@ -140,13 +140,13 @@ export default class PersonalAccount extends React.Component{
                 newComInfo[responseJson.comName].taskList = responseJson.comTasks
                 this.setState({
                     comInfo: newComInfo,
+                    isRedrawNeeded:true,
                     isNewTaskFormOpen: false,
                     bottomLeftBlock: <ItemList 
-                                type={CurrentComissionTask} 
-                                titleName = {responseJson.comName} 
-                                taskList={responseJson.comTasks} 
-                                function1={this.actionWithTask}/>,
-                    isRedrawNeeded:true,
+                        type={CurrentComissionTask} 
+                        titleName = {responseJson.comName} 
+                        taskList={responseJson.comTasks} 
+                        function1={this.actionWithTask}/>
                 })
             }
             else{
@@ -245,6 +245,7 @@ export default class PersonalAccount extends React.Component{
     comTableListener = (pushedCom)=>{
         if(pushedCom.comName === this.state.selectComission)
             return
+
         if (pushedCom.comName ==="none") {
             this.setState({
                 isAPred: false,
@@ -292,7 +293,7 @@ export default class PersonalAccount extends React.Component{
     }
     render(){
     return(
-    <div style={{fontFamily: 'PFBeauSansPro-light', minHeight: '100vh', backgroundColor: 'white'}}>
+    <div style={{fontFamily: 'PFBeauSansPro-light'}}>
     
     <CssTransition
                 classNames="fade"

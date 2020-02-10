@@ -8,21 +8,19 @@ import ProjectsBlock from './ProjectsBlock/ProjectsBlock';
 import PersonalAccount from '../Personal Acc/PersonalAcc'
 import Authorization from './Authorization/Authorization'
 
-import { store } from '../../store'
-import { changePage, login, reloadLogin } from '../../actions';
-import ReactDOM from 'react-dom'
-import App from '../../App'
+import {login, changePage} from "../../redux/actions"
 
-export default class MainPage extends React.Component {
+import {connect} from "react-redux"
+
+class MainPage extends React.Component {
 
     componentDidMount() {
         if (localStorage.getItem('login') !== null) {
-            store.dispatch(reloadLogin([
-                localStorage.getItem('login'),
-                localStorage.getItem('course'),
-                +localStorage.getItem('stNum'),
-            ]))
-            ReactDOM.render(<App />, document.getElementById("root"));
+            this.props.login({
+                login:localStorage.getItem('login'),
+                course:localStorage.getItem('course'),
+                stNum:localStorage.getItem('stNum')
+            })
         } else if (localStorage.getItem('logged')) {
             fetch(this.props.url + 'vk_login/', {
                 method: "POST",
@@ -43,11 +41,10 @@ export default class MainPage extends React.Component {
                             "name": responseJson.name,
                             "stNum": responseJson.stNum,
                         }
-                        this.login(userInfo)
+                        this.props.login(userInfo)
                     } else {
                         console.log('not reged')
-                        store.dispatch(changePage('reg'))
-                        ReactDOM.render(<App />, document.getElementById("root"));
+                        this.props.changePage('reg')
                     }
                 } else {
                     console.log(responseJson.error)
@@ -60,15 +57,14 @@ export default class MainPage extends React.Component {
     }
 
     login = (userInfo) => {
-        store.dispatch(login(userInfo))
-        ReactDOM.render(<App />, document.getElementById("root"));
+        this.props.login(userInfo)
         localStorage.setItem('login', userInfo.name)
         localStorage.setItem('course', userInfo.course)
         localStorage.setItem('stNum', userInfo.stNum)
     }
 
     setScreen = () => {
-        let page = store.getState().page
+        let page = this.props.page
         if (page === 'main') {
             return(
                 <div className='mainBlock'>
@@ -81,9 +77,9 @@ export default class MainPage extends React.Component {
                 </div>
             )
         } else if (page === 'account') {
-            return <PersonalAccount persAccInfo={store.getState().responseData} url={this.props.url} user={store.getState().stNum}/>
+            return <PersonalAccount persAccInfo={this.props.responseData} url={this.props.url} user={this.props.stNum}/>
         } else if (page === 'auth' || page === 'reg') {
-            return <Authorization url={this.props.url} login={this.login}/>
+            return <Authorization url={this.props.url} login={this.props.login}/>
         }
     }
     
@@ -96,3 +92,18 @@ export default class MainPage extends React.Component {
             )
     }
 }
+
+function mapStateToProps(state) {
+    const {page, responseData, stNum} = state
+    return{
+        page:page,
+        responseData:responseData,
+        stNum:stNum
+    }
+}
+const mapDispatchToProps = {
+    login:login,
+    changePage:changePage
+}
+
+export default connect(mapStateToProps)(MainPage)
