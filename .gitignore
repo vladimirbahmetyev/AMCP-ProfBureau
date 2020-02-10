@@ -2,3 +2,5 @@ prof-bureau-service/pbServer/venv/*
 *.xml
 
 *.iml
+
+*.pyc

@@ -25,6 +25,7 @@ export default function(state, action) {
                 login: '',
                 course: 0,
                 stNum: 0,
+                name:"",
                 page: 'main'
         }
     }
