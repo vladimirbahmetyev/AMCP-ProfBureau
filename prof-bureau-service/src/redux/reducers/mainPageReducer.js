@@ -13,9 +13,9 @@ export default function(state, action) {
             ...state,
                 page: 'main',
                 isAuthorized: true,
-                login: action.login,
-                course: action.course,
-                stNum: action.stNum
+                name: action.userInfo.name,
+                course: action.userInfo.course,
+                stNum: action.userInfo.stNum
         }
     }
     case LOGOUT:{

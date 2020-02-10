@@ -46,6 +46,7 @@ class Header extends React.Component {
     render() {
         const isAuthorized = this.props.isAuthorized
         const actualPage = this.props.page
+        
         return(
             <header className='header' style={{opacity: this.setHeaderOpacity(actualPage)}}>
                 <div style={{marginLeft: '5%'}}>
@@ -58,7 +59,7 @@ class Header extends React.Component {
                 <div className="personal-info">
                     <div className="personal-info-about">
                         <div className="personal-info-about-name">
-                            {this.props.login}
+                            {this.props.name}
                         </div>
                         <div className="course">
                             {isAuthorized ? this.props.course + ' курс' : ''}
@@ -86,10 +87,10 @@ class Header extends React.Component {
 }
 
 function mapStateToProps(state){
-    const {page, login, course, stNum, isAuthorized} = state
+    const {page, name, course, stNum, isAuthorized} = state
     return {
         page,
-        login,
+        name,
         course,
         stNum,
         isAuthorized

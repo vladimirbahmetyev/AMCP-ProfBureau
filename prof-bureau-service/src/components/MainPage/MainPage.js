@@ -79,7 +79,7 @@ class MainPage extends React.Component {
         } else if (page === 'account') {
             return <PersonalAccount persAccInfo={this.props.responseData} url={this.props.url} user={this.props.stNum}/>
         } else if (page === 'auth' || page === 'reg') {
-            return <Authorization url={this.props.url} login={this.props.login}/>
+            return <Authorization url={this.props.url} login={this.login}/>
         }
     }
     
