@@ -13,6 +13,7 @@
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
+    position: relative;
 }
 
 .new-task-form-back{
@@ -135,17 +136,19 @@
 }
 
 .exit-button-form{
-    width: 4vh;
-    height: 4vh;
+    width: 30px;
+    height: 30px;
     border: 1px solid #2c3343;
     position: absolute;
-    transform: translateX(17vw) translateY(-22vh);
+    top: 0;
+    right: 0;
+    transform: translateX(50px);
     border-radius: 50%;
     mask-image: url('../../../media/sprite.svg#cross');
     mask-size: 50% 50%;
     mask-repeat: no-repeat;
     mask-position: center;
-    background-color: #2c3343;
+    background-color: white;
 }
 
 .exit-button-form:hover {

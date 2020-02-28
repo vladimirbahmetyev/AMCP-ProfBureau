@@ -19,6 +19,7 @@
     align-items: center;
     border-radius: 3vh 3vh;
     box-shadow: 0px 0px 8px 0px black;
+    position: relative;
 }
 
 .reg-text {
@@ -77,7 +78,7 @@
     align-items: center; 
     transition-duration: 300ms;
     height: 100%;
-    font-size: 15px;
+    font-size: 17px;
 }
 
 .vk-reg {
@@ -98,21 +99,22 @@
 }
 
 .reg-close-circle {
-    display: flex;
-    height: 4vh;
-    width: 4vh;
+    height: 30px;
+    width: 30px;
     border-radius: 4vh 4vh;
     background-color: lightpink;
     mask-image: url('../../../media/sprite.svg#cross');
     mask-size: 60% 60%;
     mask-repeat: no-repeat;
     mask-position: center;
-    margin-left: 2vh;
-    transform: translateY(17vh);
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translateX(50px);
 }
 
 .reg-close-circle:hover {
     cursor: pointer;
-    background-color: lightcoral;
+    background-color: #2c3343;
 }
 

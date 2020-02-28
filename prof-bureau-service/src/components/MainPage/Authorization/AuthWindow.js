@@ -69,8 +69,9 @@ export default class AuthWindow extends React.Component {
                             <p>Регистрация</p>
                         </div>
                     </div>
+                    <div className='close-circle' onClick={() => this.changePage('main')}>
                 </div>
-                <div className='close-circle' onClick={() => this.changePage('main')}>
+                {/* <div className='close-circle' onClick={() => this.changePage('main')}> */}
                 </div>
             </div>
         )
