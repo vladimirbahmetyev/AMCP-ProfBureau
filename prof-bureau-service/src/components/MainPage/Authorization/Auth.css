@@ -22,7 +22,7 @@
 }
 
 .auth-text {
-    font-size: 3.5vh;
+    font-size: 30px;
     color: #2c3343;
     margin: 3% 0 3% 0;
     font-weight: bold;
@@ -36,7 +36,7 @@
 .auth-field > p {
     color: #2c3343;
     margin: 0 0 1% 0;
-    font-size: 2vh;
+    font-size: 13px;
 }
 
 .auth-field > input:focus {
@@ -61,7 +61,7 @@
     justify-content: center;
     align-items: center;
     transition-duration: 300ms;
-    font-size: 2vh;
+    font-size: 15px;
 }
 
 .auth-button:hover {
@@ -89,7 +89,7 @@
     padding: 0 5% 0 5%;
     color: #2c3343;
     font-family: 'PFBeauSansPro-light';
-    font-size: 1.5vh;
+    font-size: 14px;
 }
 
 .close-circle {

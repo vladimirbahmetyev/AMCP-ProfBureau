@@ -10,7 +10,7 @@ export default class AuthWindow extends React.Component {
     login = () => {
         let persLogin = document.getElementById('login').value
         let password = document.getElementById('password').value
-        if (login !== '', password.length >= 8) {
+        if (login !== '' && password.length >= 8) {
             fetch(this.props.url + 'login/',{
                 method:"POST",
                 headers:{
@@ -64,7 +64,7 @@ export default class AuthWindow extends React.Component {
                         <div className='auth-button auth-login' onClick={() => this.login()}>
                             <p>Войти</p>
                         </div>
-                        <a href='/login/vk-oauth2' className='vk-reg' onClick={() => localStorage.setItem('logged', true)}></a>
+                        <a href='/login/vk-oauth2' className='vk-reg' onClick={() => localStorage.setItem('logged', true)}>&nbsp;</a>
                         <div className='auth-button auth-reg' onClick={() => this.changePage('reg')}>
                             <p>Регистрация</p>
                         </div>

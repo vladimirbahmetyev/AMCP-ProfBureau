@@ -37,7 +37,7 @@
 .reg-field > p {
     color: #2c3343;
     margin: 0 0 1% 0;
-    font-size: 2vh;
+    font-size: 13px;
 }
 
 .reg-field > input, .reg-field > select {
@@ -50,7 +50,7 @@
     padding: 0 5% 0 5%;
     color: #2c3343;
     font-family: 'PFBeauSansPro-light';
-    font-size: 2vh;
+    font-size: 14px;
 }
 
 .reg-field > input:focus, select:focus {
@@ -77,7 +77,7 @@
     align-items: center; 
     transition-duration: 300ms;
     height: 100%;
-    font-size: 2vh;
+    font-size: 15px;
 }
 
 .vk-reg {

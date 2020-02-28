@@ -59,8 +59,8 @@ export default class ContactBlock extends React.Component {
                 <div className='socialNetworks'>
                     <h2 className='block-title'>Мы в соцсетях</h2>
                     <div className='social-net-icons'>
-                        <a className='vk-icon' href='https://vk.com/pmpu_news/' target='_blank' rel="noopener noreferrer"></a>
-                        <div className='inst-icon'></div>
+                        <a className='vk-icon' href='https://vk.com/pmpu_news/' target='_blank' rel="noopener noreferrer">&nbsp;</a>
+                        <a className='inst-icon' href='https://www.instagram.com/amcp_spbu/' target='_blank' rel="noopener noreferrer">&nbsp;</a>
                     </div>
                 </div>
             </div>
